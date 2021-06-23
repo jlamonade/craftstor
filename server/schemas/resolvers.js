@@ -59,6 +59,16 @@ const resolvers = {
       console.log(user, token)
       return {User:{id: user._id},  token:{token}};
     },
+    async newUser(parent, args) {
+      const user = await User.create(args);
+  
+      if (!user) {
+       throw UserInputError("Incorrect parameters!")
+      }
+      const token = signToken(user);
+      console.log(user, token)
+      return {User:{id: user._id},  token:{token}};
+    },
     
     
     async savedProjects(parent, args, context) {
