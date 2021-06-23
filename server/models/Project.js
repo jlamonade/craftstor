@@ -5,7 +5,8 @@ const { Schema } = mongoose;
 const projectSchema = new Schema({
     dueDate: {
         type: Date,
-        required: true,
+        default: Date.now,
+        get: (timestamp) => dateFormat(timestamp),
     },
     client: {
         type: String,
