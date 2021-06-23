@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 // TODO import useMutation
 import { Container, FormControl, Button, InputLabel, Input, FormGroup } from '@material-ui/core'
+import { useMutation } from '@apollo/client'
+import { SIGNUP } from '../utils/mutations'
 
 const SignupForm = () => {
   const [userFormData, setUserFormData] = useState({
@@ -8,6 +10,8 @@ const SignupForm = () => {
     email: '',
     password: ''
   })
+
+  const [createUser] = useMutation(SIGNUP)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
@@ -20,6 +24,14 @@ const SignupForm = () => {
     console.log(userFormData)
 
     // set up mutation here to send form data into the back
+    try {
+      const { data } = await createUser({
+        variables: { ...userFormData }
+      })
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
 
     setUserFormData({
       username: '',
