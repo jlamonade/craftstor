@@ -13,6 +13,17 @@ const SignupForm = () => {
     setUserFormData({ ...userFormData, [name]: value })
   }
 
+  const handleFormSubmit = async (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    console.log(userFormData)
+    setUserFormData({
+      username: '',
+      email: '',
+      password: ''
+    })
+  }
+
   return (
     <Container>
       <FormGroup>
@@ -30,7 +41,7 @@ const SignupForm = () => {
           <InputLabel htmlFor="password">Password</InputLabel>
           <Input id='password' onChange={handleInputChange} name='password'/>
         </FormControl>
-        <Button>Submit</Button>
+        <Button onClick={handleFormSubmit}>Submit</Button>
       </FormGroup>
     </Container>
   )
