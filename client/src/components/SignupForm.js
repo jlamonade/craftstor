@@ -4,6 +4,7 @@ import { Container, FormControl, Button, InputLabel, Input, FormGroup } from '@m
 import { useMutation } from '@apollo/client'
 import { SIGNUP } from '../utils/mutations'
 
+// TODO add first name and last name fields to form and state
 const SignupForm = () => {
   const [userFormData, setUserFormData] = useState({
     username: '',

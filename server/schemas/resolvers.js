@@ -8,7 +8,6 @@ const resolvers = {
   Query: {
     async getUserByUsername(parent, args) {
       const foundUser = await User.findOne({
-      
         username: args.username
       });
   
@@ -49,7 +48,17 @@ const resolvers = {
       console.log(result)
       return result
     },
-    async createUser(parent, args) {
+    async createUser(parent, { username, email, password, firstName, lastName }) {
+      console.log(username)
+      const user = await User.create({ username, email, password, firstName, lastName });
+  
+      if (!user) {
+       throw UserInputError("Incorrect parameters!")
+      }
+      const token = signToken(user);
+      return { token, user };
+    },
+    async newUser(parent, args) {
       const user = await User.create(args);
   
       if (!user) {
@@ -57,19 +66,16 @@ const resolvers = {
       }
       const token = signToken(user);
       console.log(user, token)
-      return {User:{username:user.username, email:user.email, password: user.password, id: user._id, savedProjects: user.savedProjects},  token:{token}};
+      return {User:{id: user._id},  token:{token}};
     },
     
     
     async savedProjects(parent, args, context) {
       console.log(args)
-      let token = args.token;
-      const id = data._id;
+      const id = context.user._id;
       try {
         const updatedUser = await User.findOneAndUpdate(
-          {$or: [
-            {_id: id},
-          { _id: args.id }]},
+          {_id: id},
           { $addToSet: { savedProjects: args.project } },
           { new: true, runValidators: true }
         );
@@ -82,8 +88,8 @@ const resolvers = {
     },
     async deleteProjects(parent, args, context) {
       const updatedUser = await User.findOneAndUpdate(
-        { _id: context._id },
-        { $pull: { savedProjects: { ProjectId: args.ProjectId } } },
+        { _id: context.user._id },
+        { $pull: { savedProjects: { projectId: args.projectId } } },
         { new: true }
       );
       if (!updatedUser) {
