@@ -62,9 +62,6 @@ const resolvers = {
     async savedProjects(parent, args, context) {
       console.log(args)
       let token = args.token;
-      const secret = 'mysecretsshhhhh';
-      const expiration = '2h';
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
       const id = data._id;
       try {
         const updatedUser = await User.findOneAndUpdate(
