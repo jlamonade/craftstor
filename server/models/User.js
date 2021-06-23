@@ -3,8 +3,13 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const Profile = require('./Profile');
+const Project = require('./Project');
 
 const userSchema = new Schema({
+    username: {
+        type: String,
+        required: true
+    },
     firstName: {
         type: String,
         required: true,
@@ -25,6 +30,7 @@ const userSchema = new Schema({
         required: true,
         minlength: 8
     },
+    savedProjects: [Project.schema],
     profile: [Profile.schema]
 });
 
