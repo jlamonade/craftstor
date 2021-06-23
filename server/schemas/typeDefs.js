@@ -14,4 +14,11 @@ const typeDefs = gql`
       portfolio: String!
       projects: [Project]
     }
-`
+
+  type Project {
+      dueDate: Date,
+      client: String!
+  }
+`;
+
+module.exports = typeDefs;
