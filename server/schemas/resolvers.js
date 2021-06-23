@@ -59,6 +59,8 @@ const resolvers = {
       console.log(user, token)
       return {User:{username:user.username, email:user.email, password: user.password, id: user._id, savedProjects: user.savedProjects},  token:{token}};
     },
+    
+    
     async savedProjects(parent, args, context) {
       console.log(args)
       let token = args.token;
