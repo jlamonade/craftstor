@@ -6,19 +6,6 @@ const jwt = require('jsonwebtoken');
 
 const resolvers = {
   Query: {
-    async login(parent, args, context) {
-      let foundUser = await User.findOne({ $or: [{ email: args.email }] });
-
-      const correctPw = await foundUser.isCorrectPassword(args.password);
-
-      if (!correctPw) {
-        throw new UserInputError("Error")
-      }
-      const token = signToken(foundUser);
-      let result = {User:{username:foundUser.username, email:foundUser.email, password: foundUser.password, id: foundUser._id, savedProjects: foundUser.savedProjects},  token:{token}};
-      console.log(result)
-      return result
-    },
     async getUserByUsername(parent, args) {
       const foundUser = await User.findOne({
       
@@ -49,6 +36,19 @@ const resolvers = {
     }
   },
   Mutation: {
+    async login(parent, args) {
+      let foundUser = await User.findOne({ $or: [{ email: args.email }] });
+
+      const correctPw = await foundUser.isCorrectPassword(args.password);
+
+      if (!correctPw) {
+        throw new UserInputError("Error")
+      }
+      const token = signToken(foundUser);
+      let result = {User:{username:foundUser.username, email:foundUser.email, password: foundUser.password, id: foundUser._id, savedProjects: foundUser.savedProjects},  token:{token}};
+      console.log(result)
+      return result
+    },
     async createUser(parent, args) {
       const user = await User.create(args);
   
