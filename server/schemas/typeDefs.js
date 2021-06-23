@@ -11,39 +11,39 @@ const typeDefs = gql`
     }
 
   type Profile {
+      _id: ID
       skills: String!
       portfolio: String!
       projects: [Project]
     }
 
   type Project {
+      _id: ID
       dueDate: String,
       client: String!
   }
+  
+  input ProjectInput{
+    dueDate: String!
+    client: String!
+  }
 
   type Auth {
-    token: ID
+    token: ID!
     user: User
   }
  
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
-    createUser (input: savedUsed): User
-    removeProjects(projectId: String!): Projects
-}
-
+    createUser(username: String!, email: String!, password: String!): Auth
+    savedProjects(project: ProjectInput): User
+    deleteProjects(projectId: ID!): Projects
+  }
 
   type Query {
-    users: [User]!
-    user(userId: ID!): User
+    getUsersByUsername(username: String!): User
+    getUserById(id: ID!): User
   }
-
-  type Mutation {
-    createUser(username: String!, email: String!, password: String!): Auth
-    login()
-  }
-
 `;
 
 
