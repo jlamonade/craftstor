@@ -1,3 +1,8 @@
 node_modules
 package-lock.json
 .env
+<<<<<<< HEAD
+build
+=======
+client/build/npm 
+>>>>>>> fcf0d111ec07c5667d66f7ab024921a29d878a98
