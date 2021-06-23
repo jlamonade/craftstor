@@ -16,13 +16,18 @@ const typeDefs = gql`
     }
 
   type Project {
-      dueDate: Date,
+      dueDate: String,
       client: String!
   }
 
   type Auth {
     token: ID
     user: User
+  }
+
+  type Query {
+    users: [User]!
+    user(userId: ID!): User
   }
 
 `;
