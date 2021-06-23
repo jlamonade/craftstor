@@ -12,6 +12,9 @@ const projectSchema = new Schema({
         type: String,
         required: true,
         trim: true
+    },
+    completed: {
+        type: Boolean,
     }
 });
 
