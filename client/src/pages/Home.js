@@ -1,11 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
+import { Container } from '@material-ui/core'
+ 
 const Home = () => {
   return (
-    <>
-      <Link to='/signup'>Sign Up</Link>
-    </>
+    <Container>
+      Home
+    </Container>
   )
 }
 
