@@ -1,24 +1,38 @@
 import React, { useState } from 'react'
 // TODO import useMutation
+import { useMutation } from '@apollo/client'
+import { LOGIN } from '../utils/mutations'
 import { Container, FormControl, Button, InputLabel, Input, FormGroup } from '@material-ui/core'
 
-const SignupForm = () => {
+const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({
     email: '',
     password: ''
   })
 
+  const [login] = useMutation(LOGIN)
+
+  // tracks the changes in the form
   const handleInputChange = (event) => {
     const { name, value } = event.target
     setUserFormData({ ...userFormData, [name]: value })
   }
 
+  // form submit handler - where all the authentication stuff happens
   const handleFormSubmit = async (event) => {
     event.preventDefault()
     event.stopPropagation()
     console.log(userFormData)
 
-    // set up mutation here to send form data into the back to login
+    try {
+      const { data } = await login({
+        variables: { ...userFormData }
+      })
+      console.log(data)
+      // TODO if data is good then Auth login, also need to create auth utility
+    } catch (err) {
+      console.log(err)
+    }
 
     setUserFormData({
       email: '',
@@ -44,6 +58,4 @@ const SignupForm = () => {
   )
 }
 
-
-
-export default SignupForm
+export default LoginForm
