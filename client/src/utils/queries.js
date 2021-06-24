@@ -8,18 +8,6 @@ export const GET_USER_BY_ID = gql`
       firstName
       lastName
       email
-      savedProjects {
-        dueDate
-        client
-      }
-      profile {
-        skills
-        portfolio
-        projects {
-          dueDate
-          client
-        }
-      }
     }
   }
 `

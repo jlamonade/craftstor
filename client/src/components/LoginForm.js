@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { LOGIN } from '../utils/mutations'
 import { Container, FormControl, Button, InputLabel, Input, FormGroup } from '@material-ui/core'
+import Auth from '../utils/auth'
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({
@@ -30,6 +31,7 @@ const LoginForm = () => {
       })
       console.log(data)
       // TODO if data is good then Auth login, also need to create auth utility
+      Auth.login(data.login.token)
     } catch (err) {
       console.log(err)
     }

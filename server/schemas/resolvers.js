@@ -17,15 +17,9 @@ const resolvers = {
   
       return foundUser;
     },
-    async getUserById(parent, args, context) {
-      console.log(context)
-      const foundUser = await User.findOne({
-      $or: [
-        {_id: context._id},
-        {_id: args.id},
-      ],
-        
-      });
+    getUserById: async (parent, args, context) => {
+      const foundUser = await User.findOne({_id: context.user._id});
+      console.log(foundUser)
   
       if (!foundUser) {
         throw new UserInputError("User not found!")
@@ -44,9 +38,8 @@ const resolvers = {
         throw new UserInputError("Error")
       }
       const token = await signToken(foundUser);
-      let result = {User:{username:foundUser.username, email:foundUser.email, password: foundUser.password, id: foundUser._id, savedProjects: foundUser.savedProjects},  token:{token}};
-      console.log(result)
-      return result
+      
+      return { token, foundUser }
     },
 
     createUser: async (parent, { username, firstName, lastName, email, password }) => {
