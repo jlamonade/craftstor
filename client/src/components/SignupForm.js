@@ -23,29 +23,23 @@ const SignupForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
-    event.stopPropagation()
-    console.log(userFormData)
-
-    // console.log(userFormData)
-    // console.log({ ...userFormData })
     // set up mutation here to send form data into the back
     try {
-      console.log({ ...userFormData })
       const { data } = await createUser({
         variables: { ...userFormData }
       })
-      console.log(data)
+      Auth.login(data.createUser.token)
     } catch (err) {
       console.log()
     }
 
-    // setUserFormData({
-    //   username: '',
-    //   firstName: '',
-    //   lastName: '',
-    //   email: '',
-    //   password: ''
-    // })
+    setUserFormData({
+      username: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: ''
+    })
   }
 
   return (
