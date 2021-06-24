@@ -43,7 +43,7 @@ const typeDefs = gql`
 
   type Query {
     getUserByUsername(username: String!): User
-    getUserById(id: ID!): User
+    getUserById: User
   }
 `;
 

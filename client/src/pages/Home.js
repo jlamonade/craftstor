@@ -9,7 +9,7 @@ const Home = () => {
       {Auth.loggedIn() ? (
         <Dashboard />
       ) : (
-        <div>Splash Page</div>
+        <div>Not dashboard</div>
       )}
     </Container>
   )
