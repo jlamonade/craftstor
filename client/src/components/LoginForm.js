@@ -47,12 +47,20 @@ const LoginForm = () => {
       <FormGroup>
         <FormControl>
           <InputLabel htmlFor="email">Email</InputLabel>
+<<<<<<< HEAD
+          <Input id='email' onChange={handleInputChange} name='email' value={userFormData.email}/>
+=======
           <Input id='email' value={userFormData.email} onChange={handleInputChange} name='email'/>
+>>>>>>> 35499fca3201fe1f107b7b6fdfb6f0e8935370d2
 
         </FormControl>
         <FormControl>
           <InputLabel htmlFor="password">Password</InputLabel>
+<<<<<<< HEAD
+          <Input id='password' type="password" onChange={handleInputChange} value={userFormData.password} name='password'/>
+=======
           <Input id='password' value={userFormData.passowrd} type="password" onChange={handleInputChange} name='password'/>
+>>>>>>> 35499fca3201fe1f107b7b6fdfb6f0e8935370d2
         </FormControl>
         <Button onClick={handleFormSubmit}>Submit</Button>
       </FormGroup>

@@ -45,7 +45,7 @@ const resolvers = {
     },
 
     login: async (parent, args) => {
-      let foundUser = await User.findOne({ $or: [{ email: args.email }] });
+      let foundUser = await User.findOne({ email: args.email });
 
       const correctPw = await foundUser.isCorrectPassword(args.password);
       console.log(foundUser)
@@ -90,13 +90,14 @@ const resolvers = {
     async savedProjects(parent, args, context) {
       console.log(args)
       const id = context.user._id;
+      console.log(id)
       try {
         const updatedUser = await User.findOneAndUpdate(
           {_id: id},
-          { $push: { savedProjects: args.project } },
+          { $push: { savedProjects: args } },
           { new: true, runValidators: true }
         );
-        return updatedUser.savedProjects;
+        return updatedUser;
       } catch (err) {
         console.log(err);
         throw new UserInputError("Failed to update!")
