@@ -34,6 +34,7 @@ const typeDefs = gql`
     savedProjects(dueDate: String, client: String, checked: Boolean): User
     deleteProjects(projectId: ID!): Project
     newUser(username: String!, email: String!, password: String!): Auth
+    updateUser(username: String!, email: String!, password: String!): Auth
   }
 
   type Query {
