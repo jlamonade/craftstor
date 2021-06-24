@@ -15,6 +15,7 @@ const projectSchema = new Schema({
     },
     completed: {
         type: Boolean,
+        default: false
     }
 });
 
