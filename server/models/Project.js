@@ -13,6 +13,7 @@ const projectSchema = new Schema({
         required: true,
         trim: true
     },
+    // completed means shows up in public profile
     completed: {
         type: Boolean,
     }
