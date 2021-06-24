@@ -23,3 +23,14 @@ export const SIGNUP = gql`
     }
   }
 `
+
+export const SAVE_PROJECT = gql`
+  mutation ($dueDate: String, $client: String, $checked: Boolean) {
+    savedProjects (dueDate: $dueDate, client: $client, checked: $checked) {
+      username
+      savedProjects {
+        client
+      }
+    }
+  }
+`

@@ -17,15 +17,8 @@ const resolvers = {
   
       return foundUser;
     },
-    async getUserById(parent, args, context) {
-      console.log(context)
-      const foundUser = await User.findOne({
-      $or: [
-        {_id: context._id},
-        {_id: args.id},
-      ],
-        
-      });
+    getUserById: async (parent, args, context) => {
+      const foundUser = await User.findOne({_id: context.user._id});
   
       if (!foundUser) {
         throw new UserInputError("User not found!")
@@ -44,13 +37,11 @@ const resolvers = {
         throw new UserInputError("Error")
       }
       const token = await signToken(foundUser);
-      let result = {User:{username:foundUser.username, email:foundUser.email, password: foundUser.password, id: foundUser._id, savedProjects: foundUser.savedProjects},  token:{token}};
-      console.log(result)
-      return result
+      
+      return { token, foundUser }
     },
 
     createUser: async (parent, { username, firstName, lastName, email, password }) => {
-      console.log(username)
       const user = await User.create({ username, firstName, lastName, email, password });
   
       if (!user) {
@@ -58,6 +49,13 @@ const resolvers = {
       }
       const token = await signToken(user);
       return { token, user };
+    },
+
+    updateUser: async (parent, { username, email, password }, context) => {
+      const user = await User.findOneAndUpdate(
+        { id: context.user._id }, 
+        {$set: {updatedUsername: username, updatedEmail: email, updatedPassword: password} }, 
+        { new: true});
     },
 
     async newUser(parent, args) {
@@ -78,16 +76,16 @@ const resolvers = {
       try {
         const updatedUser = await User.findOneAndUpdate(
           {_id: id},
-          { $addToSet: { savedProjects: args.project } },
+          { $push: { savedProjects: args.project } },
           { new: true, runValidators: true }
         );
-        console.log(updatedUser)
-        return updatedUser;
+        return updatedUser.savedProjects;
       } catch (err) {
         console.log(err);
         throw new UserInputError("Failed to update!")
       }
     },
+
     async deleteProjects(parent, args, context) {
       const updatedUser = await User.findOneAndUpdate(
         { _id: context.user._id },

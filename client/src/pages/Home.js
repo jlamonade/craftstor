@@ -4,12 +4,13 @@ import Dashboard from './Dashboard'
 import Auth from '../utils/auth'
  
 const Home = () => {
+
   return (
     <Container>
       {Auth.loggedIn() ? (
         <Dashboard />
       ) : (
-        <div>Splash Page</div>
+        <div>Not dashboard</div>
       )}
     </Container>
   )
