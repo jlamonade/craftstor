@@ -27,8 +27,9 @@ const resolvers = {
       return foundUser;
     },
     getSkills: async (parent, args, context) => {
+      // TODO think about using context
       const user = await User.findOne(
-        {_id: context.user._id}, 
+        {_id: args.id}, 
         ).select('profile.skills');
 
       return user
@@ -37,11 +38,13 @@ const resolvers = {
   Mutation: {
 
     addSkills: async (parent, args, context) => {
-      let  skill = await User.findOneAndUpdate(
-        {_id: context.user._id},
+      // TODO think about using id from context
+      console.log(args)
+      let user = await User.findOneAndUpdate(
+        {_id: args.id},
         {$set: {profile: {skills: args.skill }}});
       
-      return { skills: skill }
+      return user
     },
 
     login: async (parent, args) => {
@@ -54,7 +57,7 @@ const resolvers = {
         throw new UserInputError("Error")
       }
       const token = await signToken(foundUser);
-      
+
       return { token, user: foundUser }
     },
 

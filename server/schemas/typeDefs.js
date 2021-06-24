@@ -34,13 +34,13 @@ const typeDefs = gql`
     deleteProjects(projectId: ID!): User
     newUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String!, email: String!, password: String!): Auth
-    addSkills(_id: ID!, skill: String!): User
+    addSkills(id: ID!, skill: String!): User
   }
 
   type Query {
     getUserByUsername(username: String!): User
     getUserById: User
-    getSkills: User
+    getSkills(id: ID): User
   }
 `;
 
