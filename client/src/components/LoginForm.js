@@ -47,12 +47,12 @@ const LoginForm = () => {
       <FormGroup>
         <FormControl>
           <InputLabel htmlFor="email">Email</InputLabel>
-          <Input id='email' onChange={handleInputChange} name='email'/>
+          <Input id='email' value={userFormData.email} onChange={handleInputChange} name='email'/>
 
         </FormControl>
         <FormControl>
           <InputLabel htmlFor="password">Password</InputLabel>
-          <Input id='password' type="password" onChange={handleInputChange} name='password'/>
+          <Input id='password' value={userFormData.passowrd} type="password" onChange={handleInputChange} name='password'/>
         </FormControl>
         <Button onClick={handleFormSubmit}>Submit</Button>
       </FormGroup>
