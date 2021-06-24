@@ -49,10 +49,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3 ];
-// >>> added
-
-
 const Dashboard = () => {
   //added
   const classes = useStyles();
@@ -73,7 +69,7 @@ const Dashboard = () => {
     <Container>
       Dashboard
       {loading ? (
-        <div>Loading...</div>
+        <Container>Loading...</Container>
       ) : (
         // userData.username
         <>
@@ -111,8 +107,8 @@ const Dashboard = () => {
                 <Container className={classes.cardGrid} maxWidth="md">
                   {/* End hero unit */}
                   <Grid container spacing={4}>
-                    {cards.map((card) => (
-                      <Grid item key={card} xs={12} sm={6} md={4}>
+                    {userData.savedProjects.map((card) => (
+                      <Grid item key={card._id} xs={12} sm={6} md={4}>
                         <Card className={classes.card}>
                           <CardMedia
                             className={classes.cardMedia}
@@ -121,7 +117,7 @@ const Dashboard = () => {
                           />
                           <CardContent className={classes.cardContent}>
                             <Typography gutterBottom variant="h5" component="h2">
-                              Project name
+                              {card.client}
                             </Typography>
                             <Typography>
                               description

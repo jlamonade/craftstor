@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
-// TODO change this
 import { SAVE_PROJECT } from '../utils/mutations'
 import { Container, FormControl, Button, InputLabel, Input, FormGroup, Checkbox, FormLabel } from '@material-ui/core'
 
@@ -34,11 +33,11 @@ const ProjectForm = () => {
       console.log(err)
     }
 
-    // setProjectFormData({
-    //   dueDate: '',
-    //   client: '',
-    //   checked: false
-    // })
+    setProjectFormData({
+      dueDate: '',
+      client: '',
+      checked: null
+    })
   }
 
   return (
@@ -46,11 +45,11 @@ const ProjectForm = () => {
       <FormGroup>
         <FormControl>
           <InputLabel htmlFor="dueDate">Due Date</InputLabel>
-          <Input type="date" id='dueDate' onChange={handleInputChange} name='dueDate'/>
+          <Input type="date" id='dueDate' value={projectFormData.dueDate} onChange={handleInputChange} name='dueDate'/>
         </FormControl>
         <FormControl>
           <InputLabel htmlFor="client">Client</InputLabel>
-          <Input id='client' type="text" onChange={handleInputChange} name='client'/>
+          <Input id='client' type="text" value={projectFormData.client} onChange={handleInputChange} name='client'/>
         </FormControl>
         <FormControl>
           <FormLabel htmlFor="checked">Completed</FormLabel>
