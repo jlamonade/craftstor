@@ -45,7 +45,7 @@ const Navbar = () => {
       return (
         <Typography>
          <Button color="inherit">
-          <Link to='/logout' className={classes.link2}>
+          <Link to='/' onClick={() => Auth.logout()} className={classes.link2}>
              LogOut
           </Link> 
          </Button>
