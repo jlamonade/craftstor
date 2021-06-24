@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Profile = require('./Profile');
-const Project = require('./Project');
 
 const userSchema = new Schema({
     username: {
@@ -37,7 +35,24 @@ const userSchema = new Schema({
             required: false,
         },
     },
-    savedProjects: [Project.schema],
+    savedProjects: [
+        {
+            dueDate: {
+                type: Date,
+                default: Date.now,
+                get: (timestamp) => dateFormat(timestamp)
+            },
+            client: {
+                type: String,
+                required: true,
+                trime: true
+            },
+            checked: {
+                type: Boolean,
+                default: false
+            }
+        }
+    ],
 });
 
 userSchema.pre('save', async function(next) {
