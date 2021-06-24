@@ -4,11 +4,7 @@ const { Schema } = mongoose;
 const Project = require('./Project')
 
 const profileSchema = new Schema({
-    skills: {
-        type: String,
-        required: false,
-        trim: true
-    },
+    skills: [String],
     portfolio: {
         type: String,
         required: false,
