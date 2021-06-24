@@ -1,47 +1,44 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 // TODO change this
-import { LOGIN } from '../utils/mutations'
-import { Container, FormControl, Button, InputLabel, Input, FormGroup, Checkbox } from '@material-ui/core'
-import Auth from '../utils/auth'
+import { SAVE_PROJECT } from '../utils/mutations'
+import { Container, FormControl, Button, InputLabel, Input, FormGroup, Checkbox, FormLabel } from '@material-ui/core'
 
 const ProjectForm = () => {
-  const [userFormData, setUserFormData] = useState({
+  const [projectFormData, setProjectFormData] = useState({
     dueDate: '',
     client: '',
     checked: false
   })
 
-  const [login] = useMutation(LOGIN)
+  const [saveProject] = useMutation(SAVE_PROJECT)
 
   // tracks the changes in the form
   const handleInputChange = (event) => {
     const { name, value, checked } = event.target
-    setUserFormData({ ...userFormData, [name]: value || checked })
+    setProjectFormData({ ...projectFormData, [name]: value || checked })
   }
 
   // form submit handler - where all the authentication stuff happens
   const handleFormSubmit = async (event) => {
     event.preventDefault()
     event.stopPropagation()
-    console.log(userFormData)
 
     try {
-      const { data } = await login({
-        variables: { ...userFormData }
+      console.log(projectFormData)
+      const { data } = await saveProject({
+        variables: { ...projectFormData }
       })
       console.log(data)
-      // TODO if data is good then Auth login, also need to create auth utility
-      Auth.login(data.login.token)
     } catch (err) {
       console.log(err)
     }
 
-    setUserFormData({
-      dueDate: '',
-      client: '',
-      completed: false
-    })
+    // setProjectFormData({
+    //   dueDate: '',
+    //   client: '',
+    //   checked: false
+    // })
   }
 
   return (
@@ -56,7 +53,7 @@ const ProjectForm = () => {
           <Input id='client' type="text" onChange={handleInputChange} name='client'/>
         </FormControl>
         <FormControl>
-          <InputLabel htmlFor="completed">Completed</InputLabel>
+          <FormLabel htmlFor="checked">Completed</FormLabel>
           <Checkbox name="checked" onChange={handleInputChange}/>
         </FormControl>
         <Button onClick={handleFormSubmit}>Submit</Button>
