@@ -29,7 +29,7 @@ const resolvers = {
   },
   Mutation: {
     login: async (parent, args) => {
-      let foundUser = await User.findOne({ $or: [{ email: args.email }] });
+      let foundUser = await User.findOne({ email: args.email });
 
       const correctPw = await foundUser.isCorrectPassword(args.password);
 
@@ -38,7 +38,7 @@ const resolvers = {
       }
       const token = await signToken(foundUser);
       
-      return { token, foundUser }
+      return { token, user: foundUser }
     },
 
     createUser: async (parent, { username, firstName, lastName, email, password }) => {

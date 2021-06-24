@@ -49,10 +49,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3 ];
-// >>> added
-
-
 const Dashboard = () => {
   //added
   const classes = useStyles();
