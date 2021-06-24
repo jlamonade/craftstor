@@ -19,7 +19,6 @@ const resolvers = {
     },
     getUserById: async (parent, args, context) => {
       const foundUser = await User.findOne({_id: context.user._id});
-      console.log(foundUser)
   
       if (!foundUser) {
         throw new UserInputError("User not found!")
@@ -43,7 +42,6 @@ const resolvers = {
     },
 
     createUser: async (parent, { username, firstName, lastName, email, password }) => {
-      console.log(username)
       const user = await User.create({ username, firstName, lastName, email, password });
   
       if (!user) {
@@ -88,6 +86,7 @@ const resolvers = {
         throw new UserInputError("Failed to update!")
       }
     },
+
     async deleteProjects(parent, args, context) {
       const updatedUser = await User.findOneAndUpdate(
         { _id: context.user._id },
