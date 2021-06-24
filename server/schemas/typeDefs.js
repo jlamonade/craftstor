@@ -22,11 +22,6 @@ const typeDefs = gql`
       dueDate: String,
       client: String!
   }
-  
-  input ProjectInput{
-    dueDate: String!
-    client: String!
-  }
 
   type Auth {
     token: ID
@@ -36,7 +31,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     createUser(username: String!, email: String!, password: String!, firstName: String!, lastName: String!): Auth
-    savedProjects(project: ProjectInput): User
+    savedProjects(dueDate: String, client: String, checked: Boolean): User
     deleteProjects(projectId: ID!): Project
     newUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String!, email: String!, password: String!): Auth
