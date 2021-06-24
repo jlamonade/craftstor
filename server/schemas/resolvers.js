@@ -69,11 +69,10 @@ const resolvers = {
       try {
         const updatedUser = await User.findOneAndUpdate(
           {_id: id},
-          { $addToSet: { savedProjects: args.project } },
+          { $push: { savedProjects: args.project } },
           { new: true, runValidators: true }
         );
-        console.log(updatedUser)
-        return updatedUser;
+        return updatedUser.savedProjects;
       } catch (err) {
         console.log(err);
         throw new UserInputError("Failed to update!")
