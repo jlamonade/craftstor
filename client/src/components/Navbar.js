@@ -1,14 +1,19 @@
 import React from 'react';
+import Auth from "../utils/auth";
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button, IconButton} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { AppBar, Toolbar, Typography, Button} from '@material-ui/core';
+// import MenuIcon from '@material-ui/icons/Menu';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
+  // menuButton: {
+  //   marginRight: theme.spacing(2),
+  // },
+  icon: {
     marginRight: theme.spacing(2),
   },
   title: {
@@ -36,13 +41,31 @@ const Navbar = () => {
   const classes = useStyles();
 
   function showNavigation() {
-    if (0) {
+    if (Auth.loggedIn()) {
       return (
-        <p>X</p>
+        <Typography>
+         <Button color="inherit">
+          <Link to='/' onClick={() => Auth.logout()} className={classes.link2}>
+             LogOut
+          </Link> 
+         </Button>
+        </Typography>
       );
     } else {
       return (
-         <p>Y</p>
+        <Typography>
+         <Button color="inherit">
+          <Link to='/signup' className={classes.link2}>
+              Sign Up
+          </Link> 
+         </Button>
+
+         <Button color="inherit">
+          <Link to='/login' className={classes.link2}>
+            Login
+          </Link> 
+         </Button>
+        </Typography>
       );
     }
   }
@@ -54,18 +77,18 @@ const Navbar = () => {
         <div className={classes.root}>
             <AppBar position="static">
               <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                   <MenuIcon />
-                </IconButton>
+                </IconButton> */}
                 <Typography variant="h6" className={classes.title}>
-                    <span role="img" aria-label="Craftstor">🎨 </span>
+                    <span role="img" aria-label="Craftstor" className={classes.icon} >🎨</span>
                     <Link to='/' className={classes.link} > 
                         Home
                     </Link>
                 </Typography>
-                <Typography>{showNavigation()}</Typography>
-                <Button color="inherit"><Link to='/signup' className={classes.link2}>Sign Up</Link> </Button>
-                <Button color="inherit"><Link to='/login' className={classes.link2}>Login</Link> </Button>
+                {showNavigation()}
+                {/* <Button color="inherit"><Link to='/signup' className={classes.link2}>Sign Up</Link> </Button>
+                <Button color="inherit"><Link to='/login' className={classes.link2}>Login</Link> </Button> */}
               </Toolbar>
             </AppBar>
         </div>
