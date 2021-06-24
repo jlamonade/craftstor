@@ -31,7 +31,7 @@ const userSchema = new Schema({
         minlength: 8
     },
     profile: {
-        skills: [skills],
+        skills: [String],
         portfolio: {
             type: String,
             required: false,

@@ -39,6 +39,7 @@ const typeDefs = gql`
     savedProjects(project: ProjectInput): User
     deleteProjects(projectId: ID!): Project
     newUser(username: String!, email: String!, password: String!): Auth
+    updateUser(username: String!, email: String!): Auth
   }
 
   type Query {
