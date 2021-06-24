@@ -4,6 +4,7 @@ import Dashboard from './Dashboard'
 import Auth from '../utils/auth'
  
 const Home = () => {
+
   return (
     <Container>
       {Auth.loggedIn() ? (
