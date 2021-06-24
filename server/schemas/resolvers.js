@@ -35,7 +35,7 @@ const resolvers = {
     }
   },
   Mutation: {
-    async login(parent, args) {
+    login: async (parent, args) => {
       let foundUser = await User.findOne({ $or: [{ email: args.email }] });
 
       const correctPw = await foundUser.isCorrectPassword(args.password);
@@ -43,21 +43,23 @@ const resolvers = {
       if (!correctPw) {
         throw new UserInputError("Error")
       }
-      const token = signToken(foundUser);
+      const token = await signToken(foundUser);
       let result = {User:{username:foundUser.username, email:foundUser.email, password: foundUser.password, id: foundUser._id, savedProjects: foundUser.savedProjects},  token:{token}};
       console.log(result)
       return result
     },
-    async createUser(parent, { username, email, password, firstName, lastName }) {
+
+    createUser: async (parent, { username, firstName, lastName, email, password }) => {
       console.log(username)
-      const user = await User.create({ username, email, password, firstName, lastName });
+      const user = await User.create({ username, firstName, lastName, email, password });
   
       if (!user) {
        throw UserInputError("Incorrect parameters!")
       }
-      const token = signToken(user);
+      const token = await signToken(user);
       return { token, user };
     },
+
     async newUser(parent, args) {
       const user = await User.create(args);
   
