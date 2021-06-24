@@ -61,14 +61,12 @@ const Dashboard = () => {
   const { loading, data } = useQuery(GET_USER_BY_ID);
   const userData = data?.getUserById  || [];
 
-  console.log(userData.savedProjects)
-
   return (
     <React.Fragment>
     <Container>
       Dashboard
       {loading ? (
-        <div>Loading...</div>
+        <Container>Loading...</Container>
       ) : (
         // userData.username
         <>
@@ -105,8 +103,8 @@ const Dashboard = () => {
                 <Container className={classes.cardGrid} maxWidth="md">
                   {/* End hero unit */}
                   <Grid container spacing={4}>
-                    {cards.map((card) => (
-                      <Grid item key={card} xs={12} sm={6} md={4}>
+                    {userData.savedProjects.map((card) => (
+                      <Grid item key={card._id} xs={12} sm={6} md={4}>
                         <Card className={classes.card}>
                           <CardMedia
                             className={classes.cardMedia}
@@ -115,7 +113,7 @@ const Dashboard = () => {
                           />
                           <CardContent className={classes.cardContent}>
                             <Typography gutterBottom variant="h5" component="h2">
-                              Project name
+                              {card.client}
                             </Typography>
                             <Typography>
                               description
