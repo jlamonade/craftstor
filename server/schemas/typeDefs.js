@@ -29,19 +29,20 @@ const typeDefs = gql`
   }
 
   type Auth {
-    token: ID!
+    token: ID
     user: User
   }
  
   type Mutation {
     login(email: String!, password: String!): Auth
-    createUser(username: String!, email: String!, password: String!): Auth
+    createUser(username: String!, email: String!, password: String!, firstName: String!, lastName: String!): Auth
     savedProjects(project: ProjectInput): User
-    deleteProjects(projectId: ID!): Projects
+    deleteProjects(projectId: ID!): Project
+    newUser(username: String!, email: String!, password: String!): Auth
   }
 
   type Query {
-    getUsersByUsername(username: String!): User
+    getUserByUsername(username: String!): User
     getUserById(id: ID!): User
   }
 `;

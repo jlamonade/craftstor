@@ -48,15 +48,15 @@ const resolvers = {
       console.log(result)
       return result
     },
-    async createUser(parent, args) {
-      const user = await User.create(args);
+    async createUser(parent, { username, email, password, firstName, lastName }) {
+      console.log(username)
+      const user = await User.create({ username, email, password, firstName, lastName });
   
       if (!user) {
        throw UserInputError("Incorrect parameters!")
       }
       const token = signToken(user);
-      console.log(user, token)
-      return {User:{id: user._id},  token:{token}};
+      return { token, user };
     },
     async newUser(parent, args) {
       const user = await User.create(args);
