@@ -17,7 +17,7 @@ const typeDefs = gql`
       projects: [Project]
     }
 
-  type Project {
+  type Profile {
       _id: ID
       dueDate: String,
       client: String!
@@ -27,6 +27,26 @@ const typeDefs = gql`
     dueDate: String!
     client: String!
   }
+ firstName: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    lastName: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: 8
+
 
   type Auth {
     token: ID
