@@ -58,9 +58,6 @@ const resolvers = {
         { id: context.user._id }, 
         {$set: {updatedUsername: username, updatedEmail: email, updatedPassword: password} }, 
         { new: true});
-      user.username;
-      user.email;
-      user.password;
     },
 
     async newUser(parent, args) {
