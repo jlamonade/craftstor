@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6 ];
+const cards = [1, 2, 3 ];
 // >>> added
 
 
@@ -99,6 +99,7 @@ const Dashboard = () => {
                     </div>
                   </Container>
                 </div>
+                
                 <Container className={classes.cardGrid} maxWidth="md">
                   {/* End hero unit */}
                   <Grid container spacing={4}>
@@ -112,10 +113,10 @@ const Dashboard = () => {
                           />
                           <CardContent className={classes.cardContent}>
                             <Typography gutterBottom variant="h5" component="h2">
-                              Heading
+                              Project name
                             </Typography>
                             <Typography>
-                              This is a media card. You can use this section to describe the content.
+                              description
                             </Typography>
                           </CardContent>
                           <CardActions>
