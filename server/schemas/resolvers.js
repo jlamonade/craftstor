@@ -53,6 +53,18 @@ const resolvers = {
       return { token, user };
     },
 
+    updateUser: async (parent, { username, firstName, lastName, email, password }, context) => {
+      const user = await User.findOneAndUpdate(
+        { id: context.user._id }, 
+        {username, firstName, lastName, email, password }, 
+        { new: true});
+      user.username;
+      user.firstName;
+      user.lastName;
+      user.email;
+      user.password;
+    },
+
     async newUser(parent, args) {
       const user = await User.create(args);
   
