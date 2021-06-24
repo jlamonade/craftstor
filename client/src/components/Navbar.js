@@ -13,7 +13,23 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    fontWeight: 500,
+    fontSize: '2rem',
+    color: "#FFFFFF"
   },
+
+  link:{
+    textDecoration: 'none',
+    color: '#FFFFFF',
+  },
+  link2:{
+    flexGrow: 1,
+    fontWeight: 300,
+    fontSize: '1rem',
+    color: "#FFFFFF",
+    textDecoration: 'none',
+  },
+
 }));
 
 const Navbar = () => {
@@ -42,14 +58,14 @@ const Navbar = () => {
                   <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                    <span role="img" aria-label="Craftstor">🎨</span>
-                    <Link to='/'> 
+                    <span role="img" aria-label="Craftstor">🎨 </span>
+                    <Link to='/' className={classes.link} > 
                         Home
                     </Link>
                 </Typography>
                 <Typography>{showNavigation()}</Typography>
-                <Button color="inherit"><Link to='/signup'>Sign Up</Link> </Button>
-                <Button color="inherit"><Link to='/login'>Login</Link> </Button>
+                <Button color="inherit"><Link to='/signup' className={classes.link2}>Sign Up</Link> </Button>
+                <Button color="inherit"><Link to='/login' className={classes.link2}>Login</Link> </Button>
               </Toolbar>
             </AppBar>
         </div>
