@@ -25,20 +25,37 @@ const resolvers = {
       }
   
       return foundUser;
+    },
+    getSkills: async (parent, args, context) => {
+      const user = await User.findOne(
+        {_id: context.user._id}, 
+        ).select('profile.skills');
+
+      return user
     }
   },
   Mutation: {
+
+    addSkills: async (parent, args, context) => {
+      let  skill = await User.findOneAndUpdate(
+        {_id: context.user._id},
+        {$set: {profile: {skills: args.skill }}});
+      
+      return { skills: skill }
+    },
+
     login: async (parent, args) => {
       let foundUser = await User.findOne({ $or: [{ email: args.email }] });
 
       const correctPw = await foundUser.isCorrectPassword(args.password);
+      console.log(foundUser)
 
       if (!correctPw) {
         throw new UserInputError("Error")
       }
       const token = await signToken(foundUser);
       
-      return { token, foundUser }
+      return { token, user: foundUser }
     },
 
     createUser: async (parent, { username, firstName, lastName, email, password }) => {
