@@ -30,8 +30,14 @@ const userSchema = new Schema({
         required: true,
         minlength: 8
     },
+    profile: {
+        skills: [skills],
+        portfolio: {
+            type: String,
+            required: false,
+        },
+    },
     savedProjects: [Project.schema],
-    profile: [Profile.schema]
 });
 
 userSchema.pre('save', async function(next) {
