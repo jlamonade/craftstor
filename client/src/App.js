@@ -8,6 +8,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Navbar from './components/Navbar'
 import ProjectForm from './components/ProjectForm'
+import ProfileForm from './components/ProfileForm'
 
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -38,7 +39,8 @@ function App() {
           <Route exact path='/' component={Home} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/profile" component={ProjectForm} />
+          <Route exact path="/project" component={ProjectForm} />
+          <Route exact path="/profile" component={ProfileForm} />
         </Switch>
       </Router>
     </ApolloProvider>

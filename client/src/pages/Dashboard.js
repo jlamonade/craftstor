@@ -18,9 +18,12 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // added
 const useStyles = makeStyles((theme) => ({
+  icon: {
+    marginRight: theme.spacing(2),
+  },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(1, 0, 1),
+    padding: theme.spacing(8, 0, 6),
   },
   heroButtons: {
     marginTop: theme.spacing(4),
@@ -58,6 +61,13 @@ const Dashboard = () => {
   const { loading, data } = useQuery(GET_USER_BY_ID);
   const userData = data?.getUserById  || [];
 
+  console.log(">>>>>>>>>>>>>>> user");
+  console.log(userData);
+  console.log("<<<<<<<<<<<<<<<<<<<<<<<<<");
+
+  const profile = userData.profile;
+  console.log("profile:"+ profile);
+
   return (
     <React.Fragment>
     <Container>
@@ -78,6 +88,7 @@ const Dashboard = () => {
                          {userData.username}
                     </Typography>
                     <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                        <div>{userData.firstName} {userData.lastName} / {userData.email}</div>
                         <div>{userData.firstName} {userData.lastName} / {userData.email}</div>
                     </Typography>
                     <div className={classes.heroButtons}>
