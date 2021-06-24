@@ -45,7 +45,7 @@ const userSchema = new Schema({
             client: {
                 type: String,
                 required: true,
-                trime: true
+                trim: true
             },
             checked: {
                 type: Boolean,
