@@ -17,6 +17,7 @@ const ProjectForm = () => {
   const classes = useStyles();
 
   const [projectFormData, setProjectFormData] = useState({
+    title: '',
     dueDate: '',
     client: '',
     checked: false
@@ -46,9 +47,10 @@ const ProjectForm = () => {
     }
 
     setProjectFormData({
+      title: '',
       dueDate: '',
       client: '',
-      checked: null
+      checked: false
     })
   }
 
@@ -59,6 +61,10 @@ const ProjectForm = () => {
      </Typography>
 
       <FormGroup>
+        <FormControl>
+          <InputLabel htmlFor="title" shrink>Project Title</InputLabel>
+          <Input type="text" id='title' value={projectFormData.title} onChange={handleInputChange} name='title'/>
+        </FormControl>
          <FormControl>
           {/* <InputLabel htmlFor="dueDate">Due Date</InputLabel> */}
           <InputLabel  htmlFor="dueDate" shrink>Due Date</InputLabel>
@@ -69,10 +75,8 @@ const ProjectForm = () => {
           <Input id='client' type="text" value={projectFormData.client} onChange={handleInputChange} name='client'/>
         </FormControl>
         <FormControl >
-          <FormControlLabel label="Completed" labelPlacement="top" htmlFor="checked" control={<Checkbox onChange={handleInputChange} name="checked" />}/>
-          {/* <Checkbox name="checked" onChange={handleInputChange} /> */}
+          <FormControlLabel checked={projectFormData.checked} label="Completed" labelPlacement="top" htmlFor="checked" control={<Checkbox onChange={handleInputChange} name="checked" />}/>
         </FormControl>
-        {/* <Button onClick={handleFormSubmit}>Submit</Button> */}
 
 
 

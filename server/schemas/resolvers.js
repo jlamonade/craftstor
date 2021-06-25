@@ -114,7 +114,7 @@ const resolvers = {
       console.log(id)
       try {
         const updatedUser = await User.findOneAndUpdate(
-          {_id: id},
+          { _id: id },
           { $push: { savedProjects: args } },
           { new: true, runValidators: true }
         );

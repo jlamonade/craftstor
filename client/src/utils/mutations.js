@@ -25,11 +25,13 @@ export const SIGNUP = gql`
 `
 
 export const SAVE_PROJECT = gql`
-  mutation ($dueDate: String, $client: String, $checked: Boolean) {
-    savedProjects (dueDate: $dueDate, client: $client, checked: $checked) {
+  mutation ($title: String, $dueDate: String, $client: String, $checked: Boolean) {
+    savedProjects(title: $title, dueDate: $dueDate, client: $client, checked: $checked) {
       username
       savedProjects {
+        title
         client
+        checked
       }
     }
   }

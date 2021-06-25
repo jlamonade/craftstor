@@ -44,7 +44,6 @@ const typeDefs = gql`
     getUserById: User
     getSkills(id: ID): User
     getProjects(id: ID): User
-    
   }
 `;
 
