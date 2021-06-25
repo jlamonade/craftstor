@@ -1,0 +1,9 @@
+export const ADD_SKILL = 'ADD_SKILL'
+
+export const REMOVE_SKILL = 'REMOVE_SKILL'
+
+export const SAVE_PROJECT = 'SAVE_PROJECT'
+
+export const DELETE_PROJECT = 'DELETE_PROJECT'
+
+export const INIT_USER_STATE = 'INIT_USER_STATE'
