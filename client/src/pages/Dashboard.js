@@ -2,11 +2,12 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_USER_BY_ID } from '../utils/queries';
 import { Container } from '@material-ui/core';
-import Rating from '@material-ui/lab/Rating';
+// import Rating from '@material-ui/lab/Rating';
 
  
 // added
 import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography  } from '@material-ui/core';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 // import Link from '@material-ui/core/Link';
@@ -57,11 +58,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// const labels = {
+//   0.5: 'Useless',
+//   1: 'Useless+',
+//   1.5: 'Poor',
+//   2: 'Poor+',
+//   2.5: 'Ok',
+//   3: 'Ok+',
+//   3.5: 'Good',
+//   4: 'Good+',
+//   4.5: 'Excellent',
+//   5: 'Excellent+',
+// };
+
 const Dashboard = () => {
 
-
   //rating
-  const [value, setValue] = React.useState(2); 
+  // const [value, setValue] = React.useState(2);
+  // const [hover, setHover] = React.useState(-1);
 
   //added
   const classes = useStyles();
@@ -140,32 +154,36 @@ const Dashboard = () => {
                                 <Avatar className={classes.icon_color}>{card.client.charAt(0)}</Avatar>{card.client}
                             </Typography>
                             <Typography>
-                             due date: {card.dueDate}
+                            <span style={{ fontSize: '10px' }}>due date:</span> {card.dueDate}
                              </Typography><Typography display='flex'>
-                             status: {card.checked? "completed": "pending"}
+                             <span style={{ fontSize: '10px' }}>status:</span> {card.checked? "completed": "pending"}
                             </Typography>
+
                           </CardContent>
                           <CardActions>
-                            {/* <Button size="small" color="primary">
-                              View
-                            </Button> */}
-                            <Button size="small" color="primary" value={card} href="/projects">
-                              Edit
+
+                            <Button size="small" color="primary" value={card} href="/">
+                               <div style={{ fontSize: '10px' }}>... read more</div>
                             </Button>
                           </CardActions>
 
-                            {/* <>
-                              <Box component="fieldset" mb={3} borderColor="transparent">
-                                <Typography component="legend">Controlled</Typography>
-                                <Rating
-                                  name="simple-controlled"
-                                  value={value}
-                                  onChange={(event, newValue) => {
-                                    setValue(newValue);
-                                  }}
-                                />
-                             </Box>
-                             </> */}
+
+                           {/* <div className={classes.root}>
+                                  <Rating
+                                    name="hover-feedback"
+                                    value={value}
+                                    precision={0.5}
+                                    onChange={(event, newValue) => {
+                                      setValue(newValue);
+                                    }}
+                                    onChangeActive={(event, newHover) => {
+                                      setHover(newHover);
+                                    }}
+                                  />
+                                  {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
+                             </div> */}
+ 
+
 
                         </Card>
                       </Grid>

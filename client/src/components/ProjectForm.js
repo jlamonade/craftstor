@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { SAVE_PROJECT } from '../utils/mutations'
-import { Container, FormControl, InputLabel, Input, Button, FormGroup, Checkbox, FormControlLabel,  Typography} from '@material-ui/core'
+import { Container, FormControl, Grid, InputLabel, Input, Button, FormGroup, Checkbox, FormControlLabel,  Typography} from '@material-ui/core'
 
 import { makeStyles} from '@material-ui/core/styles';
 
@@ -75,10 +75,24 @@ const ProjectForm = () => {
         {/* <Button onClick={handleFormSubmit}>Submit</Button> */}
 
 
-
+{/* 
         <Button variant="contained" color="primary" className={classes.button_margin} onClick={handleFormSubmit}>
              Submit
-        </Button>
+        </Button> */}
+
+        <Grid container spacing={2} justify="center">
+                  <Grid item>
+                      <Button variant="contained" color="primary"  onClick={handleFormSubmit}>
+                          Add Project
+                      </Button>
+                   </Grid>   
+                   <Grid item>
+                          <Button variant="outlined" color="primary" href="/">
+                              Cancel
+                          </Button>
+                   </Grid>
+          </Grid>
+
 
 
       </FormGroup>
