@@ -45,12 +45,11 @@ const resolvers = {
   },
   Mutation: {
 
-    addSkills: async (parent, args, context) => {
-      // TODO think about using id from context
-      console.log(context.user._id)
+    addSkills: async (parent, { skill }, context) => {
       let user = await User.findOneAndUpdate(
         {_id: context.user._id},
-        {$set: {profile: {skills: args.skill }}});
+        { $push: { 'profile.skills': skill }
+      });
       
       return user
     },
@@ -115,7 +114,7 @@ const resolvers = {
       console.log(id)
       try {
         const updatedUser = await User.findOneAndUpdate(
-          {_id: id},
+          { _id: id },
           { $push: { savedProjects: args } },
           { new: true, runValidators: true }
         );

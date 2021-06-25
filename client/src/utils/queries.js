@@ -11,7 +11,9 @@ export const GET_USER_BY_ID = gql`
       savedProjects {
         dueDate
         client
-        checked
+        dueDate
+        title
+        _id
       }
       profile {
         skills

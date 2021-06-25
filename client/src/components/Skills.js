@@ -4,7 +4,7 @@ import { useQuery, useMutation } from '@apollo/client'
 import { GET_SKILLS } from '../utils/queries'
 import { ADD_SKILL } from '../utils/mutations'
 import { Container, List, ListItem, CssBaseline, Typography } from '@material-ui/core'
-import SkillsForm from '../components/SkillsForm'
+
 import { useUserContext } from '../utils/UserContext'
 import Auth from '../utils/auth'
 
@@ -26,7 +26,6 @@ const Skills = () => {
             Skills
       </Typography>
 
-      {Auth.loggedIn() ? <SkillsForm /> : <></>}
       <List>
         {state.profile.skills.length > 0 ? (
           state.profile.skills.map(skill => {
