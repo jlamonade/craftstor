@@ -12,7 +12,6 @@ import { INIT_USER_STATE } from '../utils/actions';
 // added
 import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography  } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { blue } from '@material-ui/core/colors';
 
 // import Link from '@material-ui/core/Link';
 // >>> added
@@ -53,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   icon_color:{
     //  backgroundColor:  "primary.main"
     color: '#fff',
-    backgroundColor: "#3f51b5",
+    backgroundColor: "#5c6bc0",
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
@@ -122,11 +121,13 @@ const Dashboard = () => {
                               Profile 
                           </Button>
                         </Grid>
-                        {/* <Grid item>
+
+                        <Grid item>
                           <Button variant="outlined" color="primary" href="/projects">
                              Project
                           </Button>
-                        </Grid> */}
+                        </Grid>
+                        
                       </Grid>
                     </div>
                   </Container>
@@ -170,16 +171,6 @@ const Dashboard = () => {
                   </Grid>
                 </Container>
               </main>
-              {/* Footer */}
-              <footer className={classes.footer}>
-                <Typography variant="h6" align="center" gutterBottom>
-                  {/* Footer */}
-                </Typography>
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                   © JPWDH Inc
-                </Typography>
-              </footer>
-              {/* End footer */}
         
         </>
       )}

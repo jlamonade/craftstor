@@ -24,12 +24,13 @@ const Profile = () => {
 
       <CssBaseline />
 
-      <Typography component="h5" variant="h5" align="center" color="textPrimary" gutterBottom>
+      <Typography component="h3" variant="h4" align="center" color="textPrimary" gutterBottom>
             {data.username}'s Profile
       </Typography>
 
-      <Typography variant="h5" align="center" color="textSecondary" paragraph>
-          <div style={{ fontSize: '12px' }} >Profile:</div><div> {profile.profile}</div>
+     
+       <Typography component="h5" variant="h5" align="center" color="textSecondary" paragraph>
+              <div style={{ fontSize: '12px' }} >Profile:</div>{profile.profile}
       </Typography>
 
       {/* <input accept="image/*" className={classes.input} id="icon-button-file" type="file" /> */}
