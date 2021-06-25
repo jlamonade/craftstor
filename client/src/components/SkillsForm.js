@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import { FormControl, IconButton, InputLabel, Input, FormGroup, Grid } from '@material-ui/core'
 import { useMutation } from '@apollo/client'
 
+import { useUserContext } from '../utils/UserContext';
+import { ADD_SKILL_ACTION } from '../utils/actions'
+
 import { makeStyles } from '@material-ui/core/styles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { ADD_SKILL } from '../utils/mutations';
@@ -30,6 +33,8 @@ const SkillsForm = () => { // component
   })
   const [addSkill] = useMutation(ADD_SKILL)
 
+  const [state, dispatch] = useUserContext()
+
   // onchange
   const handleInputChange = (e) => {
     const { value } = e.target
@@ -47,7 +52,12 @@ const SkillsForm = () => { // component
       const { data } = await addSkill({
         variables: { ...skillsFormData }
       })
-      console.log(data)
+      if (data) {
+        dispatch({
+          type: ADD_SKILL_ACTION,
+          payload: skillsFormData.skill
+        })
+      }
     } catch (err) {
       console.log(err)
     }
