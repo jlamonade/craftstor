@@ -3,6 +3,9 @@ import { useQuery } from '@apollo/client';
 import { GET_USER_BY_ID } from '../utils/queries';
 import { Container } from '@material-ui/core';
 
+// components
+import SkillsForm from '../components/SkillsForm'
+
 // state
 import reducer from '../utils/reducers'
 import { useUserContext } from '../utils/UserContext'
@@ -65,17 +68,15 @@ const Dashboard = () => {
 
   // query user data
   const { loading, data } = useQuery(GET_USER_BY_ID);
-  const initialState = useUserContext()
+  const [state, dispatch ] = useUserContext()
 
   // TODO use state to get user information
-  const [state, dispatch] = useReducer(reducer, initialState)
-  console.log("state ", state)
   useEffect(() => {
     if (data) {
-      const uData = data?.getUserById  || [];
+      const userData = data?.getUserById  || [];
       dispatch({
         type: INIT_USER_STATE,
-        payload: uData
+        payload: {...userData}
       })
     }
     
@@ -114,6 +115,10 @@ const Dashboard = () => {
                     <Typography variant="h5" align="center" color="textSecondary" paragraph>
                         <div>{state.firstName} {state.lastName} / {state.email}</div>
                     </Typography>
+                    <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                        {state.profile.skills.join(' ')}
+                    </Typography>
+                    <SkillsForm />
                     <div className={classes.heroButtons}>
                       <Grid container spacing={2} justify="center">
                         <Grid item>
