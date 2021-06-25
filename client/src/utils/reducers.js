@@ -13,7 +13,6 @@ export default function reducer(state, action) {
       }
     }
     case INIT_USER_STATE: {
-      console.log("reducer ", action.payload)
       return {
         ...action.payload
       }
