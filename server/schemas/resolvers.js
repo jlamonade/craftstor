@@ -29,8 +29,16 @@ const resolvers = {
     getSkills: async (parent, args, context) => {
       // TODO think about using context
       const user = await User.findOne(
-        {_id: args.id}, 
+        {_id: context.user._id}, 
         ).select('profile.skills');
+
+      return user
+    },
+    getProjects: async (parent, args, context) => {
+      // TODO think about using context
+      const user = await User.findOne(
+        {_id: context.user._id}, 
+        ).select('savedProjects');
 
       return user
     }
@@ -39,15 +47,15 @@ const resolvers = {
 
     addSkills: async (parent, args, context) => {
       // TODO think about using id from context
-      console.log(args)
+      console.log(context.user._id)
       let user = await User.findOneAndUpdate(
-        {_id: args.id},
+        {_id: context.user._id},
         {$set: {profile: {skills: args.skill }}});
       
       return user
     },
 
-    login: async (parent, args) => {
+    login: async (parent, args, context) => {
       let foundUser = await User.findOne({ email: args.email });
 
       const correctPw = await foundUser.isCorrectPassword(args.password);
@@ -89,7 +97,18 @@ const resolvers = {
       return {User:{id: user._id},  token:{token}};
     },
     
-    
+    //TODO: update project resolver
+    updateProject: async (parent, args, context) => {
+      const user = await User.findOneAndUpdate(
+        { id: context.user._id },
+        {$set: {savedProjects: [{dueDate: args.dueDate}, {client: args.client}, {checked: args.checked}] }},
+        { new: true});
+        console.log(user)
+        return user
+    },
+    //TODO: delete project resolver
+
+
     async savedProjects(parent, args, context) {
       console.log(args)
       const id = context.user._id;
