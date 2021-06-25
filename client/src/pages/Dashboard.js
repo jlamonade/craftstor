@@ -1,104 +1,98 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_USER_BY_ID } from '../utils/queries';
 import { Container } from '@material-ui/core';
-import Rating from '@material-ui/lab/Rating';
+
+// components
+import SkillsForm from '../components/SkillsForm'
+
+// state
+import reducer from '../utils/reducers'
+import { useUserContext } from '../utils/UserContext'
+import { INIT_USER_STATE } from '../utils/actions';
 
  
+// added
 import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography  } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+// import Link from '@material-ui/core/Link';
+// >>> added
 
-  // added
-  const useStyles = makeStyles((theme) => ({
-    icon: {
-      marginRight: theme.spacing(2),
+// added
+const useStyles = makeStyles((theme) => ({
+  icon: {
+    marginRight: theme.spacing(2),
+  },
+  heroContent: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(3, 0, 6),
+  },
+  heroButtons: {
+    marginTop: theme.spacing(2),
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardMedia: {
+    paddingTop: '56.25%', // 16:9
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
+  client_format: {
+    display: 'flex',
+    '& > *': {
+      margin: theme.spacing(1),
     },
-    heroContent: {
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(3, 0, 6),
-    },
-    heroButtons: {
-      marginTop: theme.spacing(2),
-    },
-    cardGrid: {
-      paddingTop: theme.spacing(8),
-      paddingBottom: theme.spacing(8),
-    },
-    card: {
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    cardMedia: {
-      paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-      flexGrow: 1,
-    },
-    client_format: {
-      display: 'flex',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-  
-    },
-    icon_color:{
-      //  backgroundColor:  "primary.main"
-      color: '#fff',
-      backgroundColor: "#5c6bc0",
-    },
-    footer: {
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(6),
-    },
-    rating_format: {
-      width: 200,
-      display: 'flex',
-      alignItems: 'center',
-    },
-  }));
-  
-  const labels = {
-    0.5: 'Useless',
-    1: 'Useless+',
-    1.5: 'Poor',
-    2: 'Poor+',
-    2.5: 'Ok',
-    3: 'Ok+',
-    3.5: 'Good',
-    4: 'Good+',
-    4.5: 'Excellent',
-    5: 'Excellent+',
-  };
-  
-
-
+  },
+  icon_color:{
+    //  backgroundColor:  "primary.main"
+    color: '#fff',
+    backgroundColor: "#5c6bc0",
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(6),
+  },
+}));
 
 const Dashboard = () => {
-
-
-   //rating
-   const [value, setValue] = React.useState(2);
-   const [hover, setHover] = React.useState(-1);
-
-  //added
   const classes = useStyles();
-  //>>>> added
 
+  // query user data
   const { loading, data } = useQuery(GET_USER_BY_ID);
-  const userData = data?.getUserById  || [];
-  const cards = [{client:"Grace corp", dueDate:"10/10/2021",checked: false }, 
-                  {client:"Apple inc", dueDate:"9/25/2021",checked: false }, 
-                  {client:"John Doe", dueDate:"12/20/2021",checked: true }, 
-                  {client:"John Doe", dueDate:"12/20/2021",checked: true }, 
-                ] ;
+  const [state, dispatch ] = useUserContext()
+
+  // TODO use state to get user information
+  useEffect(() => {
+    if (data) {
+      const userData = data?.getUserById  || [];
+      dispatch({
+        type: INIT_USER_STATE,
+        payload: {...userData}
+      })
+    }
+    
+  }, [data])
+  
+
+
+  // temporary data will need to replace with projects from user state
+  const cards = [
+    {client:"Grace corp", dueDate:"10/10/2021",checked: false}, 
+    {client:"Apple inc", dueDate:"9/25/2021",checked: false}, 
+    {client:"John Doe", dueDate:"12/20/2021",checked: true}, 
+    {client:"John Doe", dueDate:"12/20/2021",checked: true}, 
+  ];
 
   for (let i = 0; i < cards.length; i++)  cards[i].image =  'https://source.unsplash.com/random?sig=' + i ;
-
-  console.log(">>>>>>>  user:");
-  console.log(userData);
-  console.log("<<<<<<<<");
 
   return (
     <React.Fragment>
@@ -106,7 +100,7 @@ const Dashboard = () => {
       {loading ? (
         <Container>Loading...</Container>
       ) : (
-        // userData.username
+        // state.username
         <>
             <CssBaseline />
  
@@ -116,11 +110,15 @@ const Dashboard = () => {
                   <Container maxWidth="sm">
                     {/* <Typography component="h3" variant="h2" align="center" color="textPrimary" gutterBottom> */}
                     <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom>
-                         {userData.username}
+                         {state.username}
                     </Typography>
                     <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                        <div>{userData.firstName} {userData.lastName} / {userData.email}</div>
+                        <div>{state.firstName} {state.lastName} / {state.email}</div>
                     </Typography>
+                    <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                        {state.profile.skills.join(' ')}
+                    </Typography>
+                    <SkillsForm />
                     <div className={classes.heroButtons}>
                       <Grid container spacing={2} justify="center">
                         <Grid item>
@@ -159,39 +157,19 @@ const Dashboard = () => {
                                 <Avatar className={classes.icon_color}>{card.client.charAt(0)}</Avatar>{card.client}
                             </Typography>
                             <Typography>
-                            <span style={{ fontSize: '10px' }}>due date:</span> {card.dueDate}
-                             </Typography><Typography display='flex'>
-                             <span style={{ fontSize: '10px' }}>status:</span> {card.checked? "completed": "pending"}
+                             due date: {card.dueDate}
+                             </Typography><Typography>
+                             status: {card.checked? "completed": "pending"}
                             </Typography>
-
                           </CardContent>
                           <CardActions>
-
-                            <Button size="small" color="primary" value={card} href="/">
-                               <div style={{ fontSize: '10px' }}>... read more</div>
+                            {/* <Button size="small" color="primary">
+                              View
+                            </Button> */}
+                            <Button size="small" color="primary" value={card} href="/projects">
+                              Edit
                             </Button>
                           </CardActions>
-
-{/* 
-                          <div className={classes.rating_format}>
-                                <Rating
-                                  name="hover-feedback"
-                                  value={value}
-                                  precision={0.5}
-                                  // onChange={(event, newValue) => {
-                                  //   setValue(newValue);
-                                  // }}
-                                  onChange={(event,newValue) => {
-                                    setValue(newValue);
-                                  }}
-                                  onChangeActive={(event, newHover) => {
-                                    setHover(newHover);
-                                  }}
-                                />
-                                {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
-                          </div> */}
-
-
                         </Card>
                       </Grid>
                     ))}
@@ -211,4 +189,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default 

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
+const { introspectionFromSchema } = require('graphql');
 
 const userSchema = new Schema({
     username: {
@@ -38,9 +39,14 @@ const userSchema = new Schema({
     savedProjects: [
         {
             dueDate: {
-                type: Date,
-                default: Date.now,
-                get: (timestamp) => dateFormat(timestamp)
+                type: String,
+                required: true,
+                trim: true
+            },
+            title: {
+                type: String,
+                required: true,
+                trim: true
             },
             client: {
                 type: String,

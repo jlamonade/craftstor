@@ -39,13 +39,13 @@ import { Container, CssBaseline, Typography, Grid, Button } from '@material-ui/c
 
 // component
 const Profile = () => {
-//   const { loading, data } = useQuery(GET_PROFILE)
+  // const { loading, data } = useQuery(GET_PROFILE)
   // const [ addSkill ] = useMutation(ADD_SKILL)
   const data = { "username": "hk"};
   const profile = { "profile": "github-source"};
 
-//   const skillsData = data?.getSkills || []
-   const skillsData = ["Express", "Node.js", "MERN"].join(" ");
+  // const skillsData = data?.getSkills || []
+  const skillsData = ["Express", "Node.js", "MERN"].join(" ");
 
   return (
     <Container maxWidth="sm">
