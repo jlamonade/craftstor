@@ -81,8 +81,9 @@ const Dashboard = () => {
     }
     
   }, [data])
-  
 
+  // USE state.savedProjects to load array of projects associated to user
+  // think about using ternary statement to show projects or 'no projects yet'
 
   // temporary data will need to replace with projects from user state
   const cards = [
@@ -92,6 +93,7 @@ const Dashboard = () => {
     {client:"John Doe", dueDate:"12/20/2021",checked: true}, 
   ];
 
+  // random image loop
   for (let i = 0; i < cards.length; i++)  cards[i].image =  'https://source.unsplash.com/random?sig=' + i ;
 
   return (
@@ -141,7 +143,7 @@ const Dashboard = () => {
                 <Container className={classes.cardGrid} maxWidth="md">
                   {/* End hero unit */}
                   <Grid container spacing={4}>
-                    {cards.map((card,index) => (
+                    {state.savedProjects.map((card,index) => (
                      
                       <Grid item key={index} xs={12} sm={6} md={4}>
                         <Card className={classes.card}>
