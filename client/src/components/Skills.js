@@ -5,9 +5,8 @@ import { useQuery, useMutation } from '@apollo/client'
 import { GET_SKILLS } from '../utils/queries'
 // import mutations
 // import { ADD_SKILL } from '../utils/mutations'
-import { Container, List, ListItem } from '@material-ui/core'
-import SkillsForm from './SkillsForm'
-
+import { Container, List, ListItem, CssBaseline, Typography } from '@material-ui/core'
+import SkillsForm from '../components/SkillsForm'
 
 // component
 const Skills = () => {
@@ -16,12 +15,21 @@ const Skills = () => {
   const skillsData = data?.getSkills || []
 
   return (
-    <Container>
+    <Container maxWidth="sm">
+
+      <CssBaseline />
+
+      <Typography component="h5" variant="h5" align="center" color="textPrimary" gutterBottom>
+            Skills
+      </Typography>
+
       <SkillsForm />
       <List>
-        {skillsData.lenght > 0 ? (
+        {skillsData.length > 0 ? (
           skillsData.map(skill => {
+            return (
             <ListItem>{skill}</ListItem>
+            )
           })
         ) : (
           <ListItem>No Skills Yet</ListItem>
@@ -34,6 +42,5 @@ const Skills = () => {
     // if no skills return empty array
   // use mutation to add skill
     // need to have a form input for skill
-
 
 export default Skills
