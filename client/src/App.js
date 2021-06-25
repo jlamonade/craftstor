@@ -1,5 +1,5 @@
 import './App.css';
-// TODO import apollo and set up auth context 
+import { UserProvider } from './utils/UserContext';
 import { setContext } from '@apollo/client/link/context'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
@@ -37,12 +37,14 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/projects" component={ProjectForm} />
-          <Route exact path="/profile" component={ProfileForm} />
-          <Route exact path="/skills" component={Skills} />
+          <UserProvider>
+            <Route exact path='/' component={Home} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/projects" component={ProjectForm} />
+            <Route exact path="/profile" component={ProfileForm} />
+            <Route exact path="/skills" component={Skills} /> 
+          </UserProvider>
         </Switch>
       </Router>
     </ApolloProvider>
