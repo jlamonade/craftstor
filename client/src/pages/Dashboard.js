@@ -1,11 +1,14 @@
-import React from 'react'
-import { useQuery } from '@apollo/client'
-import { GET_USER_BY_ID } from '../utils/queries'
-import { Container } from '@material-ui/core'
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import { GET_USER_BY_ID } from '../utils/queries';
+import { Container } from '@material-ui/core';
+import Rating from '@material-ui/lab/Rating';
+
  
 // added
-import { Avatar, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography  } from '@material-ui/core';
+import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography  } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { blue } from '@material-ui/core/colors';
 
 // import Link from '@material-ui/core/Link';
 // >>> added
@@ -40,12 +43,14 @@ const useStyles = makeStyles((theme) => ({
   client_format: {
     display: 'flex',
     '& > *': {
-      margin: theme.spacing(0),
+      margin: theme.spacing(1),
     },
 
   },
-  orange:{
-     backgroundColor : "orange"
+  icon_color:{
+    //  backgroundColor:  "primary.main"
+    color: '#fff',
+    backgroundColor: "#3f51b5",
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
@@ -54,6 +59,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = () => {
+
+
+  //rating
+  const [value, setValue] = React.useState(2); 
+
   //added
   const classes = useStyles();
   //>>>> added
@@ -126,7 +136,7 @@ const Dashboard = () => {
                           <CardContent className={classes.cardContent}>
 
                             <Typography gutterBottom variant="h5" component="h4" className={classes.client_format}>
-                                <Avatar className={classes.orange}>{card.client.charAt(0)}</Avatar>{card.client}
+                                <Avatar className={classes.icon_color}>{card.client.charAt(0)}</Avatar>{card.client}
                             </Typography>
                             <Typography>
                              due date: {card.dueDate}
@@ -142,6 +152,20 @@ const Dashboard = () => {
                               Edit
                             </Button>
                           </CardActions>
+
+                            {/* <>
+                              <Box component="fieldset" mb={3} borderColor="transparent">
+                                <Typography component="legend">Controlled</Typography>
+                                <Rating
+                                  name="simple-controlled"
+                                  value={value}
+                                  onChange={(event, newValue) => {
+                                    setValue(newValue);
+                                  }}
+                                />
+                             </Box>
+                             </> */}
+
                         </Card>
                       </Grid>
                     ))}
