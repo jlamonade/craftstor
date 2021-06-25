@@ -41,7 +41,9 @@ const ProjectForm = () => {
       const { data } = await saveProject({
         variables: { ...projectFormData }
       })
-      console.log(data)
+      if (data) {
+        window.location.assign('/')
+      }
     } catch (err) {
       console.log(err)
     }
