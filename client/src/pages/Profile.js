@@ -1,11 +1,16 @@
 import React from 'react'
-import ProfileForm from '../components/ProfileForm'
+import { useParams } from 'react-router-dom'
+import { useQuery } from '@apollo/client'
 import { Grid } from '@material-ui/core'
 
 const Profile = () => {
+
+  // use query to get profile information using the params
+  // then render it in the return
+
   return (
     <Grid>
-      <ProfileForm />
+      {useParams().username}
     </Grid>
   )
 }

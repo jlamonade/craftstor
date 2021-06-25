@@ -80,8 +80,6 @@ const ProjectForm = () => {
           <FormControlLabel checked={projectFormData.checked} label="Completed" labelPlacement="top" htmlFor="checked" control={<Checkbox onChange={handleInputChange} name="checked" />}/>
         </FormControl>
 
-
-
         <Button variant="contained" color="primary" className={classes.button_margin} onClick={handleFormSubmit}>
              Submit
         </Button>
