@@ -2,10 +2,22 @@ import React, { useState } from 'react'
 // TODO import useMutation
 import { useMutation } from '@apollo/client'
 import { LOGIN } from '../utils/mutations'
-import { Container, FormControl, Button, InputLabel, Input, FormGroup } from '@material-ui/core'
 import Auth from '../utils/auth'
 
+import { makeStyles} from '@material-ui/core/styles';
+import { CssBaseline, Container, FormControl, InputLabel, Button,  Input, FormGroup, Typography } from '@material-ui/core'
+
+const useStyles = makeStyles((theme) => ({
+  button_margin: {
+    margin: theme.spacing(5, 16, 2),
+    maxWidth: '90%',
+    align: "center"
+  },
+}));
+
 const LoginForm = () => {
+  const classes = useStyles();
+
   const [userFormData, setUserFormData] = useState({
     email: '',
     password: ''
@@ -43,26 +55,29 @@ const LoginForm = () => {
   }
 
   return (
-    <Container>
+    <Container maxWidth="sm">
+       <CssBaseline />
+
+     <Typography component="h5" variant="h5" align="center" color="textPrimary" gutterBottom>
+            Sign In
+     </Typography>
+
       <FormGroup>
         <FormControl>
           <InputLabel htmlFor="email">Email</InputLabel>
-<<<<<<< HEAD
-          <Input id='email' onChange={handleInputChange} name='email' value={userFormData.email}/>
-=======
           <Input id='email' value={userFormData.email} onChange={handleInputChange} name='email'/>
->>>>>>> 35499fca3201fe1f107b7b6fdfb6f0e8935370d2
 
         </FormControl>
         <FormControl>
           <InputLabel htmlFor="password">Password</InputLabel>
-<<<<<<< HEAD
-          <Input id='password' type="password" onChange={handleInputChange} value={userFormData.password} name='password'/>
-=======
           <Input id='password' value={userFormData.passowrd} type="password" onChange={handleInputChange} name='password'/>
->>>>>>> 35499fca3201fe1f107b7b6fdfb6f0e8935370d2
         </FormControl>
-        <Button onClick={handleFormSubmit}>Submit</Button>
+        {/* <Button onClick={handleFormSubmit}>Submit</Button> */}
+
+        <Button variant="contained" color="primary" className={classes.button_margin} onClick={handleFormSubmit}>
+             Submit
+        </Button>
+
       </FormGroup>
     </Container>
   )

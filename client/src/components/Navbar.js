@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button} from '@material-ui/core';
 // import MenuIcon from '@material-ui/icons/Menu';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginBottom: theme.spacing(3),
   },
   // menuButton: {
   //   marginRight: theme.spacing(2),
@@ -81,9 +81,9 @@ const Navbar = () => {
                   <MenuIcon />
                 </IconButton> */}
                 <Typography variant="h6" className={classes.title}>
-                    <span role="img" aria-label="Craftstor" className={classes.icon} >🎨</span>
+                    <span role="img" aria-label="Craftstor" className={classes.icon} >🛠️🔗🗜️</span>
                     <Link to='/' className={classes.link} > 
-                        Home
+                        Craftstor
                     </Link>
                 </Typography>
                 {showNavigation()}

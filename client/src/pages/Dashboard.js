@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(8, 0, 6),
   },
   heroButtons: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(2),
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -56,13 +56,17 @@ const Dashboard = () => {
 
   const { loading, data } = useQuery(GET_USER_BY_ID);
   const userData = data?.getUserById  || [];
+  const cards = [{client:"Grace corp", dueDate:"10/10/2021",checked: "false" }, 
+                  {client:"Apple inc", dueDate:"9/25/2021",checked: "false" }, 
+                  {client:"John Doe", dueDate:"12/20/2021",checked: "true" }, 
+                  {client:"John Doe", dueDate:"12/20/2021",checked: "true" }, 
+                ] ;
 
-  console.log(">>>>>>>>>>>>>>> user");
+  for (let i = 0; i < cards.length; i++)  cards[i].image =  'https://source.unsplash.com/random?sig=' + i ;
+
+  console.log(">>>>>>>  user:");
   console.log(userData);
-  console.log("<<<<<<<<<<<<<<<<<<<<<<<<<");
-
-  const profile = userData.profile;
-  console.log("profile:"+ profile);
+  console.log("<<<<<<<<");
 
   return (
     <React.Fragment>
@@ -85,20 +89,19 @@ const Dashboard = () => {
                     </Typography>
                     <Typography variant="h5" align="center" color="textSecondary" paragraph>
                         <div>{userData.firstName} {userData.lastName} / {userData.email}</div>
-                        <div>{userData.firstName} {userData.lastName} / {userData.email}</div>
                     </Typography>
                     <div className={classes.heroButtons}>
                       <Grid container spacing={2} justify="center">
                         <Grid item>
-                          <Button variant="contained" color="primary">
-                            Main call to action
+                          <Button variant="contained" color="primary"  href="/profile">
+                              Profile 
                           </Button>
                         </Grid>
-                        <Grid item>
-                          <Button variant="outlined" color="primary">
-                            Secondary action
+                        {/* <Grid item>
+                          <Button variant="outlined" color="primary" href="/projects">
+                             Project
                           </Button>
-                        </Grid>
+                        </Grid> */}
                       </Grid>
                     </div>
                   </Container>
@@ -107,27 +110,32 @@ const Dashboard = () => {
                 <Container className={classes.cardGrid} maxWidth="md">
                   {/* End hero unit */}
                   <Grid container spacing={4}>
-                    {userData.savedProjects.map((card) => (
-                      <Grid item key={card._id} xs={12} sm={6} md={4}>
+                    {cards.map((card,index) => (
+                     
+                      <Grid item key={index} xs={12} sm={6} md={4}>
                         <Card className={classes.card}>
                           <CardMedia
                             className={classes.cardMedia}
-                            image="https://source.unsplash.com/random"
+                            // image="https://source.unsplash.com/random"
+                            image={card.image}
                             title="Image title"
                           />
                           <CardContent className={classes.cardContent}>
+
                             <Typography gutterBottom variant="h5" component="h2">
-                              {card.client}
+                            {card.client}
                             </Typography>
                             <Typography>
-                              description
+                             due date: {card.dueDate}
+                             </Typography><Typography>
+                             status: {card.checked? "completed": "pending"}
                             </Typography>
                           </CardContent>
                           <CardActions>
-                            <Button size="small" color="primary">
+                            {/* <Button size="small" color="primary">
                               View
-                            </Button>
-                            <Button size="small" color="primary">
+                            </Button> */}
+                            <Button size="small" color="primary" value={card} href="/projects">
                               Edit
                             </Button>
                           </CardActions>
@@ -140,10 +148,10 @@ const Dashboard = () => {
               {/* Footer */}
               <footer className={classes.footer}>
                 <Typography variant="h6" align="center" gutterBottom>
-                  Footer
+                  {/* Footer */}
                 </Typography>
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                  Something here to give the footer a purpose!
+                   © JPWDH Inc
                 </Typography>
               </footer>
               {/* End footer */}
@@ -152,7 +160,6 @@ const Dashboard = () => {
       )}
 
       
-
 
 
 
