@@ -2,16 +2,11 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_USER_BY_ID } from '../utils/queries';
 import { Container } from '@material-ui/core';
-// import Rating from '@material-ui/lab/Rating';
+
 
  
-// added
-import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography  } from '@material-ui/core';
-
+import { Avatar, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography  } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
-// import Link from '@material-ui/core/Link';
-// >>> added
 
 // added
 const useStyles = makeStyles((theme) => ({
@@ -56,26 +51,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+  rating_format: {
+    width: 200,
+    display: 'flex',
+    alignItems: 'center',
+  },
 }));
 
-// const labels = {
-//   0.5: 'Useless',
-//   1: 'Useless+',
-//   1.5: 'Poor',
-//   2: 'Poor+',
-//   2.5: 'Ok',
-//   3: 'Ok+',
-//   3.5: 'Good',
-//   4: 'Good+',
-//   4.5: 'Excellent',
-//   5: 'Excellent+',
-// };
 
 const Dashboard = () => {
 
-  //rating
-  // const [value, setValue] = React.useState(2);
-  // const [hover, setHover] = React.useState(-1);
+
 
   //added
   const classes = useStyles();
@@ -166,24 +152,6 @@ const Dashboard = () => {
                                <div style={{ fontSize: '10px' }}>... read more</div>
                             </Button>
                           </CardActions>
-
-
-                           {/* <div className={classes.root}>
-                                  <Rating
-                                    name="hover-feedback"
-                                    value={value}
-                                    precision={0.5}
-                                    onChange={(event, newValue) => {
-                                      setValue(newValue);
-                                    }}
-                                    onChangeActive={(event, newHover) => {
-                                      setHover(newHover);
-                                    }}
-                                  />
-                                  {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
-                             </div> */}
- 
-
 
                         </Card>
                       </Grid>
