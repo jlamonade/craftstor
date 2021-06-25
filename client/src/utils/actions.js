@@ -1,4 +1,4 @@
-export const ADD_SKILL = 'ADD_SKILL'
+export const ADD_SKILL_ACTION = 'ADD_SKILL_ACTION'
 
 export const REMOVE_SKILL = 'REMOVE_SKILL'
 
