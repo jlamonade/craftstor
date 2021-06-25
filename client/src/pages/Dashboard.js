@@ -56,6 +56,7 @@ const Dashboard = () => {
 
   const { loading, data } = useQuery(GET_USER_BY_ID);
   const userData = data?.getUserById  || [];
+  console.log(userData)
 
   return (
     <React.Fragment>

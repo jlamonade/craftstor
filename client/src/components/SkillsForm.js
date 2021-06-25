@@ -1,10 +1,6 @@
 // dependencies
 import React, { useState } from 'react'
 import { FormControl, Button, InputLabel, Input, FormGroup } from '@material-ui/core'
-// form input
-
-// onchange
-// submit handler
 
 const SkillsForm = () => { // component
   // state
@@ -12,6 +8,7 @@ const SkillsForm = () => { // component
     skill: '',
   })
 
+  // onchange
   const handleInputChange = (e) => {
     const { value } = e.target
     setSkillsFormData({
@@ -20,6 +17,7 @@ const SkillsForm = () => { // component
     })
   }
 
+  // submit handler
   const handleFormSubmit = (e) => {
     e.preventDefault()
     console.log(skillsFormData)
