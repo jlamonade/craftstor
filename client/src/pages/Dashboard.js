@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   icon_color:{
     //  backgroundColor:  "primary.main"
     color: '#fff',
-    backgroundColor: "#3f51b5",
+    backgroundColor: "#5c6bc0",
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
@@ -109,11 +109,13 @@ const Dashboard = () => {
                               Profile 
                           </Button>
                         </Grid>
-                        {/* <Grid item>
+
+                        <Grid item>
                           <Button variant="outlined" color="primary" href="/projects">
                              Project
                           </Button>
-                        </Grid> */}
+                        </Grid>
+                        
                       </Grid>
                     </div>
                   </Container>
@@ -171,16 +173,6 @@ const Dashboard = () => {
                   </Grid>
                 </Container>
               </main>
-              {/* Footer */}
-              <footer className={classes.footer}>
-                <Typography variant="h6" align="center" gutterBottom>
-                  {/* Footer */}
-                </Typography>
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                   © JPWDH Inc
-                </Typography>
-              </footer>
-              {/* End footer */}
         
         </>
       )}
