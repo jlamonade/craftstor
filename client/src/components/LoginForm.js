@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-// TODO import useMutation
 import { useMutation } from '@apollo/client'
 import { LOGIN } from '../utils/mutations'
 import Auth from '../utils/auth'
 
 import { makeStyles} from '@material-ui/core/styles';
 import { CssBaseline, Container, FormControl, InputLabel, Button,  Input, FormGroup, Typography } from '@material-ui/core'
-
 
 const useStyles = makeStyles((theme) => ({
   button_margin: {
@@ -43,7 +41,6 @@ const LoginForm = () => {
         variables: { ...userFormData }
       })
       console.log(data)
-      // TODO if data is good then Auth login, also need to create auth utility
       Auth.login(data.login.token)
     } catch (err) {
       console.log(err)
@@ -63,12 +60,10 @@ const LoginForm = () => {
             Sign In
      </Typography>
 
-
       <FormGroup>
         <FormControl>
           <InputLabel htmlFor="email">Email</InputLabel>
           <Input id='email' value={userFormData.email} onChange={handleInputChange} name='email'/>
-
         </FormControl>
         <FormControl>
           <InputLabel htmlFor="password">Password</InputLabel>
@@ -79,7 +74,6 @@ const LoginForm = () => {
         <Button variant="contained" color="primary" className={classes.button_margin} onClick={handleFormSubmit}>
              Submit
         </Button>
-
 
       </FormGroup>
     </Container>

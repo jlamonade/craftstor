@@ -54,7 +54,6 @@ const SignupForm = () => {
   };
  
 
-
   return (
     <Container maxWidth="sm">
       <Typography component="h5" variant="h5" align="center" color="textPrimary" gutterBottom>
@@ -92,7 +91,6 @@ const SignupForm = () => {
     </Container>
   )
 }
-
 
 
 export default SignupForm

@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { SAVE_PROJECT } from '../utils/mutations'
-import { Container, FormControl, InputLabel, Input, Button, FormGroup, Checkbox, FormLabel ,  Typography} from '@material-ui/core'
-
+import { Container, FormControl, InputLabel, Input, Button, FormGroup, Checkbox, FormControlLabel,  Typography} from '@material-ui/core'
 
 import { makeStyles} from '@material-ui/core/styles';
 
@@ -59,9 +58,8 @@ const ProjectForm = () => {
            Project
      </Typography>
 
-
       <FormGroup>
-        <FormControl>
+         <FormControl>
           {/* <InputLabel htmlFor="dueDate">Due Date</InputLabel> */}
           <InputLabel  htmlFor="dueDate" shrink>Due Date</InputLabel>
           <Input type="date" id='dueDate' value={projectFormData.dueDate} onChange={handleInputChange} name='dueDate'/>
@@ -71,15 +69,16 @@ const ProjectForm = () => {
           <Input id='client' type="text" value={projectFormData.client} onChange={handleInputChange} name='client'/>
         </FormControl>
         <FormControl >
-          <FormLabel htmlFor="checked"  >Completed</FormLabel>
-          <Checkbox name="checked" onChange={handleInputChange} />
+          <FormControlLabel label="Completed" labelPlacement="top" htmlFor="checked" control={<Checkbox onChange={handleInputChange} name="checked" />}/>
+          {/* <Checkbox name="checked" onChange={handleInputChange} /> */}
         </FormControl>
         {/* <Button onClick={handleFormSubmit}>Submit</Button> */}
+
+
 
         <Button variant="contained" color="primary" className={classes.button_margin} onClick={handleFormSubmit}>
              Submit
         </Button>
-
 
 
       </FormGroup>

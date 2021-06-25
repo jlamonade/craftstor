@@ -1,19 +1,21 @@
 // dependencies
-import React from 'react'
+import React, { useReducer } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
-// import queries
 import { GET_SKILLS } from '../utils/queries'
-// import mutations
-// import { ADD_SKILL } from '../utils/mutations'
+import { ADD_SKILL } from '../utils/mutations'
 import { Container, List, ListItem, CssBaseline, Typography } from '@material-ui/core'
 import SkillsForm from '../components/SkillsForm'
-
+import { useUserContext } from '../utils/UserContext'
+import Auth from '../utils/auth'
 
 // component
 const Skills = () => {
-  const { loading, data } = useQuery(GET_SKILLS)
-  // const [ addSkill ] = useMutation(ADD_SKILL)
-  const skillsData = data?.getSkills || []
+  // const { loading, data } = useQuery(GET_SKILLS)
+  // // const [ addSkill ] = useMutation(ADD_SKILL)
+  // const skillsData = data?.getSkills || []
+
+  const [state, dispatch] = useUserContext()
+  console.log('auth ', Auth.loggedIn())
 
   return (
     <Container maxWidth="sm">
@@ -24,12 +26,13 @@ const Skills = () => {
             Skills
       </Typography>
 
-
-      <SkillsForm />
+      {Auth.loggedIn() ? <SkillsForm /> : <></>}
       <List>
-        {skillsData.lenght > 0 ? (
-          skillsData.map(skill => {
+        {state.profile.skills.length > 0 ? (
+          state.profile.skills.map(skill => {
+            return (
             <ListItem>{skill}</ListItem>
+            )
           })
         ) : (
           <ListItem>No Skills Yet</ListItem>
@@ -42,6 +45,5 @@ const Skills = () => {
     // if no skills return empty array
   // use mutation to add skill
     // need to have a form input for skill
-
 
 export default Skills

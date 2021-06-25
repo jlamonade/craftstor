@@ -1,18 +1,21 @@
-import React from 'react'
-import { useQuery } from '@apollo/client'
-import { GET_USER_BY_ID } from '../utils/queries'
-import { Container } from '@material-ui/core'
+import React, { useEffect, useReducer } from 'react';
+import { useQuery } from '@apollo/client';
+import { GET_USER_BY_ID } from '../utils/queries';
+import { Container } from '@material-ui/core';
+
+// components
+import SkillsForm from '../components/SkillsForm'
+
+// state
+import reducer from '../utils/reducers'
+import { useUserContext } from '../utils/UserContext'
+import { INIT_USER_STATE } from '../utils/actions';
+
  
 // added
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography  } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+
 // import Link from '@material-ui/core/Link';
 // >>> added
 
@@ -23,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(3, 0, 6),
   },
   heroButtons: {
     marginTop: theme.spacing(2),
@@ -43,6 +46,17 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     flexGrow: 1,
   },
+  client_format: {
+    display: 'flex',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  icon_color:{
+    //  backgroundColor:  "primary.main"
+    color: '#fff',
+    backgroundColor: "#5c6bc0",
+  },
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
@@ -50,34 +64,43 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = () => {
-  //added
   const classes = useStyles();
-  //>>>> added
 
+  // query user data
   const { loading, data } = useQuery(GET_USER_BY_ID);
-  const userData = data?.getUserById  || [];
-  const cards = [{client:"Grace corp", dueDate:"10/10/2021",checked: "false" }, 
-                  {client:"Apple inc", dueDate:"9/25/2021",checked: "false" }, 
-                  {client:"John Doe", dueDate:"12/20/2021",checked: "true" }, 
-                  {client:"John Doe", dueDate:"12/20/2021",checked: "true" }, 
-                ] ;
+  const [state, dispatch ] = useUserContext()
 
+  // TODO use state to get user information
+  useEffect(() => {
+    if (data) {
+      const userData = data?.getUserById  || [];
+      dispatch({
+        type: INIT_USER_STATE,
+        payload: {...userData}
+      })
+    }
+    
+  }, [data])
+  
+
+
+  // temporary data will need to replace with projects from user state
+  const cards = [
+    {client:"Grace corp", dueDate:"10/10/2021",checked: false}, 
+    {client:"Apple inc", dueDate:"9/25/2021",checked: false}, 
+    {client:"John Doe", dueDate:"12/20/2021",checked: true}, 
+    {client:"John Doe", dueDate:"12/20/2021",checked: true}, 
+  ];
 
   for (let i = 0; i < cards.length; i++)  cards[i].image =  'https://source.unsplash.com/random?sig=' + i ;
-
-  console.log(">>>>>>>  user:");
-  console.log(userData);
-  console.log("<<<<<<<<");
-
 
   return (
     <React.Fragment>
     <Container>
-      Dashboard
       {loading ? (
         <Container>Loading...</Container>
       ) : (
-        // userData.username
+        // state.username
         <>
             <CssBaseline />
  
@@ -87,11 +110,15 @@ const Dashboard = () => {
                   <Container maxWidth="sm">
                     {/* <Typography component="h3" variant="h2" align="center" color="textPrimary" gutterBottom> */}
                     <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom>
-                         {userData.username}
+                         {state.username}
                     </Typography>
                     <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                        <div>{userData.firstName} {userData.lastName} / {userData.email}</div>
+                        <div>{state.firstName} {state.lastName} / {state.email}</div>
                     </Typography>
+                    <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                        {state.profile.skills.join(' ')}
+                    </Typography>
+                    <SkillsForm />
                     <div className={classes.heroButtons}>
                       <Grid container spacing={2} justify="center">
                         <Grid item>
@@ -99,11 +126,13 @@ const Dashboard = () => {
                               Profile 
                           </Button>
                         </Grid>
-                        {/* <Grid item>
+
+                        <Grid item>
                           <Button variant="outlined" color="primary" href="/projects">
                              Project
                           </Button>
-                        </Grid> */}
+                        </Grid>
+                        
                       </Grid>
                     </div>
                   </Container>
@@ -124,8 +153,8 @@ const Dashboard = () => {
                           />
                           <CardContent className={classes.cardContent}>
 
-                            <Typography gutterBottom variant="h5" component="h2">
-                            {card.client}
+                            <Typography gutterBottom variant="h5" component="h4" className={classes.client_format}>
+                                <Avatar className={classes.icon_color}>{card.client.charAt(0)}</Avatar>{card.client}
                             </Typography>
                             <Typography>
                              due date: {card.dueDate}
@@ -147,22 +176,11 @@ const Dashboard = () => {
                   </Grid>
                 </Container>
               </main>
-              {/* Footer */}
-              <footer className={classes.footer}>
-                <Typography variant="h6" align="center" gutterBottom>
-                  {/* Footer */}
-                </Typography>
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                   © JPWDH Inc
-                </Typography>
-              </footer>
-              {/* End footer */}
         
         </>
       )}
 
       
-
 
 
 

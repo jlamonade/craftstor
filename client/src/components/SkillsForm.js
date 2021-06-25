@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { FormControl, IconButton, InputLabel, Input, FormGroup, Grid } from '@material-ui/core'
 
-import { makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 // form input
@@ -27,6 +27,7 @@ const SkillsForm = () => { // component
     skill: '',
   })
 
+  // onchange
   const handleInputChange = (e) => {
     const { value } = e.target
     setSkillsFormData({
@@ -35,9 +36,10 @@ const SkillsForm = () => { // component
     })
   }
 
+  // submit handler
   const handleFormSubmit = (e) => {
     e.preventDefault()
-    console.log(skillsFormData)
+    console.log('add skill press: ', skillsFormData.skill)
   }
 
   return (
@@ -70,7 +72,6 @@ const SkillsForm = () => { // component
           <AddCircleIcon fontSize="large"/>
         </IconButton>
       </label>
-
 
 
      </Grid>
