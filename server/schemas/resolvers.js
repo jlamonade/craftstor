@@ -29,7 +29,7 @@ const resolvers = {
     getSkills: async (parent, args, context) => {
       // TODO think about using context
       const user = await User.findOne(
-        {_id: args.id}, 
+        {_id: context.user._id}, 
         ).select('profile.skills');
 
       return user
@@ -39,15 +39,15 @@ const resolvers = {
 
     addSkills: async (parent, args, context) => {
       // TODO think about using id from context
-      console.log(args)
+      console.log(context.user._id)
       let user = await User.findOneAndUpdate(
-        {_id: args.id},
+        {_id: context.user._id},
         {$set: {profile: {skills: args.skill }}});
       
       return user
     },
 
-    login: async (parent, args) => {
+    login: async (parent, args, context) => {
       let foundUser = await User.findOne({ email: args.email });
 
       const correctPw = await foundUser.isCorrectPassword(args.password);
