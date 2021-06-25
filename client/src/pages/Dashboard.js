@@ -4,15 +4,9 @@ import { GET_USER_BY_ID } from '../utils/queries'
 import { Container } from '@material-ui/core'
  
 // added
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { Avatar, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography  } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+
 // import Link from '@material-ui/core/Link';
 // >>> added
 
@@ -23,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(3, 0, 6),
   },
   heroButtons: {
     marginTop: theme.spacing(2),
@@ -43,6 +37,16 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     flexGrow: 1,
   },
+  client_format: {
+    display: 'flex',
+    '& > *': {
+      margin: theme.spacing(0),
+    },
+
+  },
+  orange:{
+     backgroundColor : "orange"
+  },
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
@@ -56,10 +60,10 @@ const Dashboard = () => {
 
   const { loading, data } = useQuery(GET_USER_BY_ID);
   const userData = data?.getUserById  || [];
-  const cards = [{client:"Grace corp", dueDate:"10/10/2021",checked: "false" }, 
-                  {client:"Apple inc", dueDate:"9/25/2021",checked: "false" }, 
-                  {client:"John Doe", dueDate:"12/20/2021",checked: "true" }, 
-                  {client:"John Doe", dueDate:"12/20/2021",checked: "true" }, 
+  const cards = [{client:"Grace corp", dueDate:"10/10/2021",checked: false }, 
+                  {client:"Apple inc", dueDate:"9/25/2021",checked: false }, 
+                  {client:"John Doe", dueDate:"12/20/2021",checked: true }, 
+                  {client:"John Doe", dueDate:"12/20/2021",checked: true }, 
                 ] ;
 
   for (let i = 0; i < cards.length; i++)  cards[i].image =  'https://source.unsplash.com/random?sig=' + i ;
@@ -71,7 +75,6 @@ const Dashboard = () => {
   return (
     <React.Fragment>
     <Container>
-      Dashboard
       {loading ? (
         <Container>Loading...</Container>
       ) : (
@@ -122,12 +125,12 @@ const Dashboard = () => {
                           />
                           <CardContent className={classes.cardContent}>
 
-                            <Typography gutterBottom variant="h5" component="h2">
-                            {card.client}
+                            <Typography gutterBottom variant="h5" component="h4" className={classes.client_format}>
+                                <Avatar className={classes.orange}>{card.client.charAt(0)}</Avatar>{card.client}
                             </Typography>
                             <Typography>
                              due date: {card.dueDate}
-                             </Typography><Typography>
+                             </Typography><Typography display='flex'>
                              status: {card.checked? "completed": "pending"}
                             </Typography>
                           </CardContent>

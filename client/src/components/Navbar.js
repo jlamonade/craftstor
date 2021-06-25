@@ -81,7 +81,7 @@ const Navbar = () => {
                   <MenuIcon />
                 </IconButton> */}
                 <Typography variant="h6" className={classes.title}>
-                    <span role="img" aria-label="Craftstor" className={classes.icon} >🛠️🔗🗜️</span>
+                    <span role="img" aria-label="Craftstor" className={classes.icon} >🛠️🔗🗜️ 🏗️ 🏭</span>
                     <Link to='/' className={classes.link} > 
                         Craftstor
                     </Link>
