@@ -10,9 +10,13 @@ export const GET_USER_BY_ID = gql`
       email
       savedProjects {
         client
+        dueDate
+        title
+        _id
       }
       profile {
         skills
+        portfolio
       }
     }
   }

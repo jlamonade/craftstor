@@ -17,6 +17,7 @@ const typeDefs = gql`
   }
 
   type Project {
+    _id: ID
     title: String
     dueDate: String
     client: String

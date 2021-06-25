@@ -81,6 +81,8 @@ const Dashboard = () => {
     }
     
   }, [data])
+
+  console.log(state.savedProjects)
   
 
 
