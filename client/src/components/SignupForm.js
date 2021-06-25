@@ -1,11 +1,22 @@
-import React, { useState } from 'react'
-import { Container, FormControl, Button, InputLabel, Input, FormGroup } from '@material-ui/core'
-import { useMutation } from '@apollo/client'
-import { SIGNUP } from '../utils/mutations'
-import Auth from '../utils/auth'
+import React, { useState } from 'react';
+import { Container, FormControl, InputLabel, Input, FormGroup, Typography, Button } from '@material-ui/core';
+import { useMutation } from '@apollo/client';
+import { SIGNUP } from '../utils/mutations';
+import Auth from '../utils/auth';
 
+import { makeStyles} from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  button_margin: {
+    margin: theme.spacing(5, 16, 2),
+    maxWidth: '90%',
+    align: "center"
+  },
+}));
 
 const SignupForm = () => {
+  const classes = useStyles();
+
   const [userFormData, setUserFormData] = useState({
     username: '',
     firstName: '',
@@ -40,12 +51,17 @@ const SignupForm = () => {
       email: '',
       password: ''
     })
-  }
+  };
+ 
 
   return (
-    <Container>
-      <FormGroup>
-        <FormControl>
+    <Container maxWidth="sm">
+      <Typography component="h5" variant="h5" align="center" color="textPrimary" gutterBottom>
+            Sign Up
+      </Typography>
+
+      <FormGroup >
+        <FormControl >
           <InputLabel htmlFor="username">Username</InputLabel>
           <Input id="username" onChange={handleInputChange} name='username' value={userFormData.username}/>
         </FormControl>
@@ -65,12 +81,16 @@ const SignupForm = () => {
           <InputLabel htmlFor="password">Password</InputLabel>
           <Input id='password' type="password" onChange={handleInputChange} name='password' value={userFormData.password}/>
         </FormControl>
-        <Button onClick={handleFormSubmit}>Submit</Button>
+        {/* <Button color="primary" onClick={handleFormSubmit}>Submit</Button> */}
+
+        <Button variant="contained" color="primary" className={classes.button_margin} onClick={handleFormSubmit}>
+             Submit
+        </Button>
+
       </FormGroup>
     </Container>
   )
 }
-
 
 
 export default SignupForm
