@@ -4,10 +4,8 @@ import Dashboard from './Dashboard'
 import Auth from '../utils/auth'
 
 // added
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { Button,  CssBaseline,  Grid, Typography }  from '@material-ui/core';
+
 import { makeStyles } from '@material-ui/core/styles';
 // import Link from '@material-ui/core/Link';
 // >>> added
@@ -31,7 +29,7 @@ const Home = () => {
 
   return (
 
-    <Container>
+    <Container  >
       {Auth.loggedIn() ? (
         <Dashboard />
       ) : (
@@ -63,6 +61,18 @@ const Home = () => {
         </main>
         </>
       )}
+
+       {/* Footer */}
+      <footer  className={classes.footer}>
+          <Typography variant="h6" align="center" gutterBottom>
+            {/* Footer */}
+          </Typography>
+          <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+              © JPWDH Inc
+          </Typography>
+      </footer>
+      {/* End footer */}
+
     </Container>
   )
 }

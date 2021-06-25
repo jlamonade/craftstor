@@ -25,9 +25,11 @@ const Skills = () => {
 
       <SkillsForm />
       <List>
-        {skillsData.lenght > 0 ? (
+        {skillsData.length > 0 ? (
           skillsData.map(skill => {
+            return (
             <ListItem>{skill}</ListItem>
+            )
           })
         ) : (
           <ListItem>No Skills Yet</ListItem>

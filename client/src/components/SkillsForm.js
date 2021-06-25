@@ -1,9 +1,12 @@
 // dependencies
-import React, { useState } from 'react'
+import React, { useReducer, useState } from 'react'
 import { FormControl, IconButton, InputLabel, Input, FormGroup, Grid } from '@material-ui/core'
 
 import { makeStyles} from '@material-ui/core/styles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+
+import { useUserContext } from '../utils/UserContext'
+import reducer from '../utils/reducers'
 
 // form input
 
@@ -23,10 +26,13 @@ const useStyles = makeStyles((theme) => ({
 const SkillsForm = () => { // component
   const classes = useStyles();
   // state
+  const initialState = useUserContext()
   const [ skillsFormData, setSkillsFormData ] = useState({
     skill: '',
   })
+  const [state, dispatch] = useReducer(reducer, initialState)
 
+  // onchange
   const handleInputChange = (e) => {
     const { value } = e.target
     setSkillsFormData({
@@ -35,9 +41,11 @@ const SkillsForm = () => { // component
     })
   }
 
+  // submit handler
   const handleFormSubmit = (e) => {
     e.preventDefault()
-    console.log(skillsFormData)
+
+    console.log(skillsFormData.skill)
   }
 
   return (

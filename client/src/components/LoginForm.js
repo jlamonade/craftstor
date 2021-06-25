@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// TODO import useMutation
 import { useMutation } from '@apollo/client'
 import { LOGIN } from '../utils/mutations'
 import Auth from '../utils/auth'
@@ -42,7 +41,6 @@ const LoginForm = () => {
         variables: { ...userFormData }
       })
       console.log(data)
-      // TODO if data is good then Auth login, also need to create auth utility
       Auth.login(data.login.token)
     } catch (err) {
       console.log(err)
@@ -66,7 +64,6 @@ const LoginForm = () => {
         <FormControl>
           <InputLabel htmlFor="email">Email</InputLabel>
           <Input id='email' value={userFormData.email} onChange={handleInputChange} name='email'/>
-
         </FormControl>
         <FormControl>
           <InputLabel htmlFor="password">Password</InputLabel>

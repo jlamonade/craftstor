@@ -11,25 +11,26 @@ import { Container, CssBaseline, Typography, Grid, Button } from '@material-ui/c
 
 // component
 const Profile = () => {
-//   const { loading, data } = useQuery(GET_PROFILE)
+  // const { loading, data } = useQuery(GET_PROFILE)
   // const [ addSkill ] = useMutation(ADD_SKILL)
   const data = { "username": "hk"};
   const profile = { "profile": "github-source"};
 
-//   const skillsData = data?.getSkills || []
-   const skillsData = ["Express", "Node.js", "MERN"].join(" ");
+  // const skillsData = data?.getSkills || []
+  const skillsData = ["Express", "Node.js", "MERN"].join(" ");
 
   return (
     <Container maxWidth="sm">
 
       <CssBaseline />
 
-      <Typography component="h5" variant="h5" align="center" color="textPrimary" gutterBottom>
+      <Typography component="h3" variant="h4" align="center" color="textPrimary" gutterBottom>
             {data.username}'s Profile
       </Typography>
 
-      <Typography variant="h5" align="center" color="textSecondary" paragraph>
-          <div style={{ fontSize: '12px' }} >Profile:</div><div> {profile.profile}</div>
+     
+       <Typography component="h5" variant="h5" align="center" color="textSecondary" paragraph>
+              <div style={{ fontSize: '12px' }} >Profile:</div>{profile.profile}
       </Typography>
 
       {/* <input accept="image/*" className={classes.input} id="icon-button-file" type="file" /> */}

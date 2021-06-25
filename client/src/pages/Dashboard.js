@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_USER_BY_ID } from '../utils/queries';
 import { Container } from '@material-ui/core';
-import Rating from '@material-ui/lab/Rating';
+
+// state
+import reducer from '../utils/reducers'
+import { useUserContext } from '../utils/UserContext'
+import { INIT_USER_STATE } from '../utils/actions';
 
  
 // added
 import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography  } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { blue } from '@material-ui/core/colors';
 
 // import Link from '@material-ui/core/Link';
 // >>> added
@@ -45,12 +48,11 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       margin: theme.spacing(1),
     },
-
   },
   icon_color:{
     //  backgroundColor:  "primary.main"
     color: '#fff',
-    backgroundColor: "#3f51b5",
+    backgroundColor: "#5c6bc0",
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
@@ -59,28 +61,37 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = () => {
-
-
-  //rating
-  const [value, setValue] = React.useState(2); 
-
-  //added
   const classes = useStyles();
-  //>>>> added
 
+  // query user data
   const { loading, data } = useQuery(GET_USER_BY_ID);
-  const userData = data?.getUserById  || [];
-  const cards = [{client:"Grace corp", dueDate:"10/10/2021",checked: false }, 
-                  {client:"Apple inc", dueDate:"9/25/2021",checked: false }, 
-                  {client:"John Doe", dueDate:"12/20/2021",checked: true }, 
-                  {client:"John Doe", dueDate:"12/20/2021",checked: true }, 
-                ] ;
+  const initialState = useUserContext()
+
+  // TODO use state to get user information
+  const [state, dispatch] = useReducer(reducer, initialState)
+  console.log("state ", state)
+  useEffect(() => {
+    if (data) {
+      const uData = data?.getUserById  || [];
+      dispatch({
+        type: INIT_USER_STATE,
+        payload: uData
+      })
+    }
+    
+  }, [data])
+  
+
+
+  // temporary data will need to replace with projects from user state
+  const cards = [
+    {client:"Grace corp", dueDate:"10/10/2021",checked: false}, 
+    {client:"Apple inc", dueDate:"9/25/2021",checked: false}, 
+    {client:"John Doe", dueDate:"12/20/2021",checked: true}, 
+    {client:"John Doe", dueDate:"12/20/2021",checked: true}, 
+  ];
 
   for (let i = 0; i < cards.length; i++)  cards[i].image =  'https://source.unsplash.com/random?sig=' + i ;
-
-  console.log(">>>>>>>  user:");
-  console.log(userData);
-  console.log("<<<<<<<<");
 
   return (
     <React.Fragment>
@@ -88,7 +99,7 @@ const Dashboard = () => {
       {loading ? (
         <Container>Loading...</Container>
       ) : (
-        // userData.username
+        // state.username
         <>
             <CssBaseline />
  
@@ -98,10 +109,10 @@ const Dashboard = () => {
                   <Container maxWidth="sm">
                     {/* <Typography component="h3" variant="h2" align="center" color="textPrimary" gutterBottom> */}
                     <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom>
-                         {userData.username}
+                         {state.username}
                     </Typography>
                     <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                        <div>{userData.firstName} {userData.lastName} / {userData.email}</div>
+                        <div>{state.firstName} {state.lastName} / {state.email}</div>
                     </Typography>
                     <div className={classes.heroButtons}>
                       <Grid container spacing={2} justify="center">
@@ -110,11 +121,13 @@ const Dashboard = () => {
                               Profile 
                           </Button>
                         </Grid>
-                        {/* <Grid item>
+
+                        <Grid item>
                           <Button variant="outlined" color="primary" href="/projects">
                              Project
                           </Button>
-                        </Grid> */}
+                        </Grid>
+                        
                       </Grid>
                     </div>
                   </Container>
@@ -140,7 +153,7 @@ const Dashboard = () => {
                             </Typography>
                             <Typography>
                              due date: {card.dueDate}
-                             </Typography><Typography display='flex'>
+                             </Typography><Typography>
                              status: {card.checked? "completed": "pending"}
                             </Typography>
                           </CardContent>
@@ -152,36 +165,12 @@ const Dashboard = () => {
                               Edit
                             </Button>
                           </CardActions>
-
-                            {/* <>
-                              <Box component="fieldset" mb={3} borderColor="transparent">
-                                <Typography component="legend">Controlled</Typography>
-                                <Rating
-                                  name="simple-controlled"
-                                  value={value}
-                                  onChange={(event, newValue) => {
-                                    setValue(newValue);
-                                  }}
-                                />
-                             </Box>
-                             </> */}
-
                         </Card>
                       </Grid>
                     ))}
                   </Grid>
                 </Container>
               </main>
-              {/* Footer */}
-              <footer className={classes.footer}>
-                <Typography variant="h6" align="center" gutterBottom>
-                  {/* Footer */}
-                </Typography>
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                   © JPWDH Inc
-                </Typography>
-              </footer>
-              {/* End footer */}
         
         </>
       )}
