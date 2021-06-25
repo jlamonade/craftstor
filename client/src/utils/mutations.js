@@ -34,3 +34,13 @@ export const SAVE_PROJECT = gql`
     }
   }
 `
+
+export const ADD_SKILL = gql`
+  mutation ($skill: String!, $id: ID) {
+    addSkills(skill: $skill, id: $id) {
+      profile {
+        skills
+      }
+    }
+  }
+`

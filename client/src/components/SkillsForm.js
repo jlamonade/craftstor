@@ -1,9 +1,11 @@
 // dependencies
 import React, { useState } from 'react'
 import { FormControl, IconButton, InputLabel, Input, FormGroup, Grid } from '@material-ui/core'
+import { useMutation } from '@apollo/client'
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { ADD_SKILL } from '../utils/mutations';
 
 // form input
 
@@ -26,6 +28,7 @@ const SkillsForm = () => { // component
   const [ skillsFormData, setSkillsFormData ] = useState({
     skill: '',
   })
+  const [addSkill] = useMutation(ADD_SKILL)
 
   // onchange
   const handleInputChange = (e) => {
@@ -37,9 +40,17 @@ const SkillsForm = () => { // component
   }
 
   // submit handler
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault()
     console.log('add skill press: ', skillsFormData.skill)
+    try {
+      const { data } = await addSkill({
+        variables: { ...skillsFormData }
+      })
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (

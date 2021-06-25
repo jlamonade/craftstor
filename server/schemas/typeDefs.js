@@ -35,7 +35,7 @@ const typeDefs = gql`
     deleteProjects(projectId: ID!): User
     newUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String!, email: String!, password: String!): Auth
-    addSkills(id: ID!, skill: String!): User
+    addSkills(id: ID, skill: String!): User
     updateProject(dueDate: String, client: String, checked: Boolean): User
   }
 
