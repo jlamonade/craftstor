@@ -33,7 +33,7 @@ const Search = () => {
     <Container>
       <Typography>Search Results</Typography>
       {usersData.map((user) => (
-        <Card>
+        <Card key={user._id}>
           <UserInfo state={user} />
           <SkillsList state={user} />
         </Card>

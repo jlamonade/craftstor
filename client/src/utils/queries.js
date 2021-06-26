@@ -60,6 +60,7 @@ export const GET_SKILLS = gql`
 export const GET_USERS_BY_SKILL = gql`
   query ($skill: String) {
     getUsersBySkill(skill: $skill) {
+      _id
       username
       firstName
       lastName
