@@ -58,11 +58,14 @@ const resolvers = {
     login: async (parent, args, context) => {
       let foundUser = await User.findOne({ email: args.email });
 
+      if (!foundUser) {
+        throw new UserInputError("User not found.")
+      }
       const correctPw = await foundUser.isCorrectPassword(args.password);
       console.log(foundUser)
 
       if (!correctPw) {
-        throw new UserInputError("Error")
+        throw new UserInputError("Incorrect Password")
       }
       const token = await signToken(foundUser);
 

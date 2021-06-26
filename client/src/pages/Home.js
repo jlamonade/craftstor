@@ -1,10 +1,18 @@
 import React from "react";
-import { Container } from "@material-ui/core";
+import { Link } from "react-router-dom";
+
+// components
 import Dashboard from "./Dashboard";
 import Auth from "../utils/auth";
 
-// added
-import { Button, CssBaseline, Grid, Typography } from "@material-ui/core";
+// material ui components
+import {
+  Button,
+  Container,
+  CssBaseline,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 // import Link from '@material-ui/core/Link';
