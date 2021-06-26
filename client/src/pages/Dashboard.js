@@ -1,18 +1,16 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_USER_BY_ID } from '../utils/queries';
-import { Container } from '@material-ui/core';
 
 // components
 import SkillsForm from '../components/SkillsForm'
 
 // state
-import reducer from '../utils/reducers'
 import { useUserContext } from '../utils/UserContext'
 import { INIT_USER_STATE } from '../utils/actions';
 
  
-import { Avatar,  Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid,  Typography } from '@material-ui/core';
+import { Avatar,  Button, Card, CardActions, CardContent, CardMedia, Container, CssBaseline, Grid,  Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -67,7 +65,7 @@ const Dashboard = () => {
 
   // query user data
   const { loading, data } = useQuery(GET_USER_BY_ID);
-  const [state, dispatch ] = useUserContext()
+  const [state, dispatch] = useUserContext()
 
   // TODO use state to get user information
   useEffect(() => {
