@@ -15,20 +15,23 @@ const resolvers = {
 
       return foundUser;
     },
-    //Query that takes an email and returns a user
-    getUserByEmail: async (parent, { email }) => {
-      const user = await User.find({ email: email });
 
-      console.log(user)
-
-      return user
-    },
-
-    getUsersBySkill: async (parent, { skill }) => {
-      console.log(skill)
-      const users = await User.find({ profile: { skills: [skill] }});
+    //query to dynamically find users based on any number of inputs
+    getUsers: async (parent, { firstName, lastName, email, skill }) => {
+      const users = await User.find(
+        { $or: [
+          {firstName: firstName},
+          {lastName: lastName},
+          {email: email},
+          { profile: {skills: [skill] }}
+        ]}
+        );
 
       console.log(users)
+
+      if(!users) {
+        throw new UserInputError("No results!")
+      }
 
       return users
     },
