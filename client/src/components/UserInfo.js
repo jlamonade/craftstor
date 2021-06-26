@@ -2,17 +2,29 @@ import { Typography } from "@material-ui/core";
 
 const UserInfo = ({ state }) => {
   return (
-    <Typography align="center">
-      {state.firstName} {state.lastName} /{" "}
-      <a
-        href="mailto:name@email.com"
-        style={{ textDecoration: "none", color: "black" }}
+    <>
+      <Typography
+        component="h3"
+        variant="h2"
+        align="center"
+        color="textPrimary"
+        gutterBottom
+        marginTop="0"
       >
-        {" "}
-        {state.email}
-      </a>{" "}
-      / {state.profile.portfolio}
-    </Typography>
+        {state.username}
+      </Typography>
+      <Typography align="center">
+        {state.firstName} {state.lastName} /{" "}
+        <a
+          href="mailto:name@email.com"
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          {" "}
+          {state.email}
+        </a>{" "}
+        / {state.profile.portfolio}
+      </Typography>
+    </>
   );
 };
 

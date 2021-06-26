@@ -114,20 +114,9 @@ const Dashboard = () => {
             <main>
               <div className={classes.heroContent}>
                 <Container maxWidth="sm">
-                  <Typography
-                    component="h3"
-                    variant="h2"
-                    align="center"
-                    color="textPrimary"
-                    gutterBottom
-                    marginTop="0"
-                  >
-                    {/* <Typography component="stateh3" variant="h3" align="center" color="textPrimary" gutterBottom> */}
-                    {state.username}
-                  </Typography>
+                  
 
                   <UserInfo state={state} />
-
                   <SkillsList state={state} />
                   <SkillsForm />
 
