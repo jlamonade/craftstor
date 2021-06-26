@@ -75,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = () => {
+  let x = false;
   const classes = useStyles();
 
   // query user data
@@ -101,6 +102,12 @@ const Dashboard = () => {
     setIsAddingProject(false)
   }
 
+  const [ children, setChildren ] = useState([]);
+  const appendProject= () =>{
+    setChildren([...children, <ProjectForm />])
+  }
+
+
   // USE state.savedProjects to load array of projects associated to user
   // think about using ternary statement to show projects or 'no projects yet'
   return (
@@ -123,7 +130,7 @@ const Dashboard = () => {
                   <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">
                       <Grid item>
-                        <LinkButton name="Add Project" onClick={startAddingProjectHandler} />
+                        <LinkButton name="Add Project" onClick={appendProject} />
                       </Grid>
                       <Grid item>
                         <LinkButton name="Edit Profile" url="/profile/edit" />
@@ -131,9 +138,7 @@ const Dashboard = () => {
                     </Grid>
                   </div>
                 </Container>
-                {isAddingProject && (
-                  <ProjectForm />
-                )}
+                {children.map(child => child)}
 
                 <Container className={classes.cardGrid} maxWidth="md">
                   {/* End hero unit */}
@@ -144,7 +149,6 @@ const Dashboard = () => {
                           card={card}
                           classes={classes}
                           state={state}
-                          index={index}
                         />
                       </Grid>
                     ))}

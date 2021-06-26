@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
   heroButtons: {
     marginTop: theme.spacing(4),
   },
+
 }));
 
 const Home = () => {
@@ -52,6 +53,8 @@ const Home = () => {
                 >
                   CraftStor
                 </Typography>
+
+          
                 <div className={classes.heroButtons}>
                   <Grid container spacing={2} justify="center">
                     <Grid item>

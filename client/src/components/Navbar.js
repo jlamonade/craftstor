@@ -1,8 +1,10 @@
 import React from 'react';
 import Auth from "../utils/auth";
-import { makeStyles } from '@material-ui/core/styles';
+import {  makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button} from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button   } from '@material-ui/core';
+
+
 // import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#FFFFFF",
     textDecoration: 'none',
   },
+  
 
 }));
 
@@ -86,6 +89,7 @@ const Navbar = () => {
                         Craftstor 🔗
                     </Link>
                 </Typography>
+
                 {showNavigation()}
                 {/* <Button color="inherit"><Link to='/signup' className={classes.link2}>Sign Up</Link> </Button>
                 <Button color="inherit"><Link to='/login' className={classes.link2}>Login</Link> </Button> */}
