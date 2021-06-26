@@ -79,7 +79,6 @@ const Dashboard = () => {
   const classes = useStyles();
 
   // query user data
-  const [ isAddingProject, setIsAddingProject ] = useState(false)
   const { loading, data } = useQuery(GET_USER_BY_ID);
   const [state, dispatch] = useUserContext();
 
@@ -93,14 +92,14 @@ const Dashboard = () => {
     }
   }, [data]);
 
-  const startAddingProjectHandler = (e) => {
-    e.preventDefault()
-    setIsAddingProject(true)
-  }
+  // const startAddingProjectHandler = (e) => {
+  //   e.preventDefault()
+  //   setIsAddingProject(true)
+  // }
 
-  const stopAddingProjectHandler = () => {
-    setIsAddingProject(false)
-  }
+  // const stopAddingProjectHandler = () => {
+  //   setIsAddingProject(false)
+  // }
 
   const [ children, setChildren ] = useState([]);
   const appendProject= () =>{
@@ -130,15 +129,14 @@ const Dashboard = () => {
                   <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">
                       <Grid item>
-                        <LinkButton name="Add Project" onClick={appendProject} />
+                        <LinkButton name="Add Project" url="/projects" />
                       </Grid>
                       <Grid item>
-                        <LinkButton name="Edit Profile" url="/profile/edit" />
+                        <LinkButton name="Edit Profile" url="/profile" />
                       </Grid>
                     </Grid>
                   </div>
                 </Container>
-                {children.map(child => child)}
 
                 <Container className={classes.cardGrid} maxWidth="md">
                   {/* End hero unit */}

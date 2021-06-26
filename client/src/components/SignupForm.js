@@ -9,6 +9,8 @@ import {
   Button,
   Grid,
 } from "@material-ui/core";
+
+import { Link } from 'react-router-dom'
 import { useMutation } from "@apollo/client";
 import { SIGNUP } from "../utils/mutations";
 import Auth from "../utils/auth";
@@ -141,12 +143,12 @@ const SignupForm = () => {
                 color="primary"
                 onClick={handleFormSubmit}
               >
-                submit
+                Submit
               </Button>
             </Grid>
             <Grid item>
               <Button variant="outlined" color="primary" href="/">
-                cancel
+                <Link to="/">Cancel</Link>
               </Button>
             </Grid>
           </Grid>

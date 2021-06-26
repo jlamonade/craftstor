@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
 
+import { Link } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -14,7 +15,7 @@ import {
   Input,
   FormGroup,
   Typography,
-  Grid
+  Grid,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,12 +33,11 @@ const LoginForm = () => {
   const classes = useStyles();
 
   const [userFormData, setUserFormData] = useState({
-    email: '',
-    password: '',
-  })
+    email: "",
+    password: "",
+  });
 
   const [login] = useMutation(LOGIN);
-
 
   // tracks the changes in the form
   const handleInputChange = (event) => {
@@ -52,13 +52,13 @@ const LoginForm = () => {
 
     // console.log(userFormData)
 
-     try {
+    try {
       const { data } = await login({
         variables: { ...userFormData },
       });
       Auth.login(data.login.token);
     } catch (err) {
-      alert(err.message)
+      alert(err.message);
     }
 
     setUserFormData({
@@ -119,16 +119,13 @@ const LoginForm = () => {
               </Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" color="primary" href="/">
-                  cancel
+              <Button variant="outlined" color="primary">
+                <Link to="/">Cancel</Link>
               </Button>
             </Grid>
           </Grid>
         </div>
       </FormGroup>
-
-
-
     </Container>
   );
 };

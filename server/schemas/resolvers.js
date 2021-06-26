@@ -15,6 +15,27 @@ const resolvers = {
 
       return foundUser;
     },
+
+    //query to dynamically find users based on any number of inputs
+    getUsers: async (parent, { firstName, lastName, email, skill }) => {
+      const users = await User.find(
+        { $or: [
+          {firstName: firstName},
+          {lastName: lastName},
+          {email: email},
+          { profile: {skills: [skill] }}
+        ]}
+        );
+
+      console.log(users)
+
+      if(!users) {
+        throw new UserInputError("No results!")
+      }
+
+      return users
+    },
+
     getUserById: async (parent, args, context) => {
       const foundUser = await User.findOne({ _id: context.user._id });
 
@@ -86,29 +107,20 @@ const resolvers = {
       return { token, user };
     },
 
-    updateUser: async (parent, { username, email, password }, context) => {
+    updateUser: async (parent, { username, email, firstName, lastName }, context) => {
       const user = await User.findOneAndUpdate(
-        { id: context.user._id },
+        { _id: context.user._id },
         {
           $set: {
-            updatedUsername: username,
-            updatedEmail: email,
-            updatedPassword: password,
+            username: username,
+            email: email,
+            firstName: firstName,
+            lastName: lastName
           },
         },
         { new: true }
       );
-    },
-
-    async newUser(parent, args) {
-      const user = await User.create(args);
-
-      if (!user) {
-        throw UserInputError("Incorrect parameters!");
-      }
-      const token = signToken(user);
-
-      return { User: { id: user._id }, token: { token } };
+      return user;
     },
 
     //TODO: update project resolver

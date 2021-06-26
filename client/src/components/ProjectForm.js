@@ -15,6 +15,8 @@ import {
   Typography,
 } from "@material-ui/core";
 
+import { Link } from 'react-router-dom'
+
 const ProjectForm = () => {
   // const classes = useStyles();
 
@@ -136,8 +138,8 @@ const ProjectForm = () => {
             </Button>
           </Grid>
           <Grid item>
-            <Button variant="outlined" color="primary" href="/">
-              Cancel
+            <Button variant="outlined" color="primary">
+              <Link to="/">Cancel</Link>
             </Button>
           </Grid>
         </Grid>

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 // components
 import Dashboard from "./Dashboard";
 import Footer from "./Footer";
+import SearchForm from "../components/SearchForm"
 
 // material ui components
 import {
@@ -36,6 +37,7 @@ const Home = () => {
 
   return (
     <Container>
+      <SearchForm />
       {Auth.loggedIn() ? (
         <Dashboard />
       ) : (

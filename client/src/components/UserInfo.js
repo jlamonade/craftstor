@@ -22,7 +22,7 @@ const UserInfo = ({ state }) => {
           {" "}
           {state.email}
         </a>{" "}
-        / {state.profile.portfolio}
+{/*         / {state.profile.portfolio} */}
       </Typography>
     </>
   );
