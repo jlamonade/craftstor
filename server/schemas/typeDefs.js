@@ -48,6 +48,7 @@ const typeDefs = gql`
     getUsersBySkill(skill: String): [User]
     getUserByEmail(email: String!): [User]
     getUsersByName(firstName: String, lastName: String): [User]
+    getUsers(firstName: String, lastName: String, email: String, skill: String): [User]
   }
 `;
 

@@ -16,6 +16,26 @@ const resolvers = {
       return foundUser;
     },
 
+    //query to dynamically find users based on any number of inputs
+    getUsers: async (parent, { firstName, lastName, email, skill }) => {
+      const users = await User.find(
+        { $or: [
+          {firstName: firstName},
+          {lastName: lastName},
+          {email: email},
+          { profile: {skills: [skill] }}
+        ]}
+        );
+
+      console.log(user)
+
+      if(!user) {
+        throw new UserInputError("No results!")
+      }
+
+      return users
+    },
+
     getUsersByName: async (parent, { firstName, lastName }) => {
       const user = await User.find({ firstName: firstName, lastName: lastName });
 
