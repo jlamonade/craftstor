@@ -139,6 +139,7 @@ const Dashboard = () => {
                           card={card}
                           classes={classes}
                           state={state}
+                          index={index}
                         />
                       </Grid>
                     ))}
