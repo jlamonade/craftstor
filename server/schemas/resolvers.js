@@ -16,7 +16,7 @@ const resolvers = {
       return foundUser;
     },
     //Query that takes skills returns user
-    getUserBySkills: async (parent, { skills }, context) => {
+    getUsersBySkills: async (parent, { skills }, context) => {
       const foundUser = await User.find(
         { $get: { "profile.skills": skills } }
       );
