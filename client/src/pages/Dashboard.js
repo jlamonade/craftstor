@@ -113,13 +113,9 @@ const Dashboard = () => {
                     {state.username}
                </Typography>
 
-
-
                <Typography  align="center">
                        {state.firstName} {state.lastName} / <a href="mailto:name@email.com"  style={{"textDecoration": "none", "color":"black"}}> {state.email}</a> / {state.profile.portfolio}               
               </Typography>
-     
-
 
                <Typography variant="h5" align="center" color="primary" paragraph>
                     {state.profile.skills.join(' ')}

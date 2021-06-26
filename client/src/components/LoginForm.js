@@ -5,6 +5,7 @@ import Auth from '../utils/auth'
 
 import { makeStyles} from '@material-ui/core/styles';
 import { CssBaseline, Container, FormControl, InputLabel, Button,  Input, FormGroup, Typography, Grid } from '@material-ui/core'
+// import { FastRewind } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   button_margin: {
@@ -22,10 +23,10 @@ const LoginForm = () => {
 
   const [userFormData, setUserFormData] = useState({
     email: '',
-    password: ''
+    password: '',
   })
 
-  const [login] = useMutation(LOGIN)
+   const [login, { error} ] = useMutation(LOGIN)
 
   // tracks the changes in the form
   const handleInputChange = (event) => {
@@ -35,23 +36,26 @@ const LoginForm = () => {
 
   // form submit handler - where all the authentication stuff happens
   const handleFormSubmit = async (event) => {
+
     event.preventDefault()
     event.stopPropagation()
-    console.log(userFormData)
 
-    try {
+    // console.log(userFormData)
+
+     try {
       const { data } = await login({
-        variables: { ...userFormData }
+        variables: { ...userFormData } 
       })
-      console.log(data)
-      Auth.login(data.login.token)
+      // console.log(data)
+      Auth.login(data.login.token);
+
     } catch (err) {
-      console.log(err)
+        console.log(err);
     }
 
     setUserFormData({
       email: '',
-      password: ''
+      password: '',
     })
   }
 
@@ -64,7 +68,7 @@ const LoginForm = () => {
      </Typography>
 
       <FormGroup>
-        <FormControl>
+        <FormControl  error={error} >
           <InputLabel htmlFor="email">Email</InputLabel>
           <Input id='email' value={userFormData.email} onChange={handleInputChange} name='email'/>
         </FormControl>
@@ -72,6 +76,9 @@ const LoginForm = () => {
           <InputLabel htmlFor="password">Password</InputLabel>
           <Input id='password' value={userFormData.passowrd} type="password" onChange={handleInputChange} name='password'/>
         </FormControl>
+
+
+
         
           <div className={classes.heroButtons}>
                 <Grid container spacing={2} justify="center">
@@ -88,7 +95,16 @@ const LoginForm = () => {
                 </Grid>
              </div>
 
+
+           <Typography component="h6" variant="h6" align="center" color="error" gutterBottom name="errorMessage" value="" errorText={"try again!"}>
+                {error ? "Please ty again!":''}
+           </Typography>
+
+
       </FormGroup>
+
+
+
     </Container>
   )
 }
