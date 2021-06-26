@@ -37,9 +37,23 @@ const ProfileForm = () => {
     setProfileFormData({ ...profileFormData, [name]: value })
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault()
-
+    try {
+      console.log("try block", profileFormData)
+      const { data } = await updateUser({
+        variables: {
+          username: profileFormData.username,
+          firstName: profileFormData.firstName,
+          lastName: profileFormData.lastName,
+          email: profileFormData.email,
+        }
+      })
+      if (data) {
+        console.log("successful ", data)
+        window.location.assign("/")
+      }
+    } catch (err) {console.log(err)}
   };
 
   return (

@@ -78,7 +78,6 @@ const Dashboard = () => {
   const classes = useStyles();
 
   // query user data
-  const [ isAddingProject, setIsAddingProject ] = useState(false)
   const { loading, data } = useQuery(GET_USER_BY_ID);
   const [state, dispatch] = useUserContext();
 
@@ -131,9 +130,6 @@ const Dashboard = () => {
                     </Grid>
                   </div>
                 </Container>
-                {isAddingProject && (
-                  <ProjectForm />
-                )}
 
                 <Container className={classes.cardGrid} maxWidth="md">
                   {/* End hero unit */}

@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 export const GET_USER_BY_ID = gql`
   query {
@@ -22,7 +22,7 @@ export const GET_USER_BY_ID = gql`
       }
     }
   }
-`
+`;
 
 export const GET_USER_BY_USERNAME = gql`
   query ($username: String!) {
@@ -45,7 +45,7 @@ export const GET_USER_BY_USERNAME = gql`
       }
     }
   }
-`
+`;
 
 export const GET_SKILLS = gql`
   query {
@@ -55,4 +55,15 @@ export const GET_SKILLS = gql`
       }
     }
   }
-`
+`;
+
+export const GET_USERS_BY_SKILL = gql`
+  query ($skill: String) {
+    getUsersBySkill(skill: $skill) {
+      username
+      firstName
+      lastName
+      email
+    }
+  }
+`;

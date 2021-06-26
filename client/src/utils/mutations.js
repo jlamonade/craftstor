@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
@@ -10,11 +10,23 @@ export const LOGIN = gql`
       }
     }
   }
-`
+`;
 
 export const SIGNUP = gql`
-  mutation ($username: String!, $email: String!, $password: String!, $firstName: String!, $lastName: String!) {
-    createUser(username: $username, email: $email, password: $password, firstName: $firstName, lastName: $lastName) {
+  mutation (
+    $username: String!
+    $email: String!
+    $password: String!
+    $firstName: String!
+    $lastName: String!
+  ) {
+    createUser(
+      username: $username
+      email: $email
+      password: $password
+      firstName: $firstName
+      lastName: $lastName
+    ) {
       token
       user {
         _id
@@ -22,11 +34,21 @@ export const SIGNUP = gql`
       }
     }
   }
-`
+`;
 
 export const SAVE_PROJECT = gql`
-  mutation ($title: String, $dueDate: String, $client: String, $checked: Boolean) {
-    savedProjects(title: $title, dueDate: $dueDate, client: $client, checked: $checked) {
+  mutation (
+    $title: String
+    $dueDate: String
+    $client: String
+    $checked: Boolean
+  ) {
+    savedProjects(
+      title: $title
+      dueDate: $dueDate
+      client: $client
+      checked: $checked
+    ) {
       username
       savedProjects {
         title
@@ -35,7 +57,7 @@ export const SAVE_PROJECT = gql`
       }
     }
   }
-`
+`;
 
 export const ADD_SKILL = gql`
   mutation ($skill: String!, $id: ID) {
@@ -45,8 +67,26 @@ export const ADD_SKILL = gql`
       }
     }
   }
-`
+`;
 
 export const UPDATE_USER = gql`
-  
-`
+  mutation (
+    $username: String
+    $firstName: String
+    $lastName: String
+    $email: String
+  ) {
+    updateUser(
+      username: $username
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+    ) {
+      username
+      firstName
+      lastName
+      email
+      _id
+    }
+  }
+`;

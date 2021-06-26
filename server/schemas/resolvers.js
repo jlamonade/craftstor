@@ -25,6 +25,7 @@ const resolvers = {
     },
 
     getUsersBySkill: async (parent, { skill }) => {
+      console.log(skill)
       const users = await User.find({ profile: { skills: [skill] }});
 
       console.log(users)
@@ -103,21 +104,19 @@ const resolvers = {
       return { token, user };
     },
 
-    updateUser: async (parent, { username, email, firstname, lastname }, context) => {
+    updateUser: async (parent, { username, email, firstName, lastName }, context) => {
       const user = await User.findOneAndUpdate(
-        { id: context.user._id },
+        { _id: context.user._id },
         {
           $set: {
-            updatedUsername: username,
-            updatedEmail: email,
-            firstName: firstname,
-            lastName: lastname
-
+            username: username,
+            email: email,
+            firstName: firstName,
+            lastName: lastName
           },
         },
         { new: true }
       );
-
       return user;
     },
 
