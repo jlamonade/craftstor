@@ -1,7 +1,6 @@
 const { UserInputError } = require("apollo-server-express");
 const { User } = require("../models");
 const { signToken } = require("../utils/auth");
-const jwt = require("jsonwebtoken");
 
 const resolvers = {
   Query: {
@@ -127,7 +126,7 @@ const resolvers = {
         },
         { new: true }
       );
-      
+
       return user;
     },
     //TODO: delete project resolver
