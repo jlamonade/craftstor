@@ -4,6 +4,7 @@ import { GET_USER_BY_ID } from "../utils/queries";
 
 // components
 import SkillsForm from "../components/SkillsForm";
+import SkillsList from "../components/SkillsList"
 
 // state
 import { useUserContext } from "../utils/UserContext";
@@ -91,9 +92,6 @@ const Dashboard = () => {
   // USE state.savedProjects to load array of projects associated to user
   // think about using ternary statement to show projects or 'no projects yet'
 
-  // temporary data will need to replace with projects from user state
-  console.log(">>>>>>>");
-  console.log(state.savedProjects);
   const images = [];
   let i = 0;
 
@@ -139,14 +137,7 @@ const Dashboard = () => {
                     / {state.profile.portfolio}
                   </Typography>
 
-                  <Typography
-                    variant="h5"
-                    align="center"
-                    color="primary"
-                    paragraph
-                  >
-                    {state.profile.skills.join(" ")}
-                  </Typography>
+                  <SkillsList state={state} />
 
                   <SkillsForm />
 
