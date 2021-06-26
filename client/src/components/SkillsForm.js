@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 import { useMutation } from "@apollo/client";
 
-import { useUserContext } from "../utils/UserContext";
 import { ADD_SKILL_ACTION } from "../utils/actions";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -32,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 // onchange
 // submit handler
 
-const SkillsForm = () => {
+const SkillsForm = ({ dispatch }) => {
   // component
   const classes = useStyles();
   // state
@@ -40,8 +39,6 @@ const SkillsForm = () => {
     skill: "",
   });
   const [addSkill] = useMutation(ADD_SKILL);
-
-  const [state, dispatch] = useUserContext();
 
   // onchange
   const handleInputChange = (e) => {
@@ -55,7 +52,6 @@ const SkillsForm = () => {
   // submit handler
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log("add skill press: ", skillsFormData.skill);
     try {
       const { data } = await addSkill({
         variables: { ...skillsFormData },

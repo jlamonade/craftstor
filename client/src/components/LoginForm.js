@@ -13,8 +13,7 @@ import {
   Input,
   FormGroup,
   Typography,
-  Grid,
-  FormHelperText
+  Grid
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,10 +35,6 @@ const LoginForm = () => {
     password: "",
   });
 
-  const [errorState, setErrorState] = useState({
-    message: ''
-  })
-
   const [login] = useMutation(LOGIN);
 
   // tracks the changes in the form
@@ -52,7 +47,6 @@ const LoginForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log(userFormData);
 
     try {
       const { data } = await login({
@@ -93,7 +87,6 @@ const LoginForm = () => {
             name="email"
             type="email"
           />
-          <FormHelperText>{errorState.message}</FormHelperText>
         </FormControl>
         <FormControl>
           <InputLabel htmlFor="password">Password</InputLabel>

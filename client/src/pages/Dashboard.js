@@ -70,7 +70,6 @@ const Dashboard = () => {
   const { loading, data } = useQuery(GET_USER_BY_ID);
   const [state, dispatch] = useUserContext();
 
-  // TODO use state to get user information
   useEffect(() => {
     if (data) {
       const userData = data?.getUserById || [];
@@ -99,7 +98,7 @@ const Dashboard = () => {
                 <Container maxWidth="sm">
                   <UserInfo state={state} />
                   <SkillsList state={state} />
-                  <SkillsForm />
+                  <SkillsForm dispatch={dispatch}/>
 
                   <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">

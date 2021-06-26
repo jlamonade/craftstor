@@ -11,7 +11,7 @@ const Skills = () => {
   // // const [ addSkill ] = useMutation(ADD_SKILL)
   // const skillsData = data?.getSkills || []
 
-  const [state, dispatch] = useUserContext()
+  const [state] = useUserContext()
   console.log('auth ', Auth.loggedIn())
 
   return (
