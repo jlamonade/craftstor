@@ -1,6 +1,6 @@
 // dependencies
 import React, { useState } from 'react'
-import { FormControl, IconButton, InputLabel, Input, FormGroup, Grid } from '@material-ui/core'
+import { FormControl, IconButton, InputLabel, Input, FormGroup, Grid} from '@material-ui/core'
 import { useMutation } from '@apollo/client'
 
 import { useUserContext } from '../utils/UserContext';
@@ -8,14 +8,16 @@ import { ADD_SKILL_ACTION } from '../utils/actions'
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+
+
 import { ADD_SKILL } from '../utils/mutations';
 
 // form input
 
 const useStyles = makeStyles((theme) => ({
   margin: {
-    margin: theme.spacing(6, 5, 2),
-   
+    margin: theme.spacing(6, 3, 0),
+ 
     maxWidth: '90%',
     align: "center"
   },
@@ -71,29 +73,12 @@ const SkillsForm = () => { // component
           <InputLabel htmlFor="skill">Skill</InputLabel>
           <Input id="skill" name="skill" value={skillsFormData.skill} onChange={handleInputChange}/>
         </FormControl>
-      {/* <Button onClick={handleFormSubmit}>Add</Button> */}
-
-      
-      {/* <Button variant="contained" color="primary" className={classes.button_margin} onClick={handleFormSubmit}>
-             Add
-        </Button> */}
-
-          {/* <Button 
-          variant="contained"
-          color="primary"
-          aria-label="add"
-          startIcon={<AddCircleIcon />}
-          onClick={handleFormSubmit}
-          >
-          Add
-        </Button> */}
 
         <label htmlFor="icon-button-file">
         <IconButton color="primary" aria-label="add" component="span" onClick={handleFormSubmit}>
           <AddCircleIcon fontSize="large"/>
         </IconButton>
       </label>
-
 
      </Grid>
 

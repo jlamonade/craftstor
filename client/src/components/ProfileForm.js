@@ -9,6 +9,34 @@ import SkillsForm from './SkillsForm'
 // import { Container, List, ListItem, CssBaseline, Typography } from '@material-ui/core';
 import { Container, CssBaseline, Typography, Grid, Button } from '@material-ui/core';
 
+  // tracks the changes in the form
+  // const handleInputChange = (event) => {
+  //   // const { name, value, checked } = event.target
+  //   // setProjectFormData({ ...profileFormData, [name]: value || checked })
+  // }
+
+  // form submit handler - where all the authentication stuff happens
+  const handleFormSubmit = async (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+
+    // try {
+    //   console.log(profileFormData)
+    //   const { data } = await updateProfile({
+    //     variables: { ...profileFormData }
+    //   })
+    //   console.log(data)
+    // } catch (err) {
+    //   console.log(err)
+    // }
+
+    // setProfileFormData({
+    //   portfolio: '',
+    //   skills: []
+    // })
+  }
+
+
 // component
 const Profile = () => {
   // const { loading, data } = useQuery(GET_PROFILE)
@@ -44,7 +72,7 @@ const Profile = () => {
    
           <Grid container spacing={2} justify="center">
                   <Grid item>
-                      <Button variant="contained" color="primary"  href="/profile">
+                      <Button variant="contained" color="primary"  href="/profile" onClick={handleFormSubmit}>
                           Confirm 
                       </Button>
                    </Grid>   
