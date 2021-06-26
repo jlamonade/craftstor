@@ -8,21 +8,13 @@ import {
   Button,
 } from "@material-ui/core";
 
-const ProjectCard = ({ state, card, classes }) => {
-  const images = [];
-  let i = 0;
-
-  // random image loop
-  for (i = 0; i < state.savedProjects.length; i++)
-    images.push("https://source.unsplash.com/random?sig=" + i);
-  i = 0;
+const ProjectCard = ({ state, card, classes, index}) => {
 
   return (
     <Card className={classes.card}>
       <CardMedia
         className={classes.cardMedia}
-        // image="https://source.unsplash.com/random"
-        image={images[i++]}
+        image = {"https://source.unsplash.com/random?sig="+index} 
         title="Image title"
       />
       <CardContent className={classes.cardContent}>
@@ -39,8 +31,6 @@ const ProjectCard = ({ state, card, classes }) => {
         </Typography>
         <Typography>
           <span style={{ fontSize: "9px" }}> due date: </span>
-          {/* {console.log(format({card.dueDate}, "MMM/dd/yyyy"))} */}
-
           {card.dueDate}
         </Typography>
         <Typography>
@@ -52,9 +42,6 @@ const ProjectCard = ({ state, card, classes }) => {
         <Button size="small" color="primary" href="/">
           <span style={{ fontSize: "9px" }}>View detail .....</span>
         </Button>
-        {/* <Button size="small" color="primary" value={card} href="/projects">
-                                Edit
-                              </Button> */}
       </CardActions>
     </Card>
   );

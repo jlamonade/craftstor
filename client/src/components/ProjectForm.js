@@ -45,7 +45,7 @@ const ProjectForm = () => {
         variables: { ...projectFormData },
       });
       if (data) {
-        console.log(">>>>> ProjectForm");
+       
         console.log(data);
         window.location.assign("/");
       }

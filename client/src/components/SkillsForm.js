@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 // onchange
 // submit handler
 
-const SkillsForm = ({ dispatch }) => {
+const SkillsForm = ({dispatch}) => {
   // component
   const classes = useStyles();
   // state
@@ -100,4 +100,4 @@ const SkillsForm = ({ dispatch }) => {
   );
 };
 
-export default SkillsForm;
+export default SkillsForm;  

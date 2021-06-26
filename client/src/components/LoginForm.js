@@ -104,7 +104,7 @@ const LoginForm = () => {
         </FormControl>
 
         {/* <Typography component="h6" variant="h6" align="center" color="error" gutterBottom name="errorMessage" value="" errorText={"try again!"}>
-                {error ? "Please ty again!":''}
+                // {error ? "Please try again!":''}
          </Typography> */}
 
         <div className={classes.heroButtons}>
