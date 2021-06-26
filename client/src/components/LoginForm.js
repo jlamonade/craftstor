@@ -78,8 +78,11 @@ const LoginForm = () => {
         </FormControl>
 
 
+        <Typography component="h6" variant="h6" align="center" color="error" gutterBottom name="errorMessage" value="" errorText={"try again!"}>
+                {error ? "Please ty again!":''}
+         </Typography>
 
-        
+
           <div className={classes.heroButtons}>
                 <Grid container spacing={2} justify="center">
                   <Grid item>
@@ -95,10 +98,6 @@ const LoginForm = () => {
                 </Grid>
              </div>
 
-
-           <Typography component="h6" variant="h6" align="center" color="error" gutterBottom name="errorMessage" value="" errorText={"try again!"}>
-                {error ? "Please ty again!":''}
-           </Typography>
 
 
       </FormGroup>
