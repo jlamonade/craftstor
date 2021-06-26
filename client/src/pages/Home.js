@@ -1,7 +1,7 @@
 
 import React from 'react'
 import Auth from '../utils/auth'
-import Link from "react-router-dom"
+// import Link from "react-router-dom"
 import Dashboard from "./Dashboard";
 import Footer from './Footer'
 
@@ -11,6 +11,8 @@ import {
   CssBaseline,
   Grid,
   Typography,
+  Container,
+  Link
 } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";

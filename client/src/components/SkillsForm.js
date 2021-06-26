@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-// dependencies  
-=======
 // dependencies
->>>>>>> main
 import React, { useState } from "react";
 import {
   FormControl,
