@@ -46,7 +46,6 @@ const resolvers = {
       return foundUser;
     },
     getSkills: async (parent, args, context) => {
-      // TODO think about using context
       const user = await User.findOne({ _id: context.user._id }).select(
         "profile.skills"
       );
@@ -54,7 +53,6 @@ const resolvers = {
       return user;
     },
     getProjects: async (parent, args, context) => {
-      // TODO think about using context
       const user = await User.findOne({ _id: context.user._id }).select(
         "savedProjects"
       );
