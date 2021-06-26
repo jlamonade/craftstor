@@ -11,6 +11,7 @@ import ProjectForm from './components/ProjectForm'
 import ProfileForm from './components/ProfileForm'
 import Skills from './components/Skills'
 import Profile from './pages/Profile'
+import Search from './pages/Search'
 
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -46,6 +47,7 @@ function App() {
             <Route exact path="/projects" component={ProjectForm} />
             <Route exact path="/profile" component={ProfileForm} />
             <Route exact path="/skills" component={Skills} /> 
+            <Route exact path="/search" component={Search} />
           </UserProvider>
         </Switch>
       </Router>

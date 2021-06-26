@@ -1,13 +1,21 @@
+
 import React from 'react'
-import { Container } from '@material-ui/core'
-import Dashboard from './Dashboard'
-import Footer from './Footer'
 import Auth from '../utils/auth'
 
-// added
-import { Button,  CssBaseline,  Grid, Typography }  from '@material-ui/core';
+// components
+import Dashboard from "./Dashboard";
+import Footer from './Footer'
 
-import { makeStyles } from '@material-ui/core/styles';
+// material ui components
+import {
+  Button,
+  Container,
+  CssBaseline,
+  Grid,
+  Typography,
+} from "@material-ui/core";
+
+import { makeStyles } from "@material-ui/core/styles";
 // import Link from '@material-ui/core/Link';
 // >>> added
 
@@ -30,44 +38,51 @@ const Home = () => {
 
 
   return (
-
-    <Container  >
+    <Container>
       {Auth.loggedIn() ? (
         <Dashboard />
       ) : (
-
         <>
-        <CssBaseline />
-        <main>
-        <div className={classes.heroContent}>
-        <Container maxWidth="sm">
-            <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
-                 CraftStor
-            </Typography>
-            <div className={classes.heroButtons}>
-                <Grid container spacing={2} justify="center">
-                  <Grid item>
-                    <Button variant="contained" color="primary" href="/signup">
+          <CssBaseline />
+          <main>
+            <div className={classes.heroContent}>
+              <Container maxWidth="sm">
+                <Typography
+                  component="h2"
+                  variant="h2"
+                  align="center"
+                  color="textPrimary"
+                  gutterBottom
+                >
+                  CraftStor
+                </Typography>
+                <div className={classes.heroButtons}>
+                  <Grid container spacing={2} justify="center">
+                    <Grid item>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        href="/signup"
+                      >
                         Sign Up
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button variant="outlined" color="primary" href="/login">
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button variant="outlined" color="primary" href="/login">
                         Sign In
-                    </Button>
+                      </Button>
+                    </Grid>
                   </Grid>
-                </Grid>
-             </div>
-           </Container>
-        </div>
-        </main>
+                </div>
+              </Container>
+            </div>
+          </main>
         </>
       )}
 
-
        <Footer/>
     </Container>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

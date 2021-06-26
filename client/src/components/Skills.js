@@ -7,11 +7,8 @@ import Auth from '../utils/auth'
 
 // component
 const Skills = () => {
-  // const { loading, data } = useQuery(GET_SKILLS)
-  // // const [ addSkill ] = useMutation(ADD_SKILL)
-  // const skillsData = data?.getSkills || []
 
-  const [state, dispatch] = useUserContext()
+  const [state] = useUserContext()
   console.log('auth ', Auth.loggedIn())
 
   return (
