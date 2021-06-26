@@ -126,7 +126,7 @@ const Dashboard = () => {
                         <LinkButton name="Add Project" url="/projects" />
                       </Grid>
                       <Grid item>
-                        <LinkButton name="Edit Profile" url="/profile/edit" />
+                        <LinkButton name="Edit Profile" url="/profile" />
                       </Grid>
                     </Grid>
                   </div>

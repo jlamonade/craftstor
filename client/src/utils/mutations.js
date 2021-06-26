@@ -46,3 +46,7 @@ export const ADD_SKILL = gql`
     }
   }
 `
+
+export const UPDATE_USER = gql`
+  
+`
