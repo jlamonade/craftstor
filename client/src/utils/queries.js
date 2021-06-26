@@ -35,6 +35,7 @@ export const GET_USER_BY_USERNAME = gql`
         dueDate
         title
         _id
+        checked
       }
       profile {
         skills

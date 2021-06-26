@@ -6,7 +6,6 @@ import { GET_USER_BY_ID } from '../utils/queries';
 import SkillsForm from '../components/SkillsForm'
 
 // state
-import reducer from '../utils/reducers'
 import { useUserContext } from '../utils/UserContext'
 import { INIT_USER_STATE } from '../utils/actions';
 

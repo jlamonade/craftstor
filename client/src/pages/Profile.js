@@ -91,38 +91,41 @@ const Profile = () => {
                 <Container className={classes.cardGrid} maxWidth="md">
                   {/* End hero unit */}
                   <Grid container spacing={4}>
-                    {userData.savedProjects.map((card,index) => (
-                     
-                      <Grid item key={index} xs={12} sm={6} md={4}>
+                    {userData.savedProjects.map((project, index) => {
+                      if (project.checked) {
+                        return (
+                          <Grid item key={index} xs={12} sm={6} md={4}>
                         <Card className={classes.card}>
                           <CardMedia
                             className={classes.cardMedia}
                             // image="https://source.unsplash.com/random"
-                            image={card.image}
+                            image={project.image}
                             title="Image title"
                           />
                           <CardContent className={classes.cardContent}>
 
                             <Typography gutterBottom variant="h5" component="h4" className={classes.client_format}>
-                                <Avatar className={classes.icon_color}>{card.client.charAt(0)}</Avatar>{card.client}
+                                <Avatar className={classes.icon_color}>{project.client.charAt(0)}</Avatar>{project.client}
                             </Typography>
                             <Typography>
-                             due date: {card.dueDate}
+                             due date: {project.dueDate}
                              </Typography><Typography>
-                             status: {card.checked? "completed": "pending"}
+                             status: {project.checked? "completed": "pending"}
                             </Typography>
                           </CardContent>
                           <CardActions>
                             {/* <Button size="small" color="primary">
                               View
                             </Button> */}
-                            <Button size="small" color="primary" value={card} href="/projects">
+                            <Button size="small" color="primary" value={project} href="/projects">
                               Edit
                             </Button>
                           </CardActions>
                         </Card>
                       </Grid>
-                    ))}
+                        )
+                      }
+                    })}
                   </Grid>
                 </Container>
               </main>
