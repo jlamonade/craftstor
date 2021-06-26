@@ -83,7 +83,7 @@ const Dashboard = () => {
 
   // USE state.savedProjects to load array of projects associated to user
   // think about using ternary statement to show projects or 'no projects yet'
-
+  console.log(state);
   return (
     <React.Fragment>
       <Container>
