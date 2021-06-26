@@ -1,16 +1,27 @@
-import React, { useState } from 'react'
-import { useMutation } from '@apollo/client'
-import { LOGIN } from '../utils/mutations'
-import Auth from '../utils/auth'
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { LOGIN } from "../utils/mutations";
+import Auth from "../utils/auth";
 
-import { makeStyles} from '@material-ui/core/styles';
-import { CssBaseline, Container, FormControl, InputLabel, Button,  Input, FormGroup, Typography, Grid } from '@material-ui/core'
+
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  CssBaseline,
+  Container,
+  FormControl,
+  InputLabel,
+  Button,
+  Input,
+  FormGroup,
+  Typography,
+  Grid
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   button_margin: {
     margin: theme.spacing(5, 16, 2),
-    maxWidth: '90%',
-    align: "center"
+    maxWidth: "90%",
+    align: "center",
   },
   heroButtons: {
     marginTop: theme.spacing(4),
@@ -22,75 +33,104 @@ const LoginForm = () => {
 
   const [userFormData, setUserFormData] = useState({
     email: '',
-    password: ''
+    password: '',
   })
 
-  const [login] = useMutation(LOGIN)
+  const [login] = useMutation(LOGIN);
+
 
   // tracks the changes in the form
   const handleInputChange = (event) => {
-    const { name, value } = event.target
-    setUserFormData({ ...userFormData, [name]: value })
-  }
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
 
   // form submit handler - where all the authentication stuff happens
   const handleFormSubmit = async (event) => {
-    event.preventDefault()
-    event.stopPropagation()
-    console.log(userFormData)
+    event.preventDefault();
+    event.stopPropagation();
 
-    try {
+    // console.log(userFormData)
+
+     try {
       const { data } = await login({
-        variables: { ...userFormData }
-      })
-      console.log(data)
-      Auth.login(data.login.token)
+        variables: { ...userFormData },
+      });
+      Auth.login(data.login.token);
     } catch (err) {
-      console.log(err)
+      alert(err.message)
     }
 
     setUserFormData({
-      email: '',
-      password: ''
-    })
-  }
+      email: "",
+      password: "",
+    });
+  };
 
   return (
     <Container maxWidth="sm">
-       <CssBaseline />
+      <CssBaseline />
 
-     <Typography component="h5" variant="h5" align="center" color="textPrimary" gutterBottom>
-            Sign In
-     </Typography>
+      <Typography
+        component="h5"
+        variant="h5"
+        align="center"
+        color="textPrimary"
+        gutterBottom
+      >
+        Sign In
+      </Typography>
 
       <FormGroup>
-        <FormControl>
+        <FormControl  error={error} >
           <InputLabel htmlFor="email">Email</InputLabel>
-          <Input id='email' value={userFormData.email} onChange={handleInputChange} name='email'/>
+          <Input
+            id="email"
+            value={userFormData.email}
+            onChange={handleInputChange}
+            name="email"
+            type="email"
+          />
         </FormControl>
         <FormControl>
           <InputLabel htmlFor="password">Password</InputLabel>
-          <Input id='password' value={userFormData.passowrd} type="password" onChange={handleInputChange} name='password'/>
+          <Input
+            id="password"
+            value={userFormData.password}
+            type="password"
+            onChange={handleInputChange}
+            name="password"
+          />
         </FormControl>
-        
-          <div className={classes.heroButtons}>
-                <Grid container spacing={2} justify="center">
-                  <Grid item>
-                    <Button variant="contained" color="primary" onClick={handleFormSubmit}>
-                        submit
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button variant="outlined" color="primary" href="/">
-                        cancel
-                    </Button>
-                  </Grid>
-                </Grid>
-             </div>
 
+        <Typography component="h6" variant="h6" align="center" color="error" gutterBottom name="errorMessage" value="" errorText={"try again!"}>
+                {error ? "Please ty again!":''}
+         </Typography>
+
+        <div className={classes.heroButtons}>
+          <Grid container spacing={2} justify="center">
+            <Grid item>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleFormSubmit}
+              >
+                Login
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button variant="outlined" color="primary" href="/">
+                  cancel
+              </Button>
+            </Grid>
+          </Grid>
+        </div>
       </FormGroup>
-    </Container>
-  )
-}
 
-export default LoginForm
+
+
+    </Container>
+  );
+};
+
+export default LoginForm;

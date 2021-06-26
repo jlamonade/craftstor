@@ -8,7 +8,7 @@ import Auth from '../utils/auth'
 // component
 const Skills = () => {
 
-  const [state, dispatch] = useUserContext()
+  const [state] = useUserContext()
   console.log('auth ', Auth.loggedIn())
 
   return (
