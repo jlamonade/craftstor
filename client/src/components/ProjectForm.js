@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useUserContext } from '../utils/UserContext'
 import { useMutation } from "@apollo/client";
 import { SAVE_PROJECT } from "../utils/mutations";
 import {
@@ -17,6 +18,8 @@ import {
 const ProjectForm = () => {
   // const classes = useStyles();
 
+  const [state, dispatch] = useUserContext()
+  console.log(state)
   const [projectFormData, setProjectFormData] = useState({
     title: "",
     dueDate: "",

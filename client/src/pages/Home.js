@@ -1,14 +1,17 @@
+import React from "react";
+import Auth from "../utils/auth";
 
-import React from 'react'
-import Auth from '../utils/auth'
-import Link from "react-router-dom"
+import { Link } from "react-router-dom";
+
+// components
 import Dashboard from "./Dashboard";
-import Footer from './Footer'
+import Footer from "./Footer";
 
 // material ui components
 import {
   Button,
   CssBaseline,
+  Container,
   Grid,
   Typography,
 } from "@material-ui/core";
@@ -34,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
 
-
   return (
     <Container>
       {Auth.loggedIn() ? (
@@ -57,21 +59,17 @@ const Home = () => {
                 <div className={classes.heroButtons}>
                   <Grid container spacing={2} justify="center">
                     <Grid item>
-                      <Button
-                        variant="contained"
-                        color="primary">
-                          <Link to='/signup' className={classes.link2}>
-                              Sign Up
-                            </Link> 
-                        
+                      <Button color="inherit">
+                        <Link to="/signup" className={classes.link2}>
+                          Sign Up
+                        </Link>
                       </Button>
                     </Grid>
                     <Grid item>
-                      <Button variant="outlined" color="primary">
-                        <Link to = '/login' className={classes.link2}>
+                      <Button color="inherit">
+                        <Link to="/login" className={classes.link2}>
                           Login
                         </Link>
-                        
                       </Button>
                     </Grid>
                   </Grid>
@@ -82,7 +80,7 @@ const Home = () => {
         </>
       )}
 
-       <Footer/>
+      <Footer />
     </Container>
   );
 };

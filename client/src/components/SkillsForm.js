@@ -40,8 +40,6 @@ const SkillsForm = ({ dispatch }) => {
   })
   const [addSkill, { error } ] = useMutation(ADD_SKILL)
 
-  const [state, dispatch] = useUserContext()
-
   // onchange
   const handleInputChange = (e) => {
     const { value } = e.target;
