@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 const Profile = () => {
   const classes = useStyles();
 
+  // use query to get profile information using the params
   const { loading, data } = useQuery(GET_USER_BY_USERNAME, {
     variables: {
       username: useParams().username
@@ -58,9 +59,8 @@ const Profile = () => {
   })
   const userData = data?.getUserByUsername
   console.log(userData)
-  // use query to get profile information using the params
+  
   // then render it in the return
-
   return (
     <React.Fragment>
     <Container>
@@ -129,11 +129,6 @@ const Profile = () => {
         
         </>
       )}
-
-      
-
-
-
     </Container>
     </React.Fragment>
   )
