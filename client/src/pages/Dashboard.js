@@ -61,7 +61,16 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
-
+  action: {
+    opacity: 0.7,
+    position: "relative",
+    // "&:hover $media": {
+    //   opacity: 1
+    // }
+    "&:hover" : {
+      opacity: 1.0,
+    }
+  },
 }));
 
 const Dashboard = () => {
