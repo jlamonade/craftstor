@@ -15,25 +15,21 @@ const resolvers = {
 
       return foundUser;
     },
-    //Query that takes skills returns user
-    getUsersBySkills: async (parent, { skills }, context) => {
-      const foundUser = await User.find(
-        { $get: { "profile.skills": skills } }
-      );
+    //Query that takes an email and returns a user
+    getUserByEmail: async (parent, { email }) => {
+      const user = await User.find({ email: email });
 
-      console.log(foundUser)
-
-      return foundUser
-    },
-
-    getUserByEmail: async (parent, { email }, context) => {
-      const user = await User.findOne({ email: email });
-
-      if(!user) {
-        throw new UserInputError("User not found!");
-      }
+      console.log(user)
 
       return user
+    },
+
+    getUsersBySkill: async (parent, { skill }) => {
+      const users = await User.find({ profile: { skills: [skill] }});
+
+      console.log(users)
+
+      return users
     },
 
     getUserById: async (parent, args, context) => {
@@ -119,6 +115,8 @@ const resolvers = {
         },
         { new: true }
       );
+
+      return user;
     },
 
     async newUser(parent, args) {

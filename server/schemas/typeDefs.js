@@ -3,10 +3,10 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type User {
     _id: ID
-    username: String!
-    firstName: String!
-    lastName: String!
-    email: String!
+    username: String
+    firstName: String
+    lastName: String
+    email: String
     profile: Profile
     savedProjects: [Project]
   }
@@ -45,7 +45,7 @@ const typeDefs = gql`
     getUserById: User
     getSkills(id: ID): User
     getProjects(id: ID): User
-    getUsersBySkills(skills: String): User
+    getUsersBySkill(skill: String): User
     getUserByEmail(email: String!): User
   }
 `;
