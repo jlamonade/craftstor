@@ -10,7 +10,7 @@ import { useUserContext } from '../utils/UserContext'
 import { INIT_USER_STATE } from '../utils/actions';
 
  
-import { Avatar,  Button, Card, CardActions, CardContent, CardMedia, Container, CssBaseline, Grid,  Typography } from '@material-ui/core';
+import { Avatar,  Button, Card, CardActions, CardContent, CardMedia, Container, CssBaseline, Grid,  Typography, CardActionArea } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -59,12 +59,15 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
   },
   action: {
+    opacity: 0.7,
     position: "relative",
-    "&:hover $media": {
-      opacity: 0.5
+    // "&:hover $media": {
+    //   opacity: 1
+    // }
+    "&:hover" : {
+      opacity: 1.0,
     }
   },
-
 }));
 
 const Dashboard = () => {
@@ -154,10 +157,11 @@ const Dashboard = () => {
                   {state.savedProjects.map((card,index) => (
                     
                       <Grid item key={index} xs={12} sm={6} md={4}>
-                        <Card className={classes.card, classes.action} >
+                        <Card className={classes.card} >
 
                          
-                        <div style={{position: 'relative'}} >
+                        {/* <div style={{position: 'relative'}} className={classes.action}> */}
+                        <CardActionArea className={classes.action}>
                           <CardMedia
                             className={classes.cardMedia}
                             // image="https://source.unsplash.com/random"
@@ -178,8 +182,8 @@ const Dashboard = () => {
                                   fontSize: "2rem",
                                   variant:"outlined"
                                 }} > {card.title}</div>
-                             </div>
-
+                             {/* </div> */}
+                         </CardActionArea>
 
 
                           <CardContent className={classes.cardContent}>
@@ -196,7 +200,8 @@ const Dashboard = () => {
                                   <span style={{ fontSize: '9px' }}> status: </span>  {card.checked? "completed ✔️": "pending"}
                               </Typography>
                           </CardContent>
-                          <CardActions> 
+
+                            <CardActions> 
                               <Button size="small" color="primary"  href="/">
                               <span style={{ fontSize: '9px' }}>View detail .....</span> 
                               </Button>
@@ -204,6 +209,9 @@ const Dashboard = () => {
                                 Edit
                               </Button> */}
                             </CardActions>
+
+
+                          
                         </Card>
                       </Grid>
                     ))}
