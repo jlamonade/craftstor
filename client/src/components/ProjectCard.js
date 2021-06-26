@@ -8,21 +8,22 @@ import {
   Button,
 } from "@material-ui/core";
 
-const ProjectCard = ({ state, card, classes }) => {
+const ProjectCard = ({ state, card, classes, index}) => {
   const images = [];
-  let i = 0;
+  console.log("https://source.unsplash.com/random?sig="+index);
 
   // random image loop
-  for (i = 0; i < state.savedProjects.length; i++)
+  for (let i = 0; i < state.savedProjects.length; i++)
     images.push("https://source.unsplash.com/random?sig=" + i);
-  i = 0;
+
 
   return (
     <Card className={classes.card}>
       <CardMedia
         className={classes.cardMedia}
         // image="https://source.unsplash.com/random"
-        image={images[i++]}
+        // image={images[i++]}
+        image = {"https://source.unsplash.com/random?sig="+index} 
         title="Image title"
       />
       <CardContent className={classes.cardContent}>
