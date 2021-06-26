@@ -28,7 +28,7 @@ const SignupForm = () => {
     password: ''
   })
 
-  const [createUser] = useMutation(SIGNUP)
+  const [createUser, { error }] = useMutation(SIGNUP)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
@@ -85,6 +85,12 @@ const SignupForm = () => {
           <Input id='password' type="password" onChange={handleInputChange} name='password' value={userFormData.password}/>
         </FormControl>
         {/* <Button color="primary" onClick={handleFormSubmit}>Submit</Button> */}
+
+        <Typography component="h6" variant="h6" align="center" color="error" gutterBottom name="errorMessage" >
+                {error ? "Please try again!":''}
+        </Typography>
+
+
 
         <div className={classes.heroButtons}>
                 <Grid container spacing={2} justify="center">

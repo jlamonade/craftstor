@@ -1,6 +1,6 @@
 // dependencies
 import React, { useState } from 'react'
-import { FormControl, IconButton, InputLabel, Input, FormGroup, Grid} from '@material-ui/core'
+import { FormControl, Typography, IconButton, InputLabel, Input, FormGroup, Grid} from '@material-ui/core'
 import { useMutation } from '@apollo/client'
 
 import { useUserContext } from '../utils/UserContext';
@@ -33,7 +33,7 @@ const SkillsForm = () => { // component
   const [ skillsFormData, setSkillsFormData ] = useState({
     skill: '',
   })
-  const [addSkill] = useMutation(ADD_SKILL)
+  const [addSkill, { error } ] = useMutation(ADD_SKILL)
 
   const [state, dispatch] = useUserContext()
 
@@ -75,10 +75,10 @@ const SkillsForm = () => { // component
         </FormControl>
 
         <label htmlFor="icon-button-file">
-        <IconButton color="primary" aria-label="add" component="span" onClick={handleFormSubmit}>
-          <AddCircleIcon fontSize="large"/>
-        </IconButton>
-      </label>
+          <IconButton color="primary" aria-label="add" component="span" onClick={handleFormSubmit}>
+            <AddCircleIcon fontSize="large"/>
+          </IconButton>
+         </label>
 
      </Grid>
 

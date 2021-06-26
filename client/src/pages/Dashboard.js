@@ -58,6 +58,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+  action: {
+    position: "relative",
+    "&:hover $media": {
+      opacity: 0.5
+    }
+  },
 
 }));
 
@@ -148,7 +154,7 @@ const Dashboard = () => {
                   {state.savedProjects.map((card,index) => (
                     
                       <Grid item key={index} xs={12} sm={6} md={4}>
-                        <Card className={classes.card} >
+                        <Card className={classes.card, classes.action} >
 
                          
                         <div style={{position: 'relative'}} >
