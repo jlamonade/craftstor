@@ -7,6 +7,7 @@ import SkillsForm from "../components/SkillsForm";
 import SkillsList from "../components/SkillsList"
 import UserInfo from "../components/UserInfo"
 import LinkButton from "../components/Button"
+import ProjectCard from "../components/ProjectCard"
 
 // state
 import { useUserContext } from "../utils/UserContext";
@@ -94,13 +95,6 @@ const Dashboard = () => {
   // USE state.savedProjects to load array of projects associated to user
   // think about using ternary statement to show projects or 'no projects yet'
 
-  const images = [];
-  let i = 0;
-
-  // random image loop
-  for (i = 0; i < state.savedProjects.length; i++)
-    images.push("https://source.unsplash.com/random?sig=" + i);
-  i = 0;
 
   return (
     <React.Fragment>
@@ -136,50 +130,7 @@ const Dashboard = () => {
                   <Grid container spacing={4}>
                     {state.savedProjects.map((card, index) => (
                       <Grid item key={index} xs={12} sm={6} md={4}>
-                        <Card className={classes.card}>
-                          <CardMedia
-                            className={classes.cardMedia}
-                            // image="https://source.unsplash.com/random"
-                            image={images[i++]}
-                            title="Image title"
-                          />
-                          <CardContent className={classes.cardContent}>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="h4"
-                              className={classes.client_format}
-                            >
-                              <Avatar className={classes.icon_color}>
-                                {card.client.charAt(0)}
-                              </Avatar>
-                              {card.client}
-                            </Typography>
-                            <Typography>
-                              <span style={{ fontSize: "9px" }}>
-                                {" "}
-                                due date:{" "}
-                              </span>
-                              {/* {console.log(format({card.dueDate}, "MMM/dd/yyyy"))} */}
-
-                              {card.dueDate}
-                            </Typography>
-                            <Typography>
-                              <span style={{ fontSize: "9px" }}> status: </span>{" "}
-                              {card.checked ? "completed ✔️" : "pending"}
-                            </Typography>
-                          </CardContent>
-                          <CardActions>
-                            <Button size="small" color="primary" href="/">
-                              <span style={{ fontSize: "9px" }}>
-                                View detail .....
-                              </span>
-                            </Button>
-                            {/* <Button size="small" color="primary" value={card} href="/projects">
-                                Edit
-                              </Button> */}
-                          </CardActions>
-                        </Card>
+                        <ProjectCard card={card} classes={classes} state={state} />
                       </Grid>
                     ))}
                   </Grid>
