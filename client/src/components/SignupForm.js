@@ -37,7 +37,7 @@ const SignupForm = () => {
     password: "",
   });
 
-  const [createUser, { error }] = useMutation(SIGNUP);
+  const [createUser] = useMutation(SIGNUP);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

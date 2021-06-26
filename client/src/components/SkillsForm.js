@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // dependencies  
+=======
+// dependencies
+>>>>>>> main
 import React, { useState } from "react";
 import {
   FormControl,
@@ -35,10 +39,12 @@ const SkillsForm = ({ dispatch }) => {
   // component
   const classes = useStyles();
   // state
-  const [skillsFormData, setSkillsFormData] = useState({
-    skill: "",
-  });
-  const [addSkill] = useMutation(ADD_SKILL);
+  const [ skillsFormData, setSkillsFormData ] = useState({
+    skill: '',
+  })
+  const [addSkill, { error } ] = useMutation(ADD_SKILL)
+
+  const [state, dispatch] = useUserContext()
 
   // onchange
   const handleInputChange = (e) => {
