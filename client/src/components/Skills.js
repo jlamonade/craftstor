@@ -1,8 +1,5 @@
 // dependencies
-import React, { useReducer } from 'react'
-import { useQuery, useMutation } from '@apollo/client'
-import { GET_SKILLS } from '../utils/queries'
-import { ADD_SKILL } from '../utils/mutations'
+import React from 'react'
 import { Container, List, ListItem, CssBaseline, Typography } from '@material-ui/core'
 
 import { useUserContext } from '../utils/UserContext'

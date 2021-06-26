@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { GET_USER_BY_USERNAME } from '../utils/queries'
-import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Container, Grid, Typography } from '@material-ui/core'
+import { Avatar, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Container, Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
