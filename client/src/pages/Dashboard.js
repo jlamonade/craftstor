@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+
 }));
 
 const Dashboard = () => {
@@ -151,13 +152,34 @@ const Dashboard = () => {
                   {state.savedProjects.map((card,index) => (
                     
                       <Grid item key={index} xs={12} sm={6} md={4}>
-                        <Card className={classes.card}>
+                        <Card className={classes.card} >
+
+                         
+                        <div style={{position: 'relative'}} >
                           <CardMedia
                             className={classes.cardMedia}
                             // image="https://source.unsplash.com/random"
                             image={images[i++]}
                             title="Image title"
                            />
+                              {/* <div style={{styles.overlay}}>
+                                  this text should overlay the image
+                              </div> */}
+         
+                              <div style={{
+                                  position: 'absolute', 
+                                  color: 'white', 
+                                  top: 8, 
+                                  left: '50%', 
+                                  transform: 'translateX(-50%)',
+                                  fontWeight: "fontWeightBold",
+                                  fontSize: "2rem",
+                                  variant:"outlined"
+                                }} > {card.title}</div>
+                             </div>
+
+
+
                           <CardContent className={classes.cardContent}>
 
                               <Typography gutterBottom variant="h5" component="h4" className={classes.client_format}>
