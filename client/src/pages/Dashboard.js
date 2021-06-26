@@ -4,27 +4,16 @@ import { GET_USER_BY_ID } from "../utils/queries";
 
 // components
 import SkillsForm from "../components/SkillsForm";
-import SkillsList from "../components/SkillsList"
-import UserInfo from "../components/UserInfo"
-import LinkButton from "../components/Button"
-import ProjectCard from "../components/ProjectCard"
+import SkillsList from "../components/SkillsList";
+import UserInfo from "../components/UserInfo";
+import LinkButton from "../components/Button";
+import ProjectCard from "../components/ProjectCard";
 
 // state
 import { useUserContext } from "../utils/UserContext";
 import { INIT_USER_STATE } from "../utils/actions";
 
-import {
-  Avatar,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Container,
-  CssBaseline,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Container, CssBaseline, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -95,7 +84,6 @@ const Dashboard = () => {
   // USE state.savedProjects to load array of projects associated to user
   // think about using ternary statement to show projects or 'no projects yet'
 
-
   return (
     <React.Fragment>
       <Container>
@@ -130,7 +118,11 @@ const Dashboard = () => {
                   <Grid container spacing={4}>
                     {state.savedProjects.map((card, index) => (
                       <Grid item key={index} xs={12} sm={6} md={4}>
-                        <ProjectCard card={card} classes={classes} state={state} />
+                        <ProjectCard
+                          card={card}
+                          classes={classes}
+                          state={state}
+                        />
                       </Grid>
                     ))}
                   </Grid>

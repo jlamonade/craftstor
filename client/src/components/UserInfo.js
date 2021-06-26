@@ -16,7 +16,7 @@ const UserInfo = ({ state }) => {
       <Typography align="center">
         {state.firstName} {state.lastName} /{" "}
         <a
-          href="mailto:name@email.com"
+          href={`mailto:${state.email}`}
           style={{ textDecoration: "none", color: "black" }}
         >
           {" "}
