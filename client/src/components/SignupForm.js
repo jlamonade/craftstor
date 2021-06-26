@@ -127,6 +127,12 @@ const SignupForm = () => {
         </FormControl>
         {/* <Button color="primary" onClick={handleFormSubmit}>Submit</Button> */}
 
+        <Typography component="h6" variant="h6" align="center" color="error" gutterBottom name="errorMessage" >
+                {error ? "Please try again!":''}
+        </Typography>
+
+
+
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify="center">
             <Grid item>

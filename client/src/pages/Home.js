@@ -1,15 +1,13 @@
 
 import React from 'react'
 import Auth from '../utils/auth'
-
-// components
+import Link from "react-router-dom"
 import Dashboard from "./Dashboard";
 import Footer from './Footer'
 
 // material ui components
 import {
   Button,
-  Container,
   CssBaseline,
   Grid,
   Typography,
@@ -61,15 +59,19 @@ const Home = () => {
                     <Grid item>
                       <Button
                         variant="contained"
-                        color="primary"
-                        href="/signup"
-                      >
-                        Sign Up
+                        color="primary">
+                          <Link to='/signup' className={classes.link2}>
+                              Sign Up
+                            </Link> 
+                        
                       </Button>
                     </Grid>
                     <Grid item>
-                      <Button variant="outlined" color="primary" href="/login">
-                        Sign In
+                      <Button variant="outlined" color="primary">
+                        <Link to = '/login' className={classes.link2}>
+                          Login
+                        </Link>
+                        
                       </Button>
                     </Grid>
                   </Grid>
