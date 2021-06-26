@@ -18,7 +18,6 @@ const resolvers = {
 
     //query to dynamically find users based on any number of inputs
     getUsers: async (parent, { query }) => {
-      console.log(query)
       const users = await User.find(
         { $or: [
           {firstName: query},
