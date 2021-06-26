@@ -15,6 +15,19 @@ const resolvers = {
 
       return foundUser;
     },
+
+    getUsersByName: async (parent, { firstName, lastName }) => {
+      const user = await User.find({ firstName: firstName, lastName: lastName });
+
+      console.log(user)
+
+      if(!user) {
+        throw new UserInputError("No results!")
+      }
+
+      return user
+    },
+
     //Query that takes an email and returns a user
     getUserByEmail: async (parent, { email }) => {
       const user = await User.find({ email: email });
