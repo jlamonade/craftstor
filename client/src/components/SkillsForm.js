@@ -66,6 +66,10 @@ const SkillsForm = ({dispatch}) => {
     } catch (err) {
       console.log(err);
     }
+
+    setSkillsFormData({
+      skill: ''
+    })
   };
 
   return (
