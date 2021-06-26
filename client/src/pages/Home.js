@@ -29,10 +29,7 @@ const useStyles = makeStyles((theme) => ({
   heroButtons: {
     marginTop: theme.spacing(4),
   },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
+
 }));
 
 const Home = () => {
@@ -58,18 +55,20 @@ const Home = () => {
                 >
                   CraftStor
                 </Typography>
+
+          
                 <div className={classes.heroButtons}>
                   <Grid container spacing={2} justify="center">
                     <Grid item>
                       <Button color="inherit">
-                        <Link to="/signup" className={classes.link2}>
+                        <Link to="/signup" >
                           Sign Up
                         </Link>
                       </Button>
                     </Grid>
                     <Grid item>
                       <Button color="inherit">
-                        <Link to="/login" className={classes.link2}>
+                        <Link to="/login" >
                           Login
                         </Link>
                       </Button>
