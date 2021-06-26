@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_USER_BY_ID } from "../utils/queries";
 
@@ -8,6 +8,7 @@ import SkillsList from "../components/SkillsList";
 import UserInfo from "../components/UserInfo";
 import LinkButton from "../components/Button";
 import ProjectCard from "../components/ProjectCard";
+import ProjectForm from "../components/ProjectForm"
 
 // state
 import { useUserContext } from "../utils/UserContext";
@@ -77,6 +78,7 @@ const Dashboard = () => {
   const classes = useStyles();
 
   // query user data
+  const [ isAddingProject, setIsAddingProject ] = useState(false)
   const { loading, data } = useQuery(GET_USER_BY_ID);
   const [state, dispatch] = useUserContext();
 
@@ -90,9 +92,17 @@ const Dashboard = () => {
     }
   }, [data]);
 
+  const startAddingProjectHandler = (e) => {
+    e.preventDefault()
+    setIsAddingProject(true)
+  }
+
+  const stopAddingProjectHandler = () => {
+    setIsAddingProject(false)
+  }
+
   // USE state.savedProjects to load array of projects associated to user
   // think about using ternary statement to show projects or 'no projects yet'
-
   return (
     <React.Fragment>
       <Container>
@@ -113,7 +123,7 @@ const Dashboard = () => {
                   <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">
                       <Grid item>
-                        <LinkButton name="Add Project" url="/projects" />
+                        <LinkButton name="Add Project" onClick={startAddingProjectHandler} />
                       </Grid>
                       <Grid item>
                         <LinkButton name="Edit Profile" url="/profile/edit" />
@@ -121,6 +131,9 @@ const Dashboard = () => {
                     </Grid>
                   </div>
                 </Container>
+                {isAddingProject && (
+                  <ProjectForm />
+                )}
 
                 <Container className={classes.cardGrid} maxWidth="md">
                   {/* End hero unit */}
