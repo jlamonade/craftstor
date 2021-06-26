@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const { introspectionFromSchema } = require('graphql');
 
 const userSchema = new Schema({
     username: {
