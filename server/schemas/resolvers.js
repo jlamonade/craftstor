@@ -103,14 +103,16 @@ const resolvers = {
       return { token, user };
     },
 
-    updateUser: async (parent, { username, email, password }, context) => {
+    updateUser: async (parent, { username, email, firstname, lastname }, context) => {
       const user = await User.findOneAndUpdate(
         { id: context.user._id },
         {
           $set: {
             updatedUsername: username,
             updatedEmail: email,
-            updatedPassword: password,
+            firstName: firstname,
+            lastName: lastname
+
           },
         },
         { new: true }
