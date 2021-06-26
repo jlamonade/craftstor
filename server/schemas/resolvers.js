@@ -121,17 +121,6 @@ const resolvers = {
       return user;
     },
 
-    async newUser(parent, args) {
-      const user = await User.create(args);
-
-      if (!user) {
-        throw UserInputError("Incorrect parameters!");
-      }
-      const token = signToken(user);
-
-      return { User: { id: user._id }, token: { token } };
-    },
-
     //TODO: update project resolver
     updateProject: async (parent, args, context) => {
       const user = await User.findOneAndUpdate(
