@@ -74,7 +74,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = () => {
-  let x = false;
   const classes = useStyles();
 
   // query user data
@@ -99,12 +98,6 @@ const Dashboard = () => {
   // const stopAddingProjectHandler = () => {
   //   setIsAddingProject(false)
   // }
-
-  const [ children, setChildren ] = useState([]);
-  const appendProject= () =>{
-    setChildren([...children, <ProjectForm />])
-  }
-
 
   // USE state.savedProjects to load array of projects associated to user
   // think about using ternary statement to show projects or 'no projects yet'
@@ -146,6 +139,7 @@ const Dashboard = () => {
                           card={card}
                           classes={classes}
                           state={state}
+                          index={index}
                         />
                       </Grid>
                     ))}
