@@ -35,10 +35,10 @@ const SkillsForm = ({ dispatch }) => {
   // component
   const classes = useStyles();
   // state
-  const [skillsFormData, setSkillsFormData] = useState({
-    skill: "",
-  });
-  const [addSkill] = useMutation(ADD_SKILL);
+  const [ skillsFormData, setSkillsFormData ] = useState({
+    skill: '',
+  })
+  const [addSkill, { error } ] = useMutation(ADD_SKILL)
 
   // onchange
   const handleInputChange = (e) => {
