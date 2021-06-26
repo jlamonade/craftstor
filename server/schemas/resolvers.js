@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const resolvers = {
   Query: {
     async getUserByUsername(parent, args) {
+      console.log(args.username)
       const foundUser = await User.findOne({
         username: args.username
       });
