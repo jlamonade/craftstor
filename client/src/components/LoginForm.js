@@ -14,6 +14,7 @@ import {
   FormGroup,
   Typography,
   Grid,
+  FormHelperText
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +36,10 @@ const LoginForm = () => {
     password: "",
   });
 
+  const [errorState, setErrorState] = useState({
+    message: ''
+  })
+
   const [login] = useMutation(LOGIN);
 
   // tracks the changes in the form
@@ -53,10 +58,9 @@ const LoginForm = () => {
       const { data } = await login({
         variables: { ...userFormData },
       });
-      console.log(data);
       Auth.login(data.login.token);
-    } catch (err) {
-      console.log(err);
+    } catch ({ type, message }) {
+      console.log(type, message)
     }
 
     setUserFormData({
@@ -87,7 +91,9 @@ const LoginForm = () => {
             value={userFormData.email}
             onChange={handleInputChange}
             name="email"
+            type="email"
           />
+          <FormHelperText>{errorState.message}</FormHelperText>
         </FormControl>
         <FormControl>
           <InputLabel htmlFor="password">Password</InputLabel>
@@ -108,12 +114,7 @@ const LoginForm = () => {
                 color="primary"
                 onClick={handleFormSubmit}
               >
-                submit
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button variant="outlined" color="primary" href="/">
-                cancel
+                Login
               </Button>
             </Grid>
           </Grid>
