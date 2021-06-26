@@ -23,7 +23,7 @@ const SearchForm = () => {
     <Container>
       <FormGroup>
         <FormControl>
-          <InputLabel htmlFor="searchBySkill">Search By Skill</InputLabel>
+          <InputLabel htmlFor="searchBySkill">Search</InputLabel>
           <Input
             id="searchBySkill"
             name="searchBySkill"

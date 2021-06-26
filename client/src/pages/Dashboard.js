@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_USER_BY_ID } from "../utils/queries";
 
@@ -8,7 +8,6 @@ import SkillsList from "../components/SkillsList";
 import UserInfo from "../components/UserInfo";
 import LinkButton from "../components/Button";
 import ProjectCard from "../components/ProjectCard";
-import ProjectForm from "../components/ProjectForm"
 
 // state
 import { useUserContext } from "../utils/UserContext";

@@ -39,7 +39,7 @@ const SkillsForm = ({ dispatch }) => {
   const [ skillsFormData, setSkillsFormData ] = useState({
     skill: '',
   })
-  const [addSkill, { error } ] = useMutation(ADD_SKILL)
+  const [addSkill] = useMutation(ADD_SKILL)
 
   // onchange
   const handleInputChange = (e) => {
