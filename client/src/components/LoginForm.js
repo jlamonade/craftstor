@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
 
+
 import { makeStyles } from "@material-ui/core/styles";
 import {
   CssBaseline,
@@ -31,11 +32,12 @@ const LoginForm = () => {
   const classes = useStyles();
 
   const [userFormData, setUserFormData] = useState({
-    email: "",
-    password: "",
-  });
+    email: '',
+    password: '',
+  })
 
   const [login] = useMutation(LOGIN);
+
 
   // tracks the changes in the form
   const handleInputChange = (event) => {
@@ -48,7 +50,9 @@ const LoginForm = () => {
     event.preventDefault();
     event.stopPropagation();
 
-    try {
+    // console.log(userFormData)
+
+     try {
       const { data } = await login({
         variables: { ...userFormData },
       });
@@ -78,7 +82,7 @@ const LoginForm = () => {
       </Typography>
 
       <FormGroup>
-        <FormControl>
+        <FormControl  error={error} >
           <InputLabel htmlFor="email">Email</InputLabel>
           <Input
             id="email"
@@ -99,6 +103,10 @@ const LoginForm = () => {
           />
         </FormControl>
 
+        <Typography component="h6" variant="h6" align="center" color="error" gutterBottom name="errorMessage" value="" errorText={"try again!"}>
+                {error ? "Please ty again!":''}
+         </Typography>
+
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify="center">
             <Grid item>
@@ -110,9 +118,17 @@ const LoginForm = () => {
                 Login
               </Button>
             </Grid>
+            <Grid item>
+              <Button variant="outlined" color="primary" href="/">
+                  cancel
+              </Button>
+            </Grid>
           </Grid>
         </div>
       </FormGroup>
+
+
+
     </Container>
   );
 };

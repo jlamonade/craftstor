@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+
 }));
 
 const Dashboard = () => {

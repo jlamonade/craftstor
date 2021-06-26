@@ -1,4 +1,9 @@
-import React from "react";
+
+import React from 'react'
+import { Container } from '@material-ui/core'
+import Dashboard from './Dashboard'
+import Footer from './Footer'
+import Auth from '../utils/auth'
 
 // components
 import Dashboard from "./Dashboard";
@@ -33,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
+
 
   return (
     <Container>
@@ -77,21 +83,7 @@ const Home = () => {
         </>
       )}
 
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          {/* Footer */}
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="textSecondary"
-          component="p"
-        >
-          © JPWDH Inc
-        </Typography>
-      </footer>
-      {/* End footer */}
+       <Footer/>
     </Container>
   );
 };
