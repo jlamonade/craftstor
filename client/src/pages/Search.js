@@ -3,6 +3,11 @@ import { useLocation } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_USERS_BY_SKILL } from "../utils/queries";
 
+import { Container, Card, Typography } from "@material-ui/core"
+
+import UserInfo from '../components/UserInfo'
+import SkillsList from '../components/SkillsList'
+
 function useRouterQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -25,10 +30,15 @@ const Search = () => {
   console.log(usersData);
 
   return (
-    <>
-      <div>Search results</div>
-      {usersData.map((user) => <div>{user.username}</div>)}
-    </>
+    <Container>
+      <Typography>Search Results</Typography>
+      {usersData.map((user) => (
+        <Card>
+          <UserInfo state={user} />
+          <SkillsList state={user} />
+        </Card>
+      ))}
+    </Container>
   );
 };
 

@@ -64,6 +64,17 @@ export const GET_USERS_BY_SKILL = gql`
       firstName
       lastName
       email
+      savedProjects {
+        client
+        dueDate
+        title
+        _id
+        checked
+      }
+      profile {
+        skills
+        portfolio
+      }
     }
   }
 `;
