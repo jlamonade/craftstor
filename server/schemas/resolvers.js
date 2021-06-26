@@ -36,35 +36,6 @@ const resolvers = {
       return users
     },
 
-    getUsersByName: async (parent, { firstName, lastName }) => {
-      const user = await User.find({ firstName: firstName, lastName: lastName });
-
-      console.log(user)
-
-      if(!user) {
-        throw new UserInputError("No results!")
-      }
-
-      return user
-    },
-
-    //Query that takes an email and returns a user
-    getUserByEmail: async (parent, { email }) => {
-      const user = await User.find({ email: email });
-
-      console.log(user)
-
-      return user
-    },
-
-    getUsersBySkill: async (parent, { skill }) => {
-      const users = await User.find({ profile: { skills: [skill] }});
-
-      console.log(users)
-
-      return users
-    },
-
     getUserById: async (parent, args, context) => {
       const foundUser = await User.findOne({ _id: context.user._id });
 
