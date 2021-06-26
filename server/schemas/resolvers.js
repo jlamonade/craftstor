@@ -15,6 +15,23 @@ const resolvers = {
 
       return foundUser;
     },
+    //Query that takes an email and returns a user
+    getUserByEmail: async (parent, { email }) => {
+      const user = await User.find({ email: email });
+
+      console.log(user)
+
+      return user
+    },
+
+    getUsersBySkill: async (parent, { skill }) => {
+      const users = await User.find({ profile: { skills: [skill] }});
+
+      console.log(users)
+
+      return users
+    },
+
     getUserById: async (parent, args, context) => {
       const foundUser = await User.findOne({ _id: context.user._id });
 
@@ -86,18 +103,22 @@ const resolvers = {
       return { token, user };
     },
 
-    updateUser: async (parent, { username, email, password }, context) => {
+    updateUser: async (parent, { username, email, firstname, lastname }, context) => {
       const user = await User.findOneAndUpdate(
         { id: context.user._id },
         {
           $set: {
             updatedUsername: username,
             updatedEmail: email,
-            updatedPassword: password,
+            firstName: firstname,
+            lastName: lastname
+
           },
         },
         { new: true }
       );
+
+      return user;
     },
 
     async newUser(parent, args) {
