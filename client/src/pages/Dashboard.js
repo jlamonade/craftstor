@@ -78,7 +78,6 @@ const Dashboard = () => {
   const classes = useStyles();
 
   // query user data
-  const [ isAddingProject, setIsAddingProject ] = useState(false)
   const { loading, data } = useQuery(GET_USER_BY_ID);
   const [state, dispatch] = useUserContext();
 
@@ -92,14 +91,14 @@ const Dashboard = () => {
     }
   }, [data]);
 
-  const startAddingProjectHandler = (e) => {
-    e.preventDefault()
-    setIsAddingProject(true)
-  }
+  // const startAddingProjectHandler = (e) => {
+  //   e.preventDefault()
+  //   setIsAddingProject(true)
+  // }
 
-  const stopAddingProjectHandler = () => {
-    setIsAddingProject(false)
-  }
+  // const stopAddingProjectHandler = () => {
+  //   setIsAddingProject(false)
+  // }
 
   // USE state.savedProjects to load array of projects associated to user
   // think about using ternary statement to show projects or 'no projects yet'
@@ -123,17 +122,14 @@ const Dashboard = () => {
                   <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">
                       <Grid item>
-                        <LinkButton name="Add Project" onClick={startAddingProjectHandler} />
+                        <LinkButton name="Add Project" url="/projects" />
                       </Grid>
                       <Grid item>
-                        <LinkButton name="Edit Profile" url="/profile/edit" />
+                        <LinkButton name="Edit Profile" url="/profile" />
                       </Grid>
                     </Grid>
                   </div>
                 </Container>
-                {isAddingProject && (
-                  <ProjectForm />
-                )}
 
                 <Container className={classes.cardGrid} maxWidth="md">
                   {/* End hero unit */}
