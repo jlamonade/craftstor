@@ -5,6 +5,7 @@ import { GET_USER_BY_ID } from "../utils/queries";
 // components
 import SkillsForm from "../components/SkillsForm";
 import SkillsList from "../components/SkillsList"
+import UserInfo from "../components/UserInfo"
 
 // state
 import { useUserContext } from "../utils/UserContext";
@@ -125,20 +126,9 @@ const Dashboard = () => {
                     {state.username}
                   </Typography>
 
-                  <Typography align="center">
-                    {state.firstName} {state.lastName} /{" "}
-                    <a
-                      href="mailto:name@email.com"
-                      style={{ textDecoration: "none", color: "black" }}
-                    >
-                      {" "}
-                      {state.email}
-                    </a>{" "}
-                    / {state.profile.portfolio}
-                  </Typography>
+                  <UserInfo state={state} />
 
                   <SkillsList state={state} />
-
                   <SkillsForm />
 
                   <div className={classes.heroButtons}>
