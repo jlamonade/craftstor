@@ -15,6 +15,27 @@ const resolvers = {
 
       return foundUser;
     },
+    //Query that takes skills returns user
+    getUserBySkills: async (parent, { skills }, context) => {
+      const foundUser = await User.find(
+        { $get: { "profile.skills": skills } }
+      );
+
+      console.log(foundUser)
+
+      return foundUser
+    },
+
+    getUserByEmail: async (parent, { email }, context) => {
+      const user = await User.findOne({ email: email });
+
+      if(!user) {
+        throw new UserInputError("User not found!");
+      }
+
+      return user
+    },
+
     getUserById: async (parent, args, context) => {
       const foundUser = await User.findOne({ _id: context.user._id });
 
