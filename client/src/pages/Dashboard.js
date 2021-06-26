@@ -6,6 +6,7 @@ import { GET_USER_BY_ID } from "../utils/queries";
 import SkillsForm from "../components/SkillsForm";
 import SkillsList from "../components/SkillsList"
 import UserInfo from "../components/UserInfo"
+import LinkButton from "../components/Button"
 
 // state
 import { useUserContext } from "../utils/UserContext";
@@ -114,8 +115,6 @@ const Dashboard = () => {
             <main>
               <div className={classes.heroContent}>
                 <Container maxWidth="sm">
-                  
-
                   <UserInfo state={state} />
                   <SkillsList state={state} />
                   <SkillsForm />
@@ -123,20 +122,11 @@ const Dashboard = () => {
                   <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">
                       <Grid item>
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          href="/projects"
-                        >
-                          Project
-                        </Button>
+                        <LinkButton name="Add Project" url="/projects" />
                       </Grid>
-
-                      {/* <Grid item>
-                          <Button variant="outlined" color="primary" href="/projects">
-                              Project
-                          </Button>
-                        </Grid>   */}
+                      <Grid item>
+                        <LinkButton name="Edit Profile" url="/profile/edit" />
+                      </Grid>
                     </Grid>
                   </div>
                 </Container>
