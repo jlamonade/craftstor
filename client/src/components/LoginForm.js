@@ -3,6 +3,8 @@ import { useMutation } from "@apollo/client";
 import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
 
+import { Link } from "react-router-dom"
+
 
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -120,7 +122,7 @@ const LoginForm = () => {
             </Grid>
             <Grid item>
               <Button variant="outlined" color="primary" href="/">
-                  cancel
+                  <Link to="/">Cancel</Link>
               </Button>
             </Grid>
           </Grid>

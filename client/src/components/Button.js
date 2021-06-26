@@ -1,9 +1,10 @@
 import { Button } from "@material-ui/core";
+import { Link } from 'react-router-dom'
 
-const LinkButton = (props) => {
+const LinkButton = ({ name, url }) => {
   return (
-    <Button variant="contained" color="primary" href={props.url}>
-      {props.name}
+    <Button variant="contained" color="primary">
+      <Link to={url}>{name}</Link>
     </Button>
   );
 };
