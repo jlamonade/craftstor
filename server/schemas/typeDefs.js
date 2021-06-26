@@ -45,8 +45,8 @@ const typeDefs = gql`
     getUserById: User
     getSkills(id: ID): User
     getProjects(id: ID): User
-    getUsersBySkill(skill: String): User
-    getUserByEmail(email: String!): User
+    getUsersBySkill(skill: String): [User]
+    getUserByEmail(email: String!): [User]
   }
 `;
 
