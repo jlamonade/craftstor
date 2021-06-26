@@ -4,13 +4,16 @@ import { LOGIN } from '../utils/mutations'
 import Auth from '../utils/auth'
 
 import { makeStyles} from '@material-ui/core/styles';
-import { CssBaseline, Container, FormControl, InputLabel, Button,  Input, FormGroup, Typography } from '@material-ui/core'
+import { CssBaseline, Container, FormControl, InputLabel, Button,  Input, FormGroup, Typography, Grid } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   button_margin: {
     margin: theme.spacing(5, 16, 2),
     maxWidth: '90%',
     align: "center"
+  },
+  heroButtons: {
+    marginTop: theme.spacing(4),
   },
 }));
 
@@ -69,11 +72,21 @@ const LoginForm = () => {
           <InputLabel htmlFor="password">Password</InputLabel>
           <Input id='password' value={userFormData.passowrd} type="password" onChange={handleInputChange} name='password'/>
         </FormControl>
-        {/* <Button onClick={handleFormSubmit}>Submit</Button> */}
-
-        <Button variant="contained" color="primary" className={classes.button_margin} onClick={handleFormSubmit}>
-             Submit
-        </Button>
+        
+          <div className={classes.heroButtons}>
+                <Grid container spacing={2} justify="center">
+                  <Grid item>
+                    <Button variant="contained" color="primary" onClick={handleFormSubmit}>
+                        submit
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="outlined" color="primary" href="/">
+                        cancel
+                    </Button>
+                  </Grid>
+                </Grid>
+             </div>
 
       </FormGroup>
     </Container>

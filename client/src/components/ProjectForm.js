@@ -3,18 +3,18 @@ import { useMutation } from '@apollo/client'
 import { SAVE_PROJECT } from '../utils/mutations'
 import { Container, FormControl, Grid, InputLabel, Input, Button, FormGroup, Checkbox, FormControlLabel,  Typography} from '@material-ui/core'
 
-import { makeStyles} from '@material-ui/core/styles';
+// import { makeStyles} from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  button_margin: {
-    margin: theme.spacing(5, 16, 2),
-    maxWidth: '90%',
-    align: "center"
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   button_margin: {
+//     margin: theme.spacing(5, 16, 2),
+//     maxWidth: '90%',
+//     align: "center"
+//   },
+// }));
 
 const ProjectForm = () => {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   const [projectFormData, setProjectFormData] = useState({
     title: '',
@@ -42,6 +42,8 @@ const ProjectForm = () => {
         variables: { ...projectFormData }
       })
       if (data) {
+        console.log(">>>>> ProjectForm");
+        console.log(data);
         window.location.assign('/')
       }
     } catch (err) {

@@ -13,6 +13,7 @@ export const GET_USER_BY_ID = gql`
         client
         dueDate
         title
+        checked
         _id
       }
       profile {

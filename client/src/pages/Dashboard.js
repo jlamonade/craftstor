@@ -12,21 +12,20 @@ import { useUserContext } from '../utils/UserContext'
 import { INIT_USER_STATE } from '../utils/actions';
 
  
-// added
-import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography  } from '@material-ui/core';
+import { Avatar,  Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid,  Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-// import Link from '@material-ui/core/Link';
-// >>> added
-
-// added
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
   },
+  p_margin: {
+    marginBottom: theme.spacing(1),
+  },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(3, 0, 6),
+    flexGrow: 1,
   },
   heroButtons: {
     marginTop: theme.spacing(2),
@@ -86,15 +85,13 @@ const Dashboard = () => {
   // think about using ternary statement to show projects or 'no projects yet'
 
   // temporary data will need to replace with projects from user state
-  const cards = [
-    {client:"Grace corp", dueDate:"10/10/2021",checked: false}, 
-    {client:"Apple inc", dueDate:"9/25/2021",checked: false}, 
-    {client:"John Doe", dueDate:"12/20/2021",checked: true}, 
-    {client:"John Doe", dueDate:"12/20/2021",checked: true}, 
-  ];
+  console.log(">>>>>>>");
+  console.log(state.savedProjects);
+  const images = []; let i=0;
 
   // random image loop
-  for (let i = 0; i < cards.length; i++)  cards[i].image =  'https://source.unsplash.com/random?sig=' + i ;
+  for (i = 0; i < state.savedProjects.length; i++)  images.push('https://source.unsplash.com/random?sig=' + i) ;
+  i=0;
 
   return (
     <React.Fragment>
@@ -103,82 +100,96 @@ const Dashboard = () => {
         <Container>Loading...</Container>
       ) : (
         // state.username
-        <>
-            <CssBaseline />
+      <>
+      <CssBaseline />
  
-              <main>
-                {/* Hero unit */}
-                <div className={classes.heroContent}>
-                  <Container maxWidth="sm">
-                    {/* <Typography component="h3" variant="h2" align="center" color="textPrimary" gutterBottom> */}
-                    <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom>
-                         {state.username}
-                    </Typography>
-                    <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                        <div>{state.firstName} {state.lastName} / {state.email}</div>
-                    </Typography>
-                    <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                        {state.profile.skills.join(' ')}
-                    </Typography>
-                    <SkillsForm />
-                    <div className={classes.heroButtons}>
-                      <Grid container spacing={2} justify="center">
+       <main>
+      
+         <div className={classes.heroContent}>
+  
+           <Container maxWidth="sm">
+             
+              <Typography component="h3" variant="h2" align="center" color="textPrimary" gutterBottom marginTop="0">
+                    {/* <Typography component="stateh3" variant="h3" align="center" color="textPrimary" gutterBottom> */}  
+                    {state.username}
+               </Typography>
+
+
+
+               <Typography  align="center">
+                       {state.firstName} {state.lastName} / <a href="mailto:name@email.com"  style={{"textDecoration": "none", "color":"black"}}> {state.email}</a> / {state.profile.portfolio}               
+              </Typography>
+     
+
+
+               <Typography variant="h5" align="center" color="primary" paragraph>
+                    {state.profile.skills.join(' ')}
+               </Typography>
+
+               <SkillsForm />
+
+                <div className={classes.heroButtons}>
+                    <Grid container spacing={2} justify="center">
                         <Grid item>
-                          <Button variant="contained" color="primary"  href="/profile">
-                              Profile 
+                          <Button variant="contained" color="primary"  href="/projects">
+                              Project
                           </Button>
                         </Grid>
 
-                        <Grid item>
+                        {/* <Grid item>
                           <Button variant="outlined" color="primary" href="/projects">
-                             Project
+                              Project
                           </Button>
-                        </Grid>
-                        
-                      </Grid>
-                    </div>
-                  </Container>
+                        </Grid>   */}
+                    </Grid>
                 </div>
+
+          </Container>
+
                 
-                <Container className={classes.cardGrid} maxWidth="md">
+          <Container className={classes.cardGrid} maxWidth="md">
                   {/* End hero unit */}
-                  <Grid container spacing={4}>
-                    {state.savedProjects.map((card,index) => (
-                     
+              <Grid container spacing={4}>
+                  {state.savedProjects.map((card,index) => (
+                    
                       <Grid item key={index} xs={12} sm={6} md={4}>
                         <Card className={classes.card}>
                           <CardMedia
                             className={classes.cardMedia}
                             // image="https://source.unsplash.com/random"
-                            image={card.image}
+                            image={images[i++]}
                             title="Image title"
-                          />
+                           />
                           <CardContent className={classes.cardContent}>
 
-                            <Typography gutterBottom variant="h5" component="h4" className={classes.client_format}>
-                                <Avatar className={classes.icon_color}>{card.client.charAt(0)}</Avatar>{card.client}
-                            </Typography>
-                            <Typography>
-                             due date: {card.dueDate}
-                             </Typography><Typography>
-                             status: {card.checked? "completed": "pending"}
-                            </Typography>
+                              <Typography gutterBottom variant="h5" component="h4" className={classes.client_format}>
+                                    <Avatar className={classes.icon_color}>{card.client.charAt(0)}</Avatar>{card.client}
+                              </Typography>
+                              <Typography>
+                                  <span style={{ fontSize: '9px' }}> due date: </span> 
+                                     {/* {console.log(format({card.dueDate}, "MMM/dd/yyyy"))} */}
+                                  
+                                     {card.dueDate}
+                              </Typography><Typography>
+                                  <span style={{ fontSize: '9px' }}> status: </span>  {card.checked? "completed ✔️": "pending"}
+                              </Typography>
                           </CardContent>
-                          <CardActions>
-                            {/* <Button size="small" color="primary">
-                              View
-                            </Button> */}
-                            <Button size="small" color="primary" value={card} href="/projects">
-                              Edit
-                            </Button>
-                          </CardActions>
+                          <CardActions> 
+                              <Button size="small" color="primary"  href="/">
+                              <span style={{ fontSize: '9px' }}>View detail .....</span> 
+                              </Button>
+                              {/* <Button size="small" color="primary" value={card} href="/projects">
+                                Edit
+                              </Button> */}
+                            </CardActions>
                         </Card>
                       </Grid>
                     ))}
-                  </Grid>
-                </Container>
-              </main>
-        
+                </Grid>
+            </Container>
+
+           </div> 
+         </main>
         </>
       )}
 
@@ -191,4 +202,4 @@ const Dashboard = () => {
   )
 }
 
-export default 
+export default Dashboard

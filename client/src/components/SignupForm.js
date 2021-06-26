@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, FormControl, InputLabel, Input, FormGroup, Typography, Button } from '@material-ui/core';
+import { Container, FormControl, InputLabel, Input, FormGroup, Typography, Button, Grid } from '@material-ui/core';
 import { useMutation } from '@apollo/client';
 import { SIGNUP } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(5, 16, 2),
     maxWidth: '90%',
     align: "center"
+  },
+  heroButtons: {
+    marginTop: theme.spacing(4),
   },
 }));
 
@@ -83,9 +86,21 @@ const SignupForm = () => {
         </FormControl>
         {/* <Button color="primary" onClick={handleFormSubmit}>Submit</Button> */}
 
-        <Button variant="contained" color="primary" className={classes.button_margin} onClick={handleFormSubmit}>
-             Submit
-        </Button>
+        <div className={classes.heroButtons}>
+                <Grid container spacing={2} justify="center">
+                  <Grid item>
+                    <Button variant="contained" color="primary" onClick={handleFormSubmit}>
+                        submit
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="outlined" color="primary" href="/">
+                        cancel
+                    </Button>
+                  </Grid>
+                </Grid>
+             </div>
+
 
       </FormGroup>
     </Container>
