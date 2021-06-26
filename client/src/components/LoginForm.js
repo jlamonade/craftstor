@@ -82,7 +82,7 @@ const LoginForm = () => {
       </Typography>
 
       <FormGroup>
-        <FormControl  error={error} >
+        <FormControl>
           <InputLabel htmlFor="email">Email</InputLabel>
           <Input
             id="email"
@@ -103,9 +103,9 @@ const LoginForm = () => {
           />
         </FormControl>
 
-        <Typography component="h6" variant="h6" align="center" color="error" gutterBottom name="errorMessage" value="" errorText={"try again!"}>
+        {/* <Typography component="h6" variant="h6" align="center" color="error" gutterBottom name="errorMessage" value="" errorText={"try again!"}>
                 {error ? "Please ty again!":''}
-         </Typography>
+         </Typography> */}
 
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify="center">
