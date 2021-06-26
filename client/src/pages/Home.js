@@ -1,10 +1,9 @@
 
 import React from 'react'
-import { Container } from '@material-ui/core'
-import Dashboard from './Dashboard'
-import Footer from './Footer'
 import Auth from '../utils/auth'
 import Link from "react-router-dom"
+import Dashboard from "./Dashboard";
+import Footer from './Footer'
 
 // material ui components
 import {
