@@ -16,6 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 import { ADD_SKILL } from "../utils/mutations";
+import { useUserContext } from "../utils/UserContext";
 
 // form input
 
@@ -31,14 +32,14 @@ const useStyles = makeStyles((theme) => ({
 // onchange
 // submit handler
 
-const SkillsForm = ({ dispatch }) => {
+const SkillsForm = () => {
   // component
   const classes = useStyles();
   // state
   const [ skillsFormData, setSkillsFormData ] = useState({
     skill: '',
   })
-  const [addSkill, { error } ] = useMutation(ADD_SKILL)
+  const [addSkill] = useMutation(ADD_SKILL)
 
   const [state, dispatch] = useUserContext()
 
