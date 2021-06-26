@@ -57,9 +57,9 @@ export const GET_SKILLS = gql`
   }
 `;
 
-export const GET_USERS_BY_SKILL = gql`
-  query ($skill: String) {
-    getUsersBySkill(skill: $skill) {
+export const SEARCH_USERS = gql`
+  query ($query: String) {
+    getUsers(query: $query) {
       _id
       username
       firstName
