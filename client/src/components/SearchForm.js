@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 import {
   FormControl,
   Button,
@@ -6,8 +6,9 @@ import {
   Input,
   FormGroup,
   Grid,
+  Container,
 } from "@material-ui/core";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const SearchForm = () => {
   // state
@@ -20,8 +21,8 @@ const SearchForm = () => {
   };
 
   return (
-    <FormGroup>
-      <Grid align="center">
+    <Container>
+      <FormGroup>
         <FormControl>
           <InputLabel htmlFor="searchBySkill">Search By Skill</InputLabel>
           <Input
@@ -35,8 +36,8 @@ const SearchForm = () => {
         <Button variant="outlined" color="primary">
           <Link to={`/search?q=${searchFormData}`}>Search</Link>
         </Button>
-      </Grid>
-    </FormGroup>
+      </FormGroup>
+    </Container>
   );
 };
 
