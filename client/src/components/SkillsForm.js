@@ -1,89 +1,98 @@
 // dependencies
-import React, { useReducer, useState } from 'react'
-import { FormControl, IconButton, InputLabel, Input, FormGroup, Grid } from '@material-ui/core'
+import React, { useState } from "react";
+import {
+  FormControl,
+  IconButton,
+  InputLabel,
+  Input,
+  FormGroup,
+  Grid,
+} from "@material-ui/core";
+import { useMutation } from "@apollo/client";
 
-import { makeStyles} from '@material-ui/core/styles';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { ADD_SKILL_ACTION } from "../utils/actions";
 
-import { useUserContext } from '../utils/UserContext'
-import reducer from '../utils/reducers'
+import { makeStyles } from "@material-ui/core/styles";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+
+import { ADD_SKILL } from "../utils/mutations";
 
 // form input
 
 const useStyles = makeStyles((theme) => ({
   margin: {
-    margin: theme.spacing(6, 5, 2),
-   
-    maxWidth: '90%',
-    align: "center"
-  },
+    margin: theme.spacing(6, 3, 0),
 
+    maxWidth: "90%",
+    align: "center",
+  },
 }));
 
 // onchange
 // submit handler
 
-const SkillsForm = () => { // component
+const SkillsForm = ({ dispatch }) => {
+  // component
   const classes = useStyles();
   // state
-  const initialState = useUserContext()
-  const [ skillsFormData, setSkillsFormData ] = useState({
-    skill: '',
-  })
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [skillsFormData, setSkillsFormData] = useState({
+    skill: "",
+  });
+  const [addSkill] = useMutation(ADD_SKILL);
 
   // onchange
   const handleInputChange = (e) => {
-    const { value } = e.target
+    const { value } = e.target;
     setSkillsFormData({
       ...skillsFormData,
-      skill: value
-    })
-  }
+      skill: value,
+    });
+  };
 
   // submit handler
-  const handleFormSubmit = (e) => {
-    e.preventDefault()
-
-    console.log(skillsFormData.skill)
-  }
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await addSkill({
+        variables: { ...skillsFormData },
+      });
+      if (data) {
+        dispatch({
+          type: ADD_SKILL_ACTION,
+          payload: skillsFormData.skill,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <FormGroup className={classes.margin}>
-
-    <Grid align="center">
+      <Grid align="center">
         <FormControl>
           <InputLabel htmlFor="skill">Skill</InputLabel>
-          <Input id="skill" name="skill" value={skillsFormData.skill} onChange={handleInputChange}/>
+          <Input
+            id="skill"
+            name="skill"
+            value={skillsFormData.skill}
+            onChange={handleInputChange}
+          />
         </FormControl>
-      {/* <Button onClick={handleFormSubmit}>Add</Button> */}
-
-      
-      {/* <Button variant="contained" color="primary" className={classes.button_margin} onClick={handleFormSubmit}>
-             Add
-        </Button> */}
-
-          {/* <Button 
-          variant="contained"
-          color="primary"
-          aria-label="add"
-          startIcon={<AddCircleIcon />}
-          onClick={handleFormSubmit}
-          >
-          Add
-        </Button> */}
 
         <label htmlFor="icon-button-file">
-        <IconButton color="primary" aria-label="add" component="span" onClick={handleFormSubmit}>
-          <AddCircleIcon fontSize="large"/>
-        </IconButton>
-      </label>
-
-
-     </Grid>
-
+          <IconButton
+            color="primary"
+            aria-label="add"
+            component="span"
+            onClick={handleFormSubmit}
+          >
+            <AddCircleIcon fontSize="large" />
+          </IconButton>
+        </label>
+      </Grid>
     </FormGroup>
-  )
-}
+  );
+};
 
-export default SkillsForm
+export default SkillsForm;

@@ -1,29 +1,32 @@
-import React, { useEffect, useReducer } from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_USER_BY_ID } from '../utils/queries';
-import { Container } from '@material-ui/core';
+import React, { useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { GET_USER_BY_ID } from "../utils/queries";
+
+// components
+import SkillsForm from "../components/SkillsForm";
+import SkillsList from "../components/SkillsList";
+import UserInfo from "../components/UserInfo";
+import LinkButton from "../components/Button";
+import ProjectCard from "../components/ProjectCard";
 
 // state
-import reducer from '../utils/reducers'
-import { useUserContext } from '../utils/UserContext'
-import { INIT_USER_STATE } from '../utils/actions';
+import { useUserContext } from "../utils/UserContext";
+import { INIT_USER_STATE } from "../utils/actions";
 
- 
-// added
-import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography  } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Container, CssBaseline, Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-// import Link from '@material-ui/core/Link';
-// >>> added
-
-// added
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
   },
+  p_margin: {
+    marginBottom: theme.spacing(1),
+  },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(3, 0, 6),
+    flexGrow: 1,
   },
   heroButtons: {
     marginTop: theme.spacing(2),
@@ -33,31 +36,32 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   cardContent: {
     flexGrow: 1,
   },
   client_format: {
-    display: 'flex',
-    '& > *': {
+    display: "flex",
+    "& > *": {
       margin: theme.spacing(1),
     },
   },
-  icon_color:{
+  icon_color: {
     //  backgroundColor:  "primary.main"
-    color: '#fff',
+    color: "#fff",
     backgroundColor: "#5c6bc0",
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+
 }));
 
 const Dashboard = () => {
@@ -65,123 +69,71 @@ const Dashboard = () => {
 
   // query user data
   const { loading, data } = useQuery(GET_USER_BY_ID);
-  const initialState = useUserContext()
+  const [state, dispatch] = useUserContext();
 
-  // TODO use state to get user information
-  const [state, dispatch] = useReducer(reducer, initialState)
-  console.log("state ", state)
   useEffect(() => {
     if (data) {
-      const uData = data?.getUserById  || [];
+      const userData = data?.getUserById || [];
       dispatch({
         type: INIT_USER_STATE,
-        payload: uData
-      })
+        payload: { ...userData },
+      });
     }
-    
-  }, [data])
-  
+  }, [data]);
 
-
-  // temporary data will need to replace with projects from user state
-  const cards = [
-    {client:"Grace corp", dueDate:"10/10/2021",checked: false}, 
-    {client:"Apple inc", dueDate:"9/25/2021",checked: false}, 
-    {client:"John Doe", dueDate:"12/20/2021",checked: true}, 
-    {client:"John Doe", dueDate:"12/20/2021",checked: true}, 
-  ];
-
-  for (let i = 0; i < cards.length; i++)  cards[i].image =  'https://source.unsplash.com/random?sig=' + i ;
+  // USE state.savedProjects to load array of projects associated to user
+  // think about using ternary statement to show projects or 'no projects yet'
 
   return (
     <React.Fragment>
-    <Container>
-      {loading ? (
-        <Container>Loading...</Container>
-      ) : (
-        // state.username
-        <>
+      <Container>
+        {loading ? (
+          <Container>Loading...</Container>
+        ) : (
+          // state.username
+          <>
             <CssBaseline />
- 
-              <main>
-                {/* Hero unit */}
-                <div className={classes.heroContent}>
-                  <Container maxWidth="sm">
-                    {/* <Typography component="h3" variant="h2" align="center" color="textPrimary" gutterBottom> */}
-                    <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom>
-                         {state.username}
-                    </Typography>
-                    <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                        <div>{state.firstName} {state.lastName} / {state.email}</div>
-                    </Typography>
-                    <div className={classes.heroButtons}>
-                      <Grid container spacing={2} justify="center">
-                        <Grid item>
-                          <Button variant="contained" color="primary"  href="/profile">
-                              Profile 
-                          </Button>
-                        </Grid>
 
-                        <Grid item>
-                          <Button variant="outlined" color="primary" href="/projects">
-                             Project
-                          </Button>
-                        </Grid>
-                        
+            <main>
+              <div className={classes.heroContent}>
+                <Container maxWidth="sm">
+                  <UserInfo state={state} />
+                  <SkillsList state={state} />
+                  <SkillsForm dispatch={dispatch}/>
+
+                  <div className={classes.heroButtons}>
+                    <Grid container spacing={2} justify="center">
+                      <Grid item>
+                        <LinkButton name="Add Project" url="/projects" />
                       </Grid>
-                    </div>
-                  </Container>
-                </div>
-                
+                      <Grid item>
+                        <LinkButton name="Edit Profile" url="/profile/edit" />
+                      </Grid>
+                    </Grid>
+                  </div>
+                </Container>
+
                 <Container className={classes.cardGrid} maxWidth="md">
                   {/* End hero unit */}
                   <Grid container spacing={4}>
-                    {cards.map((card,index) => (
-                     
+                    {state.savedProjects.map((card, index) => (
                       <Grid item key={index} xs={12} sm={6} md={4}>
-                        <Card className={classes.card}>
-                          <CardMedia
-                            className={classes.cardMedia}
-                            // image="https://source.unsplash.com/random"
-                            image={card.image}
-                            title="Image title"
-                          />
-                          <CardContent className={classes.cardContent}>
-
-                            <Typography gutterBottom variant="h5" component="h4" className={classes.client_format}>
-                                <Avatar className={classes.icon_color}>{card.client.charAt(0)}</Avatar>{card.client}
-                            </Typography>
-                            <Typography>
-                             due date: {card.dueDate}
-                             </Typography><Typography>
-                             status: {card.checked? "completed": "pending"}
-                            </Typography>
-                          </CardContent>
-                          <CardActions>
-                            {/* <Button size="small" color="primary">
-                              View
-                            </Button> */}
-                            <Button size="small" color="primary" value={card} href="/projects">
-                              Edit
-                            </Button>
-                          </CardActions>
-                        </Card>
+                        <ProjectCard
+                          card={card}
+                          classes={classes}
+                          state={state}
+                        />
                       </Grid>
                     ))}
                   </Grid>
                 </Container>
-              </main>
-        
-        </>
-      )}
-
-      
-
-
-
-    </Container>
+              </div>
+            </main>
+          </>
+        )}
+      </Container>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

@@ -10,6 +10,8 @@ import Navbar from './components/Navbar'
 import ProjectForm from './components/ProjectForm'
 import ProfileForm from './components/ProfileForm'
 import Skills from './components/Skills'
+import Profile from './pages/Profile'
+import Search from './pages/Search'
 
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -41,9 +43,11 @@ function App() {
             <Route exact path='/' component={Home} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/user/:username" component={Profile} />
             <Route exact path="/projects" component={ProjectForm} />
             <Route exact path="/profile" component={ProfileForm} />
             <Route exact path="/skills" component={Skills} /> 
+            <Route exact path="/search" component={Search} />
           </UserProvider>
         </Switch>
       </Router>
