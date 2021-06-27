@@ -113,6 +113,19 @@ const Navbar = () => {
     }
   }
 
+    // state
+    const [searchFormData, setSearchFormData] = useState("");
+
+    // onchange
+    const handleInputChange = (e) => {
+      const { value } = e.target;
+      setSearchFormData(value);
+    };
+
+    const handleClick = (e) => {
+      setSearchFormData({e.target});
+    };
+
   return (
     // <header className="flex-row px-1">
 
