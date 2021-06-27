@@ -1,9 +1,9 @@
 import React from "react";
 import Auth from "../utils/auth";
-import { fade, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Button, InputBase } from "@material-ui/core";
-import SearchIcon from '@material-ui/icons/Search';
+import SearchForm from '../components/SearchForm'
 // import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme) => ({
@@ -38,10 +38,6 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
@@ -133,17 +129,7 @@ const Navbar = () => {
 
           {/* search */}
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+            <SearchForm />
           </div>
           {/* search */}
 

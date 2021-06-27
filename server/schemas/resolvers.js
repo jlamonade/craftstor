@@ -18,13 +18,12 @@ const resolvers = {
 
     //query to dynamically find users based on any number of inputs
     getUsers: async (parent, { query }) => {
-      console.log(query)
       const users = await User.find(
         { $or: [
           {firstName: query},
           {lastName: query},
           {email: query},
-          { profile: {skills: [query] }}
+          { 'profile.skills': { $elemMatch: {$eq: query} } }
         ]}
       );
 
@@ -122,7 +121,6 @@ const resolvers = {
       return user;
     },
 
-    //TODO: update project resolver
     updateProject: async (parent, args, context) => {
       const user = await User.findOneAndUpdate(
         { id: context.user._id },
