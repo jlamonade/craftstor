@@ -33,7 +33,7 @@ const SearchForm = () => {
           />
         </Grid>
         <Grid item>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" style={{ backgroundColor: 'black' }} disableElevation>
             <Link to={`/search?q=${searchFormData}`} style={linkStyle}>
               Search
             </Link>
