@@ -1,4 +1,6 @@
 import { Grid, Button } from "@material-ui/core";
+import { Link } from 'react-router-dom'
+import { linkStyle } from '../components/LinkStyle'
 
 const SkillsList = ({ state }) => {
   return (
@@ -6,8 +8,8 @@ const SkillsList = ({ state }) => {
       {state.profile.skills.map((skill) => {
         return (
           <Grid item>
-            <Button variant="contained" color="secondary" m={1}>
-              {skill}
+            <Button variant="contained" color="secondary">
+              <Link to={`/search?q=${skill}`} style={linkStyle}>{skill}</Link>
             </Button>
           </Grid>
         );
