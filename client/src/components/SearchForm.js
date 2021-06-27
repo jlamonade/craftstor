@@ -29,6 +29,7 @@ const SearchForm = () => {
             name="searchBySkill"
             value={searchFormData}
             onChange={handleInputChange}
+            placeholder="Search..."
           />
         </FormControl>
 
