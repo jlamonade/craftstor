@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import { SEARCH_USERS } from "../utils/queries";
 
 import { Container, Card, Typography } from "@material-ui/core";
+import { Link } from 'react-router-dom'
 
 import UserInfo from "../components/UserInfo";
 import SkillsList from "../components/SkillsList";
@@ -34,7 +35,9 @@ const Search = () => {
       <Typography>Search Results</Typography>
       {usersData.map((user) => (
         <Card key={user._id}>
-          <UserInfo state={user} />
+          <Link to={`/profile/${user.username}`}>
+            <UserInfo state={user} />
+          </Link>
           <SkillsList state={user} />
         </Card>
       ))}

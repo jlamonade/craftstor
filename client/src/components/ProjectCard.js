@@ -25,8 +25,12 @@ const ProjectCard = ({ state, card, classes, index}) => {
           className={classes.client_format}
         >
           <Avatar className={classes.icon_color}>
-            {card.client.charAt(0)}
+            {card.title.charAt(0)}
           </Avatar>
+          {card.title}
+        </Typography>
+        <Typography>
+          <span style={{ fontSize: "9px" }}> Client: </span>
           {card.client}
         </Typography>
         <Typography>
@@ -38,11 +42,11 @@ const ProjectCard = ({ state, card, classes, index}) => {
           {card.checked ? "completed ✔️" : "pending"}
         </Typography>
       </CardContent>
-      <CardActions>
+      {/* <CardActions>
         <Button size="small" color="primary" href="/">
           <span style={{ fontSize: "9px" }}>View detail .....</span>
         </Button>
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 };
