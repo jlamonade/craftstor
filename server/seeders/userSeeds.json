@@ -1,0 +1,96 @@
+[
+  {
+    "username": "jason",
+    "firstName": "Jason",
+    "lastName": "Lam",
+    "email": "nyjasonlam@gmail.com",
+    "password": "asdfjason",
+    "profile": {
+        "skills": ["welding", "woodturning", "sewing"],
+        "portfolio": "jasonlam.codes"
+    },
+    "savedProjects": [
+      {
+          "dueDate": "12/12/21",
+          "title": "burning man statue",
+          "client": "burning man",
+          "checked": true
+      },
+      {
+        "dueDate": "12/12/21",
+        "title": "sculture",
+        "client": "Hariet",
+        "checked": false
+      },
+      {
+        "dueDate": "12/12/21",
+        "title": "fish tank",
+        "client": "Steve",
+        "checked": true
+      }
+    ]
+  },
+  {
+    "username": "joseph",
+    "firstName": "Joseph",
+    "lastName": "Smith",
+    "email": "joseph@gmail.com",
+    "password": "asdfjoseph",
+    "profile": {
+        "skills": ["glassblowing", "sewing", "welding"],
+        "portfolio": "josephsmith.com"
+    },
+    "savedProjects": [
+      {
+          "dueDate": "12/12/21",
+          "title": "burning man statue",
+          "client": "burning man",
+          "checked": true
+      },
+      {
+        "dueDate": "12/12/21",
+        "title": "sculture",
+        "client": "Hariet",
+        "checked": false
+      },
+      {
+        "dueDate": "12/12/21",
+        "title": "fish tank",
+        "client": "Steve",
+        "checked": true
+      }
+    ]
+  },
+  {
+    "username": "kenny",
+    "firstName": "Kenny",
+    "lastName": "Rogers",
+    "email": "kenny@gmail.com",
+    "password": "asdfkenny",
+    "profile": {
+        "skills": ["embroidery", "tailoring", "welding"],
+        "portfolio": "kennyrogers.com"
+    },
+    "savedProjects": [
+      {
+          "dueDate": "12/12/21",
+          "title": "burning man statue",
+          "client": "burning man",
+          "checked": true
+      },
+      {
+        "dueDate": "12/12/21",
+        "title": "sculture",
+        "client": "Hariet",
+        "checked": false
+      },
+      {
+        "dueDate": "12/12/21",
+        "title": "fish tank",
+        "client": "Steve",
+        "checked": true
+      }
+    ]
+  }
+]
+
