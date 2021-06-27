@@ -1,9 +1,8 @@
 import React from "react";
 import Auth from "../utils/auth";
-import { fade, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Button, InputBase } from "@material-ui/core";
-import SearchIcon from '@material-ui/icons/Search';
 import SearchForm from '../components/SearchForm'
 // import MenuIcon from '@material-ui/icons/Menu';
 
@@ -45,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: theme.spacing(1),
       width: 'auto',
     },
-    color: 'white',
   },
   searchIcon: {
     padding: theme.spacing(0, 2),

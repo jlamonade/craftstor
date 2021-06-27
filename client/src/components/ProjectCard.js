@@ -4,8 +4,6 @@ import {
   CardContent,
   Avatar,
   Typography,
-  CardActions,
-  Button,
 } from "@material-ui/core";
 
 const ProjectCard = ({ state, card, classes, index}) => {

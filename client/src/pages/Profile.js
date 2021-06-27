@@ -2,13 +2,12 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { GET_USER_BY_USERNAME } from '../utils/queries'
-import { CssBaseline, Container, Grid, Typography } from '@material-ui/core'
+import { CssBaseline, Container, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 import UserInfo from '../components/UserInfo'
 import SkillsList from '../components/SkillsList'
 import ProjectCard from '../components/ProjectCard'
-import LinkButton from '../components/Button'
 
 const useStyles = makeStyles((theme) => ({
   icon: {

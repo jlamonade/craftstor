@@ -9,9 +9,6 @@ import UserInfo from "../components/UserInfo";
 import LinkButton from "../components/Button";
 import ProjectCard from "../components/ProjectCard";
 
-// style
-import { linkStyle } from '../components/LinkStyle'
-
 // state
 import { useUserContext } from "../utils/UserContext";
 import { INIT_USER_STATE } from "../utils/actions";
