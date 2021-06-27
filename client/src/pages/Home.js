@@ -37,7 +37,6 @@ const Home = () => {
 
   return (
     <Container>
-      <SearchForm />
       {Auth.loggedIn() ? (
         <Dashboard />
       ) : (
