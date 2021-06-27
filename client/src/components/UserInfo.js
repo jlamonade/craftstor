@@ -1,4 +1,5 @@
 import { Typography } from "@material-ui/core";
+import { Link } from 'react-router-dom'
 
 const UserInfo = ({ state }) => {
   return (
@@ -11,7 +12,7 @@ const UserInfo = ({ state }) => {
         gutterBottom
         marginTop="0"
       >
-        {state.username}
+        <Link to={`/user/${state.username}`}>{state.username}</Link>
       </Typography>
       <Typography align="center">
         {state.firstName} {state.lastName} /{" "}
@@ -22,7 +23,7 @@ const UserInfo = ({ state }) => {
           {" "}
           {state.email}
         </a>{" "}
-{/*         / {state.profile.portfolio} */}
+        / {state.profile.portfolio}
       </Typography>
     </>
   );
