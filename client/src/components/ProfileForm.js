@@ -138,7 +138,7 @@ const ProfileForm = () => {
              Submit
         </Button> */}
 
-            <Grid container spacing={2} justify="center">
+            <Grid container spacing={2} justify="center" style={{marginTop:"1rem"}}>
               <Grid item>
                 <Button
                   variant="contained"
@@ -149,7 +149,7 @@ const ProfileForm = () => {
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" color="primary">
+                <Button variant="outlined" color="primary" >
                   <Link to="/">Cancel</Link>
                 </Button>
               </Grid>
