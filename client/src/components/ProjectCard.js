@@ -5,6 +5,7 @@ import {
   Avatar,
   Typography,
 } from "@material-ui/core";
+import Moment from 'moment';
 
 const ProjectCard = ({ state, card, classes, index}) => {
 
@@ -33,7 +34,7 @@ const ProjectCard = ({ state, card, classes, index}) => {
         </Typography>
         <Typography>
           <span style={{ fontSize: "9px" }}> due date: </span>
-          {card.dueDate}
+          {Moment(card.dueDate).format('ddd MM/DD/YYYY')}
         </Typography>
         <Typography>
           <span style={{ fontSize: "9px" }}> status: </span>{" "}

@@ -2,7 +2,7 @@ import React from "react";
 import Auth from "../utils/auth";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import { AppBar, Toolbar, Typography, Button, InputBase } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import SearchForm from '../components/SearchForm'
 // import MenuIcon from '@material-ui/icons/Menu';
 
