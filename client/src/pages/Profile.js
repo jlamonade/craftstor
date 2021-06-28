@@ -78,7 +78,7 @@ const Profile = () => {
               <div className={classes.heroContent}>
                 <Container maxWidth="sm">
                   <UserInfo state={userData} />
-                  <SkillsList state={userData} />
+                  <SkillsList state={userData} isDashboard={false} />
                 </Container>
 
                 <Container className={classes.cardGrid} maxWidth="md">
