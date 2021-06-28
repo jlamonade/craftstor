@@ -9,15 +9,16 @@ import { REMOVE_SKILL } from '../utils/actions'
 import { DELETE_SKILL } from '../utils/mutations'
 import Auth from "../utils/auth";
 
-const SkillsList = () => {
+const SkillsList = ({ isDashboard }) => {
   const [state, dispatch] = useUserContext();
 
   const [deleteSkill] = useMutation(DELETE_SKILL);
+  console.log(isDashboard)
 
   const skillRemoveHandler = async (e) => {
     e.stopPropagation()
-    e.preventDefault()
-    const skill = e.target.textContent;
+    const skill = e.target.id;
+    console.log(skill)
     try {const { data } = await deleteSkill({
       variables: {
         skill: skill
@@ -39,11 +40,13 @@ const SkillsList = () => {
         return (
           <Grid item>
             <Button variant="contained" color="secondary">
-              <Link to={`/search?q=${skill}`} style={linkStyle} onClick={Auth.loggedIn() && skillRemoveHandler}>
+              <Link to={`/search?q=${skill}`} style={linkStyle}>
                 {skill}
               </Link>
             </Button>
-            
+            {isDashboard && (<Button variant="container" color="default">
+              <div id={skill} onClick={skillRemoveHandler}>X</div>
+            </Button>)}
           </Grid>
         );
       })}
