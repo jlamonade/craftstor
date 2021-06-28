@@ -73,7 +73,7 @@ const resolvers = {
     removeSkill: async (parent, { skill }, context) => {
       let user = await User.findOneAndUpdate(
         { _id: context.user._id },
-        { $pop: { "profile.skills": skill }}       
+        { $pull: { "profile.skills": skill }}       
       );
 
       return user
