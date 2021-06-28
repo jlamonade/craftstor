@@ -38,6 +38,7 @@ const typeDefs = gql`
     updateUser(username: String, email: String, firstName: String, lastName: String): User
     addSkills(id: ID, skill: String!): User
     updateProject(dueDate: String, client: String, checked: Boolean): User
+    removeSkill(skill: String!): User
   }
 
   type Query {

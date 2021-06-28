@@ -75,6 +75,8 @@ const resolvers = {
         { _id: context.user._id },
         { $pop: { "profile.skills": skill }}       
       );
+
+      return user
     },
 
     login: async (parent, args, context) => {
