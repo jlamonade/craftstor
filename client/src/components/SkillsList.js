@@ -7,7 +7,6 @@ import { useUserContext } from "../utils/UserContext";
 import { REMOVE_SKILL } from '../utils/actions'
 // import remove skill mutation
 import { DELETE_SKILL } from '../utils/mutations'
-import Auth from "../utils/auth";
 
 const SkillsList = ({ isDashboard }) => {
   const [state, dispatch] = useUserContext();
@@ -19,12 +18,13 @@ const SkillsList = ({ isDashboard }) => {
     e.stopPropagation()
     const skill = e.target.id;
     console.log(skill)
-    try {const { data } = await deleteSkill({
+    try {
+      const { data } = await deleteSkill({
       variables: {
         skill: skill
       }
     });
-    if (data) {
+    if (await data) {
       dispatch({
         type: REMOVE_SKILL,
         payload: skill,
@@ -45,7 +45,9 @@ const SkillsList = ({ isDashboard }) => {
               </Link>
             </Button>
             {isDashboard && (<Button variant="container" color="default">
-              <div id={skill} onClick={skillRemoveHandler}>X</div>
+              <div id={skill} onClick={skillRemoveHandler}>
+                X
+              </div>
             </Button>)}
           </Grid>
         );

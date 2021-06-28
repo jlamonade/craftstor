@@ -19,7 +19,7 @@ export default function reducer(state, action) {
       return {
         ...state,
         profile: {
-          skills: [...state.profile.skills.filter(skill => skill !== action.payload)]
+          skills: [...state.profile.skills.filter((skill) => skill !== action.payload)]
         }
       }
     }
