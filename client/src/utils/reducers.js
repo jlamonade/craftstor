@@ -1,4 +1,4 @@
-import { ADD_SKILL_ACTION, REMOVE_SKILL, ADD_PROJECT, DELETE_PROJECT, INIT_USER_STATE } from "./actions";
+import { ADD_SKILL_ACTION, INIT_USER_STATE, REMOVE_SKILL } from "./actions";
 
 export default function reducer(state, action) {
   switch(action.type) {
@@ -13,6 +13,14 @@ export default function reducer(state, action) {
     case INIT_USER_STATE: {
       return {
         ...action.payload
+      }
+    }
+    case REMOVE_SKILL: {
+      return {
+        ...state,
+        profile: {
+          skills: [...state.profile.skills.filter(skill => skill !== action.payload)]
+        }
       }
     }
     default: {

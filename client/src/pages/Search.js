@@ -27,8 +27,6 @@ const Search = () => {
     }
   }, [data]);
 
-  console.log(usersData);
-
   return (
     <Container>
       {loading ? (

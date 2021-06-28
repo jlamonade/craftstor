@@ -31,7 +31,7 @@ const ProjectForm = () => {
   // tracks the changes in the form
   const handleInputChange = (event) => {
     const { name, value, checked } = event.target;
-    setProjectFormData({ ...projectFormData, [name]: value || checked });
+    setProjectFormData({ ...projectFormData, [name]: value, checked: checked });
   };
 
   // form submit handler - where all the authentication stuff happens
@@ -40,13 +40,11 @@ const ProjectForm = () => {
     event.stopPropagation();
 
     try {
-      console.log(projectFormData);
       const { data } = await saveProject({
         variables: { ...projectFormData },
       });
       if (data) {
        
-        console.log(data);
         window.location.assign("/");
       }
     } catch (err) {

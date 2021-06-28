@@ -27,8 +27,6 @@ const resolvers = {
         ]}
       );
 
-      console.log(users)
-
       if(!users) {
         throw new UserInputError("No results!")
       }

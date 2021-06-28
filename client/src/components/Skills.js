@@ -9,7 +9,6 @@ import Auth from '../utils/auth'
 const Skills = () => {
 
   const [state] = useUserContext()
-  console.log('auth ', Auth.loggedIn())
 
   return (
     <Container maxWidth="sm">

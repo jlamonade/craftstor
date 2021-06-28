@@ -90,3 +90,13 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+
+export const DELETE_SKILL = gql`
+  mutation ($skill: String!) {
+    removeSkill(skill: $skill) {
+      profile {
+        skills
+      }
+    }
+  }
+`;
