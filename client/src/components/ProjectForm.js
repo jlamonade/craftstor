@@ -30,7 +30,6 @@ const ProjectForm = () => {
 
   // tracks the changes in the form
   const handleInputChange = (event) => {
-    console.log(event.target.value, event.target.checked)
     const { name, value, checked } = event.target;
     setProjectFormData({ ...projectFormData, [name]: value, checked: checked });
   };
@@ -41,13 +40,11 @@ const ProjectForm = () => {
     event.stopPropagation();
 
     try {
-      console.log(projectFormData);
       const { data } = await saveProject({
         variables: { ...projectFormData },
       });
       if (data) {
        
-        console.log(data);
         window.location.assign("/");
       }
     } catch (err) {

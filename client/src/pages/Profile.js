@@ -62,7 +62,6 @@ const Profile = () => {
     }
   })
   const userData = data?.getUserByUsername
-  console.log(userData)
   
   // then render it in the return
   return (

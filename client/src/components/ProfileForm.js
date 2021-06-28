@@ -40,7 +40,6 @@ const ProfileForm = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("try block", profileFormData);
       const { data } = await updateUser({
         variables: {
           username: profileFormData.username,
@@ -50,7 +49,6 @@ const ProfileForm = () => {
         },
       });
       if (data) {
-        console.log("successful ", data);
         window.location.assign("/");
       }
     } catch (err) {
