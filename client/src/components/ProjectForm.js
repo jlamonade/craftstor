@@ -30,8 +30,9 @@ const ProjectForm = () => {
 
   // tracks the changes in the form
   const handleInputChange = (event) => {
+    console.log(event.target.value, event.target.checked)
     const { name, value, checked } = event.target;
-    setProjectFormData({ ...projectFormData, [name]: value || checked });
+    setProjectFormData({ ...projectFormData, [name]: value, checked: checked });
   };
 
   // form submit handler - where all the authentication stuff happens

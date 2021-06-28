@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 // onchange
 // submit handler
 
-const SkillsForm = ({dispatch}) => {
+const SkillsForm = ({ dispatch }) => {
   // component
   const classes = useStyles();
   // state
@@ -80,6 +80,7 @@ const SkillsForm = ({dispatch}) => {
           <Input
             id="skill"
             name="skill"
+            type="text"
             value={skillsFormData.skill}
             onChange={handleInputChange}
           />
