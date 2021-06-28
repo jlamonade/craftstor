@@ -70,6 +70,13 @@ const resolvers = {
       return user;
     },
 
+    removeSkill: async (parent, { skill }, context) => {
+      let user = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pop: { "profile.skills": skill }}       
+      );
+    },
+
     login: async (parent, args, context) => {
       let foundUser = await User.findOne({ email: args.email });
 
