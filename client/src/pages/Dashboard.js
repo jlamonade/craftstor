@@ -115,7 +115,7 @@ const Dashboard = () => {
               <div className={classes.heroContent}>
                 <Container maxWidth="sm">
                   <UserInfo state={state} />
-                  <SkillsList state={state} dispatch={dispatch} isDashboard={true}/>
+                  <SkillsList user={state} dispatch={dispatch} isDashboard={true}/>
                   <SkillsForm dispatch={dispatch} />
 
                   <div className={classes.heroButtons}>
