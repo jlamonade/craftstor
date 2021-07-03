@@ -37,7 +37,7 @@ const Search = () => {
           {usersData.map((user) => (
             <Card key={user._id}>
               <UserInfo state={user} />
-              <SkillsList state={user} />
+              <SkillsList user={user} />
             </Card>
           ))}
         </>
