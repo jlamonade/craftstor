@@ -59,6 +59,12 @@ const resolvers = {
 
       return user;
     },
+
+    getFriends: async (parent, { id }, context) => {
+      const user = await User.findOne({ _id: id }).populate('profile.friends')
+
+      return user
+    }
   },
 
   Mutation: {
@@ -176,11 +182,10 @@ const resolvers = {
       return updatedUser;
     },
 
-    async addFriend(parent, { id, otherId }, context) {
-      console.log(id, otherId)
+    async addFriend(parent, { id }, context) {
       const updatedUser = await User.findOneAndUpdate(
-        { _id: otherId },
-        { $addToSet: { friends: id } },
+        { _id: context.user._id },
+        { $addToSet: { "profile.friends": id } },
         { new: true }
       )
       if (!updatedUser) {

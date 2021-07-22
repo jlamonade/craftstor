@@ -15,6 +15,7 @@ const typeDefs = gql`
   type Profile {
     skills: [String],
     portfolio: String
+    friends: [User]
   }
 
   type Project {
@@ -40,7 +41,7 @@ const typeDefs = gql`
     addSkills(id: ID, skill: String!): User
     updateProject(dueDate: String, client: String, checked: Boolean): User
     removeSkill(skill: String!): User
-    addFriend(id: ID!, otherId: ID!): User
+    addFriend(id: ID!): User
   }
 
   type Query {
@@ -49,6 +50,7 @@ const typeDefs = gql`
     getSkills(id: ID): User
     getProjects(id: ID): User
     getUsers(query: String): [User]
+    getFriends(id: ID): User
   }
 `;
 

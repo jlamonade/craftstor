@@ -34,6 +34,12 @@ const userSchema = new Schema({
             type: String,
             required: false,
         },
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "User"
+            }
+        ]
     },
     savedProjects: [
         {
@@ -58,12 +64,6 @@ const userSchema = new Schema({
             }
         }
     ],
-    friends: [
-        {
-            type: Schema.Types.ObjectId, 
-            ref: 'User'
-        }
-    ]
 });
 
 userSchema.pre('save', async function(next) {
