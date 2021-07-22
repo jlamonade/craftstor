@@ -60,9 +60,9 @@ const resolvers = {
       return user;
     },
 
-    getFriends: async (parent, { id }, context) => {
-      const user = await User.findOne({ _id: id }).populate('profile.friends')
-
+    getFriends: async (parent, args, context) => {
+      const user = await User.findOne({ _id: context.user._id }).populate('profile.friends')
+      // TODO make sure front end shows no friends if USER is empty
       return user
     }
   },
