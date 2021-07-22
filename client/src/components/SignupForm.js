@@ -8,6 +8,7 @@ import {
   Typography,
   Button,
   Grid,
+  FormHelperText
 } from "@material-ui/core";
 
 import { Link } from 'react-router-dom'
@@ -126,6 +127,7 @@ const SignupForm = () => {
             name="password"
             value={userFormData.password}
           />
+          <FormHelperText>Password must contain 8 characters.</FormHelperText>
         </FormControl>
         {/* <Button color="primary" onClick={handleFormSubmit}>Submit</Button> */}
 
