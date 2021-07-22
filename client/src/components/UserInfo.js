@@ -1,9 +1,9 @@
-import { Typography } from "@material-ui/core";
+import { Typography, Box } from "@material-ui/core";
 import { Link } from 'react-router-dom'
 
 const UserInfo = ({ state }) => {
   return (
-    <>
+    <Box m={2}>
       <Typography
         component="h3"
         variant="h2"
@@ -25,7 +25,7 @@ const UserInfo = ({ state }) => {
         </a>{" "}
         / {state.profile.portfolio}
       </Typography>
-    </>
+    </Box>
   );
 };
 

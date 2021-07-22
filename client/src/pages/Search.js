@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { SEARCH_USERS } from "../utils/queries";
 
-import { Container, Card, Typography } from "@material-ui/core";
+import { Container, Card, Typography, Box } from "@material-ui/core";
 
 import UserInfo from "../components/UserInfo";
 import SkillsList from "../components/SkillsList";
@@ -35,10 +35,12 @@ const Search = () => {
         <>
           <Typography>Search Results</Typography>
           {usersData.map((user) => (
-            <Card key={user._id}>
-              <UserInfo state={user} />
-              <SkillsList user={user} />
-            </Card>
+            <Box m={2}>
+              <Card key={user._id}>
+                <UserInfo state={user} />
+                <SkillsList user={user} />
+              </Card>
+            </Box>
           ))}
         </>
       )}

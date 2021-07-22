@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { Grid, Button } from "@material-ui/core";
+import { Grid, Button, Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { linkStyle } from "../components/LinkStyle";
 import { useUserContext } from "../utils/UserContext";
@@ -33,24 +33,26 @@ const SkillsList = ({ isDashboard, user }) => {
   };
 
   return (
-    <Grid container spacing={1} justify="center">
-      {user.profile.skills.map((skill) => {
-        return (
-          <Grid item>
-            <Button variant="contained" color="secondary">
-              <Link to={`/search?q=${skill}`} style={linkStyle}>
-                {skill}
-              </Link>
-            </Button>
-            {isDashboard && (<Button variant="container" color="default">
-              <div id={skill} onClick={skillRemoveHandler}>
-                X
-              </div>
-            </Button>)}
-          </Grid>
-        );
-      })}
-    </Grid>
+    <Box m={2}>
+      <Grid container spacing={1} justify="center">
+        {user.profile.skills.map((skill) => {
+          return (
+            <Grid item>
+              <Button variant="contained" color="secondary">
+                <Link to={`/search?q=${skill}`} style={linkStyle}>
+                  {skill}
+                </Link>
+              </Button>
+              {isDashboard && (<Button variant="container" color="default">
+                <div id={skill} onClick={skillRemoveHandler}>
+                  X
+                </div>
+              </Button>)}
+            </Grid>
+          );
+        })}
+      </Grid>
+    </Box>
   );
 };
 
