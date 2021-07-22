@@ -43,6 +43,7 @@ const resolvers = {
 
       return foundUser;
     },
+
     getSkills: async (parent, args, context) => {
       const user = await User.findOne({ _id: context.user._id }).select(
         "profile.skills"
@@ -50,6 +51,7 @@ const resolvers = {
 
       return user;
     },
+
     getProjects: async (parent, args, context) => {
       const user = await User.findOne({ _id: context.user._id }).select(
         "savedProjects"
@@ -58,11 +60,12 @@ const resolvers = {
       return user;
     },
   },
+
   Mutation: {
     addSkills: async (parent, { skill }, context) => {
       let user = await User.findOneAndUpdate(
         { _id: context.user._id },
-        { $push: { "profile.skills": skill } }
+        { $addToSet: { "profile.skills": skill } }
       );
 
       return user;
@@ -145,7 +148,6 @@ const resolvers = {
 
       return user;
     },
-    //TODO: delete project resolver
 
     async savedProjects(parent, args, context) {
       const id = context.user._id;
@@ -172,6 +174,19 @@ const resolvers = {
         throw new UserInputError("Failed to delete!");
       }
       return updatedUser;
+    },
+
+    async addFriend(parent, { id, otherId }, context) {
+      console.log(id, otherId)
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: otherId },
+        { $addToSet: { friends: id } },
+        { new: true }
+      )
+      if (!updatedUser) {
+        throw new UserInputError("Failed to add friends!")
+      }
+      return updatedUser
     },
   },
 };

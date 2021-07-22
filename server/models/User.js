@@ -58,6 +58,12 @@ const userSchema = new Schema({
             }
         }
     ],
+    friends: [
+        {
+            type: Schema.Types.ObjectId, 
+            ref: 'User'
+        }
+    ]
 });
 
 userSchema.pre('save', async function(next) {

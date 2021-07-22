@@ -24,6 +24,7 @@ const Search = () => {
   useEffect(() => {
     if (data) {
       setUsersData(data.getUsers);
+      console.log(data)
     }
   }, [data]);
 
