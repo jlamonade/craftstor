@@ -3,12 +3,10 @@ import { Grid, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { linkStyle } from "../components/LinkStyle";
 import { useUserContext } from "../utils/UserContext";
-// import remove skill action
 import { REMOVE_SKILL } from '../utils/actions'
-// import remove skill mutation
 import { DELETE_SKILL } from '../utils/mutations'
 
-const SkillsList = ({ isDashboard }) => {
+const SkillsList = ({ isDashboard, user }) => {
   const [state, dispatch] = useUserContext();
 
   const [deleteSkill] = useMutation(DELETE_SKILL);
@@ -36,7 +34,7 @@ const SkillsList = ({ isDashboard }) => {
 
   return (
     <Grid container spacing={1} justify="center">
-      {state.profile.skills.map((skill) => {
+      {user.profile.skills.map((skill) => {
         return (
           <Grid item>
             <Button variant="contained" color="secondary">
