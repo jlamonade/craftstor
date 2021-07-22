@@ -88,7 +88,7 @@ const Dashboard = () => {
         payload: { ...userData },
       });
     }
-  }, [data]);
+  }, [data, dispatch]);
 
   // const startAddingProjectHandler = (e) => {
   //   e.preventDefault()
@@ -134,7 +134,7 @@ const Dashboard = () => {
                   {/* End hero unit */}
                   <Grid container spacing={4}>
                     {state.savedProjects.map((card, index) => (
-                      <Grid item key={index} xs={12} sm={6} md={4}>
+                      <Grid item xs={12} sm={6} md={4} key={index}>
                         <ProjectCard
                           card={card}
                           classes={classes}

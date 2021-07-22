@@ -7,15 +7,13 @@ import { REMOVE_SKILL } from '../utils/actions'
 import { DELETE_SKILL } from '../utils/mutations'
 
 const SkillsList = ({ isDashboard, user }) => {
-  const [state, dispatch] = useUserContext();
+  const [, dispatch] = useUserContext();
 
   const [deleteSkill] = useMutation(DELETE_SKILL);
-  console.log(isDashboard)
 
   const skillRemoveHandler = async (e) => {
     e.stopPropagation()
     const skill = e.target.id;
-    console.log(skill)
     try {
       const { data } = await deleteSkill({
       variables: {
@@ -37,13 +35,13 @@ const SkillsList = ({ isDashboard, user }) => {
       <Grid container spacing={1} justify="center">
         {user.profile.skills.map((skill) => {
           return (
-            <Grid item>
+            <Grid item key={skill}>
               <Button variant="contained" color="secondary">
                 <Link to={`/search?q=${skill}`} style={linkStyle}>
                   {skill}
                 </Link>
               </Button>
-              {isDashboard && (<Button variant="container" color="default">
+              {isDashboard && (<Button color="default">
                 <div id={skill} onClick={skillRemoveHandler}>
                   X
                 </div>

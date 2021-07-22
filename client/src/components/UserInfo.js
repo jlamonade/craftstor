@@ -10,7 +10,6 @@ const UserInfo = ({ state }) => {
         align="center"
         color="textPrimary"
         gutterBottom
-        marginTop="0"
       >
         <Link to={`/user/${state.username}`}>{state.username}</Link>
       </Typography>

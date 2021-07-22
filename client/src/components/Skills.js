@@ -1,9 +1,7 @@
 // dependencies
 import React from 'react'
 import { Container, List, ListItem, CssBaseline, Typography } from '@material-ui/core'
-
 import { useUserContext } from '../utils/UserContext'
-import Auth from '../utils/auth'
 
 // component
 const Skills = () => {

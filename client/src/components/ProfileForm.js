@@ -30,7 +30,7 @@ const ProfileForm = () => {
     if (userData) {
       setProfileFormData(userData);
     }
-  }, [data]);
+  }, [userData]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -138,7 +138,7 @@ const ProfileForm = () => {
              Submit
         </Button> */}
 
-            <Grid container spacing={2} justify="center" style={{marginTop:"1rem"}}>
+            <Grid container spacing={2} justify="center">
               <Grid item>
                 <Button
                   variant="contained"

@@ -24,7 +24,6 @@ const Search = () => {
   useEffect(() => {
     if (data) {
       setUsersData(data.getUsers);
-      console.log(data)
     }
   }, [data]);
 
@@ -36,8 +35,8 @@ const Search = () => {
         <>
           <Typography>Search Results</Typography>
           {usersData.map((user) => (
-            <Box m={2}>
-              <Card key={user._id}>
+            <Box m={2} key={user._id}>
+              <Card>
                 <UserInfo state={user} />
                 <SkillsList user={user} />
               </Card>
